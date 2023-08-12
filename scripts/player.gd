@@ -44,7 +44,7 @@ func _physics_process(delta):
 				minimum_node = node
 		if not minimum_node:
 			return
-		minimum_node.call("interact")
+		minimum_node.call("interact", self)
 	
 	if Input.is_action_just_pressed("ui_cancel"):
 		if mouse_captured:

@@ -59,16 +59,16 @@ mesh = SubResource("BoxMesh_bvebu")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_c75c4")
 
-[node name="table" parent="." groups=["interactable"] instance=ExtResource("3_c1med")]
+[node name="Table" parent="." groups=["interactable"] instance=ExtResource("3_c1med")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.94753, 0, -0.565056)
 script = ExtResource("4_c12t3")
 
-[node name="Animator" type="AnimationPlayer" parent="table"]
+[node name="Animator" type="AnimationPlayer" parent="Table"]
 libraries = {
 "drawer_animations": SubResource("AnimationLibrary_7cb24")
 }
 
-[node name="label" type="Label3D" parent="table"]
+[node name="Label" type="Label3D" parent="Table"]
 transform = Transform3D(-1, 0, 8.74228e-08, 2.61939e-08, 0.954057, 0.299624, -8.34063e-08, 0.299624, -0.954057, 0, 0.997142, -0.611562)
 visible = false
 text = "q"

@@ -3,6 +3,7 @@ extends Node3D
 
 var player: CharacterBody3D = null
 var inrange = false
+var open = false
 
 @export var range = 10
 
@@ -20,11 +21,22 @@ func _process(_d):
 	
 	var distance = player.global_position.distance_squared_to(global_position)
 	if distance < range:
-		get_node("label").show()
+		if open:
+			$Label.hide()
+		else:
+			$Label.show()
 		inrange = true
 	else:
-		get_node("label").hide()
+		$Label.hide()
 		inrange = false
+		if open:
+			open = false
+			$Animator.play("drawer_animations/animation_drawer_close")
 
 func interact(player):
-	pass
+	if open:
+		open = false
+		$Animator.play("drawer_animations/animation_drawer_close")
+	else:
+		open = true
+		$Animator.play("drawer_animations/animation_drawer_open")
