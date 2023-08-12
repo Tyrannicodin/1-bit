@@ -1,5 +1,12 @@
-SpotLight3D
+Sprite2D
+ColorRect
+CanvasLayer
+WorldEnvironment
+ShaderGlobalsOverride
+SubViewport
+DirectionalLight3D
 MeshInstance3D
+SpotLight3D
 CollisionShape3D
 RigidBody3D
 Camera3D

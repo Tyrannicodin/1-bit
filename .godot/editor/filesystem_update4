@@ -1,2 +1,6 @@
 res://scenes/basic_3d.tscn
 res://scripts/character.gd
+res://assets/new_shader.gdshader
+res://assets/dithering.gdshader
+res://assets/dithering_material.tres
+res://assets/hex.gdshader

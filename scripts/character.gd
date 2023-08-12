@@ -4,6 +4,7 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+@onready var torch_power = $Camera/Torch.light_energy
 @onready var camera = $Camera
 var mouse_captured = false
 
@@ -14,7 +15,7 @@ func _ready():
 	mouse_captured = true # Capture the mouse and remember it for later
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-func _unhandled_input(event):
+func _input(event):
 	if event is InputEventMouseMotion:
 		if mouse_captured: # If the mouse is captured and gets moved, rotate the camera
 			rotate(Vector3(0, 1, 0), -event.relative.x * 0.001)
@@ -32,7 +33,7 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 	
 	if Input.is_action_just_pressed("torch"):
-		$Camera/Torch.light_energy = 0 if $Camera/Torch.light_energy == 1 else 1
+		$Camera/Torch.light_energy = 0 if $Camera/Torch.light_energy == torch_power else torch_power
 	
 	if Input.is_action_just_pressed("ui_cancel"):
 		if mouse_captured:
