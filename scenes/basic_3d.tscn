@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://ig0yppnykg65"]
+
+[ext_resource type="Script" path="res://scripts/character.gd" id="1_wpq5s"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_p8jub"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_unbty"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gar4t"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bvebu"]
+size = Vector3(1, 2, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_p8jub")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.26885, 0)
+script = ExtResource("1_wpq5s")
+
+[node name="Camera" type="Camera3D" parent="CharacterBody3D"]
+
+[node name="Torch" type="SpotLight3D" parent="CharacterBody3D/Camera"]
+spot_range = 7.56683
+spot_angle = 16.875
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_unbty")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.51921, 0.972586, -4.76821)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_gar4t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_bvebu")
