@@ -35,6 +35,17 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("torch"):
 		$Camera/Torch.light_energy = 0 if $Camera/Torch.light_energy == torch_power else torch_power
 	
+	if Input.is_action_just_pressed("interact"):
+		var minimum_distance = INF
+		var minimum_node = null
+		for node in get_tree().get_nodes_in_group("interactable"):
+			if minimum_distance > global_position.distance_squared_to(node.global_position):
+				minimum_distance = global_position.distance_squared_to(node.global_position)
+				minimum_node = node
+		if not minimum_node:
+			return
+		minimum_node.call("interact")
+	
 	if Input.is_action_just_pressed("ui_cancel"):
 		if mouse_captured:
 			mouse_captured = false

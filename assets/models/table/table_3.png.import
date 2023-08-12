@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s0gmmmevlvma"
-path.s3tc="res://.godot/imported/lamp_stem.png-bb9166e9b0d3c6cb43fbf21c6b266006.s3tc.ctex"
+uid="uid://doagun4uxsi7l"
+path.s3tc="res://.godot/imported/table_3.png-a3fcb50eed92023bcf9c60d3127daed5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://assets/models/table/lamp_stem.png"
-dest_files=["res://.godot/imported/lamp_stem.png-bb9166e9b0d3c6cb43fbf21c6b266006.s3tc.ctex"]
+source_file="res://assets/models/table/table_3.png"
+dest_files=["res://.godot/imported/table_3.png-a3fcb50eed92023bcf9c60d3127daed5.s3tc.ctex"]
 
 [params]
 

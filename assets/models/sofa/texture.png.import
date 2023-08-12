@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2qygbi4u6wv1"
-path.s3tc="res://.godot/imported/lampshade.png-8dcbec61fc493e63cf603e15143a66d4.s3tc.ctex"
+uid="uid://6gxyc74u5dew"
+path.s3tc="res://.godot/imported/texture.png-8eeccf82021d20ab418904b375796767.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/models/table/lampshade.png"
-dest_files=["res://.godot/imported/lampshade.png-8dcbec61fc493e63cf603e15143a66d4.s3tc.ctex"]
+source_file="res://assets/models/sofa/texture.png"
+dest_files=["res://.godot/imported/texture.png-8eeccf82021d20ab418904b375796767.s3tc.ctex"]
 
 [params]
 
