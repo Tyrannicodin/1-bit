@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://com6fd5ykhrct"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_d1gec"]
+[ext_resource type="Shader" path="res://assets/shaders/dithering/shader.gdshader" id="2_ijbs4"]
+[ext_resource type="Texture2D" uid="uid://n85ohutwfk0a" path="res://assets/shaders/dithering/palette_1.png" id="3_6dtlo"]
+[ext_resource type="Texture2D" uid="uid://dir4serjsy52l" path="res://assets/shaders/dithering/pattern.png" id="4_aqk2s"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_soasp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5gc3b"]
+shader = ExtResource("2_ijbs4")
+shader_parameter/u_bit_depth = 32
+shader_parameter/u_contrast = 2.6
+shader_parameter/u_offset = null
+shader_parameter/u_dither_size = 1
+shader_parameter/u_dither_tex = ExtResource("4_aqk2s")
+shader_parameter/u_color_tex = ExtResource("3_6dtlo")
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_d1gec")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Torch" type="SpotLight3D" parent="Camera"]
+light_energy = 2.0
+spot_range = 7.16587
+spot_angle = 31.1121
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_soasp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_5gc3b")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

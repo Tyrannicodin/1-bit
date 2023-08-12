@@ -4,3 +4,9 @@ res://assets/new_shader.gdshader
 res://assets/dithering.gdshader
 res://assets/dithering_material.tres
 res://assets/hex.gdshader
+res://scenes/player.tscn
+res://scenes/ghost.tscn
+res://scripts/ghost.gd
+res://scenes/level_1.tscn
+res://assets/shaders/dithering.gdshader
+res://assets/shaders/dithering/shader.gdshader

@@ -1,18 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://ig0yppnykg65"]
+[gd_scene load_steps=10 format=3 uid="uid://b2kx7baln36h3"]
 
-[ext_resource type="Material" uid="uid://dyc4fe2tge02t" path="res://assets/dithering_material.tres" id="1_m1oew"]
-[ext_resource type="Script" path="res://scripts/character.gd" id="1_wpq5s"]
-[ext_resource type="Shader" path="res://assets/dithering.gdshader" id="2_xjyhi"]
-[ext_resource type="Texture2D" uid="uid://n85ohutwfk0a" path="res://assets/dithering_palette.png" id="3_h3u60"]
-[ext_resource type="Texture2D" uid="uid://dir4serjsy52l" path="res://assets/dithering_pattern.png" id="4_rsn4q"]
-[ext_resource type="ArrayMesh" uid="uid://dsrex7jpfrvy4" path="res://assets/models/table.obj" id="6_v3bm1"]
+[ext_resource type="PackedScene" uid="uid://com6fd5ykhrct" path="res://scenes/player.tscn" id="1_ukcs2"]
+[ext_resource type="ArrayMesh" uid="uid://dsrex7jpfrvy4" path="res://assets/models/table/table.obj" id="2_u7k1u"]
+[ext_resource type="Material" uid="uid://dyc4fe2tge02t" path="res://assets/shaders/dithering/material.tres" id="3_y73xg"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_p8jub"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7jl0e"]
 size = Vector2(25, 25)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_unbty"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gar4t"]
 size = Vector3(1, 2, 1)
@@ -21,7 +16,7 @@ size = Vector3(1, 2, 1)
 size = Vector3(1, 2, 1)
 
 [sub_resource type="Sky" id="Sky_n1d8p"]
-sky_material = ExtResource("1_m1oew")
+sky_material = ExtResource("3_y73xg")
 
 [sub_resource type="Environment" id="Environment_c75c4"]
 background_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
@@ -29,15 +24,6 @@ background_energy_multiplier = 0.0
 sky = SubResource("Sky_n1d8p")
 fog_enabled = true
 fog_light_energy = 0.01
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vfeo1"]
-shader = ExtResource("2_xjyhi")
-shader_parameter/u_bit_depth = 32
-shader_parameter/u_contrast = 2.6
-shader_parameter/u_offset = null
-shader_parameter/u_dither_size = 1
-shader_parameter/u_dither_tex = ExtResource("4_rsn4q")
-shader_parameter/u_color_tex = ExtResource("3_h3u60")
 
 [node name="Node3D" type="Node3D"]
 
@@ -49,21 +35,6 @@ shape = SubResource("WorldBoundaryShape3D_p8jub")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 mesh = SubResource("PlaneMesh_7jl0e")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.26885, 0)
-script = ExtResource("1_wpq5s")
-
-[node name="Camera" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
-[node name="Torch" type="SpotLight3D" parent="CharacterBody3D/Camera"]
-light_energy = 2.0
-spot_range = 7.16587
-spot_angle = 31.1121
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-shape = SubResource("CapsuleShape3D_unbty")
-
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.51921, 0.972586, -4.76821)
 
@@ -73,19 +44,14 @@ shape = SubResource("BoxShape3D_gar4t")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
 mesh = SubResource("BoxMesh_bvebu")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_c75c4")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_vfeo1")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="player" parent="." instance=ExtResource("1_ukcs2")]
 
 [node name="Table" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.89994, 0, -2.34775)
-mesh = ExtResource("6_v3bm1")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08971, 0, 0.557196)
+mesh = ExtResource("2_u7k1u")
+
+[node name="LampLight" type="OmniLight3D" parent="Table"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.240417, 1.75241, 0.25338)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_c75c4")

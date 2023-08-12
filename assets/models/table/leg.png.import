@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhtgkodarqknp"
-path.s3tc="res://.godot/imported/lamp_base.png-86dfbae0e35bd2b9524c51d378d95146.s3tc.ctex"
+uid="uid://bajn4j3apbjey"
+path.s3tc="res://.godot/imported/leg.png-ba002ec168778d0d059b563fab4f673a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/models/lamp_base.png"
-dest_files=["res://.godot/imported/lamp_base.png-86dfbae0e35bd2b9524c51d378d95146.s3tc.ctex"]
+source_file="res://assets/models/table/leg.png"
+dest_files=["res://.godot/imported/leg.png-ba002ec168778d0d059b563fab4f673a.s3tc.ctex"]
 
 [params]
 
