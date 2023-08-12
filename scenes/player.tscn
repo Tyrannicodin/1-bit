@@ -12,7 +12,7 @@ shader = ExtResource("2_ijbs4")
 shader_parameter/u_bit_depth = 32
 shader_parameter/u_contrast = 2.6
 shader_parameter/u_offset = null
-shader_parameter/u_dither_size = 1
+shader_parameter/u_dither_size = 2
 shader_parameter/u_dither_tex = ExtResource("4_aqk2s")
 shader_parameter/u_color_tex = ExtResource("3_6dtlo")
 
@@ -21,9 +21,11 @@ script = ExtResource("1_d1gec")
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+current = true
 
 [node name="Torch" type="SpotLight3D" parent="Camera"]
 light_energy = 2.0
+light_indirect_energy = 2.42
 spot_range = 7.16587
 spot_angle = 31.1121
 

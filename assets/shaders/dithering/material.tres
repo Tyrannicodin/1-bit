@@ -7,8 +7,8 @@
 [resource]
 shader = ExtResource("1_vm16e")
 shader_parameter/u_bit_depth = 32
-shader_parameter/u_contrast = 2.4
+shader_parameter/u_contrast = null
 shader_parameter/u_offset = null
-shader_parameter/u_dither_size = 1
+shader_parameter/u_dither_size = 2
 shader_parameter/u_dither_tex = ExtResource("3_4fu3g")
 shader_parameter/u_color_tex = ExtResource("2_fg711")
