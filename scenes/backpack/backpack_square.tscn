@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://epgli0ue8t6n"]
+[gd_scene load_steps=2 format=3 uid="uid://epgli0ue8t6n"]
+
+[ext_resource type="Script" path="res://scenes/backpack/backpack_square.gd" id="1_mj7jh"]
 
 [node name="backpack_square" type="Node2D"]
+script = ExtResource("1_mj7jh")
