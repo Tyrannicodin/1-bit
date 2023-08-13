@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dqadc1kj1puc0"]
+
+[node name="backup_item" type="Node2D"]

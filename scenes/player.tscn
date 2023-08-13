@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://com6fd5ykhrct"]
+[gd_scene load_steps=14 format=3 uid="uid://com6fd5ykhrct"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_d1gec"]
 [ext_resource type="Shader" path="res://assets/shaders/edge_detection/shader.gdshader" id="2_7eeor"]
+[ext_resource type="PackedScene" path="res://scenes/backpack.tscn" id="2_ftu1l"]
 [ext_resource type="Texture2D" uid="uid://n85ohutwfk0a" path="res://assets/shaders/dithering/palette_1.png" id="3_6dtlo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_soasp"]
@@ -200,6 +201,8 @@ shader_parameter/u_color_tex = ExtResource("3_6dtlo")
 
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_d1gec")
+
+[node name="backpack" parent="." instance=ExtResource("2_ftu1l")]
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
