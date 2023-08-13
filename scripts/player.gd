@@ -12,8 +12,6 @@ const JUMP_VELOCITY = 4.5
 @onready var spectralViewDither = $GhostViewportContainer/SpectralFilter
 @onready var flashlight = $MainViewportContainer/MainViewport/Camera/Torch
 @onready var radar = $MainViewportContainer/MainViewport/Camera/RadarLight
-#@onready var tooltipButton = $MainViewportContainer/MainViewport/FlashlightView/Tooltip/Button
-#@onready var tooltipLabel = $MainViewportContainer/MainViewport/FlashlightView/Tooltip/Label
 @onready var tooltipButton = $MainViewportContainer/MainViewport/Tooltip/Button
 @onready var tooltipLabel = $MainViewportContainer/MainViewport/Tooltip/Label
 
@@ -115,3 +113,7 @@ func in_range(node:Node3D):
 func out_range(node:Node3D):
 	if node in available_interactions:
 		available_interactions.erase(node)
+
+func draw_item():
+	"""Called when an interactable item is searched, adds an item to the player's inventory"""
+	pass
