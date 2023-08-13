@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cn1f7engd78ch"
-path.s3tc="res://.godot/imported/table_6.png-db9acb07d087bd43681cfe59959d8502.s3tc.ctex"
+uid="uid://bhiwjr8tqf620"
+path.s3tc="res://.godot/imported/nightstand_7.png-909780243e3a1daeca1b14a55e427d79.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://assets/models/table/table_6.png"
-dest_files=["res://.godot/imported/table_6.png-db9acb07d087bd43681cfe59959d8502.s3tc.ctex"]
+source_file="res://assets/models/nightstand/nightstand_7.png"
+dest_files=["res://.godot/imported/nightstand_7.png-909780243e3a1daeca1b14a55e427d79.s3tc.ctex"]
 
 [params]
 
