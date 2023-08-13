@@ -11,6 +11,7 @@ var mouse_captured = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+
 func _ready():
 	mouse_captured = true # Capture the mouse and remember it for later
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -22,6 +23,12 @@ func _input(event):
 			camera.rotate(Vector3(1, 0, 0), -event.relative.y * 0.001)
 			camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -80, 60)
 			
+func cycle_views():
+	$SpectralView.visible = not $SpectralView.visible
+	$SpectralViewDither.visible = not $SpectralViewDither.visible
+	$FlashlightView.visible = not $FlashlightView.visible
+	$Camera/Torch.light_energy = 0 if $Camera/Torch.light_energy == torch_power else torch_power
+	$Camera/RadarLight.visible = not $Camera/RadarLight.visible
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -33,7 +40,7 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 	
 	if Input.is_action_just_pressed("torch"):
-		$Camera/Torch.light_energy = 0 if $Camera/Torch.light_energy == torch_power else torch_power
+		cycle_views()
 	
 	if Input.is_action_just_pressed("interact"):
 		var minimum_distance = INF

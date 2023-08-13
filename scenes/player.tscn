@@ -209,10 +209,15 @@ light_energy = 2.0
 spot_range = 7.16587
 spot_angle = 31.1121
 
+[node name="RadarLight" type="OmniLight3D" parent="Camera"]
+visible = false
+light_energy = 10.0
+
 [node name="Collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_soasp")
 
 [node name="SpectralView" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="SpectralView"]
 material = SubResource("ShaderMaterial_s0yu0")
@@ -223,6 +228,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SpectralViewDither" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="SpectralViewDither"]
 material = SubResource("ShaderMaterial_jmxks")
@@ -233,7 +239,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="FlashlightView" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="FlashlightView"]
 material = SubResource("ShaderMaterial_hb05h")
