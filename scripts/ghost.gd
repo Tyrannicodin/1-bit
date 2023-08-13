@@ -11,7 +11,7 @@ var player:CharacterBody3D = null
 func _ready():
 	player = get_tree().get_first_node_in_group("player") # Get the player
 
-func _physics_process(delta):
+func _physics_process(_d):
 	if not player: # If we didnt't find a player onready, look for one
 		player = get_tree().get_first_node_in_group("player")
 		if not player:

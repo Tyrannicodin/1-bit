@@ -8,6 +8,6 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	print(get_viewport().size)
+func _process(_d):
+	#print(get_viewport().size)
 	viewport.size = get_window().size
