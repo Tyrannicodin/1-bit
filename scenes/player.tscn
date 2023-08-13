@@ -10,7 +10,7 @@
 shader = ExtResource("2_7eeor")
 shader_parameter/background_color = Color(0, 0, 0, 1)
 shader_parameter/edge_color = Color(1, 1, 1, 1)
-shader_parameter/threshold = 0.0
+shader_parameter/threshold = 0.5
 shader_parameter/blend = 0.01
 
 [sub_resource type="Shader" id="Shader_fg0wc"]
@@ -101,7 +101,7 @@ load_path = "res://.godot/imported/pattern.png-ef3cfac201ae719d7f03ee1649f9098b.
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jmxks"]
 shader = SubResource("Shader_fg0wc")
 shader_parameter/u_bit_depth = 32
-shader_parameter/u_contrast = 2.6
+shader_parameter/u_contrast = 1.0
 shader_parameter/u_offset = null
 shader_parameter/u_dither_size = 2
 shader_parameter/u_dither_tex = SubResource("CompressedTexture2D_w0qbb")
@@ -192,7 +192,7 @@ load_path = "res://.godot/imported/pattern.png-ef3cfac201ae719d7f03ee1649f9098b.
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hb05h"]
 shader = SubResource("Shader_3cqbs")
 shader_parameter/u_bit_depth = 32
-shader_parameter/u_contrast = 2.6
+shader_parameter/u_contrast = 1.0
 shader_parameter/u_offset = null
 shader_parameter/u_dither_size = 2
 shader_parameter/u_dither_tex = SubResource("CompressedTexture2D_jp58f")
@@ -205,11 +205,13 @@ script = ExtResource("1_d1gec")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Torch" type="SpotLight3D" parent="Camera"]
-light_energy = 2.0
+light_energy = 5.0
+light_indirect_energy = 5.0
 spot_range = 7.16587
 spot_angle = 31.1121
 
 [node name="RadarLight" type="OmniLight3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.80883, 0)
 visible = false
 light_energy = 10.0
 

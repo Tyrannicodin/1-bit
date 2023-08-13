@@ -26,11 +26,11 @@ void fragment(){
 	float c1x = getGrayScale(SCREEN_TEXTURE, texCoords.xy-delta.yx/2.0);
 	float c2x = getGrayScale(SCREEN_TEXTURE, texCoords.xy+delta.yx/2.0);
 	
-	float dcdx = (c2x - c1x)/(delta.y*10.0);
-	float dcdy = (c2y - c1y)/(delta.y*10.0);
+	float dcdx = (c2x - c1x)/(delta.y*8.0);
+	float dcdy = (c2y - c1y)/(delta.y*8.0);
 	
 	vec2 dcdi = vec2(dcdx,dcdy);
-	float edge = length(dcdi)/10.0;
+	float edge = length(dcdi)/8.0;
 	edge = 1.0 - edge;
 	edge = smoothstep(threshold, threshold + blend, edge);
 	
