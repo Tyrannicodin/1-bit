@@ -71,6 +71,7 @@ void fragment() {
 	// sample at the lower bound colour if ramp_val is 0.0, upper bound colour if 1.0
 	float col_sample = mix(lum_lower, lum_upper, ramp_val);
 	vec3 final_col = texture(u_color_tex, vec2(col_sample, 0.5)).rgb;
+	float alpha = 1.0;
 	
 	// return the final colour!
 	COLOR.rgb = final_col;

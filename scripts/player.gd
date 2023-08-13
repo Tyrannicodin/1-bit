@@ -4,8 +4,15 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
-@onready var torch_power = $Camera/Torch.light_energy
-@onready var camera = $Camera
+@onready var torch_power = $MainViewportContainer/MainViewport/Camera/Torch.light_energy
+@onready var camera = $"cameraLoc"
+@onready var ghostCamera = $"ghostCameraLoc"
+@onready var ghostViewport = $GhostViewportContainer
+@onready var spectralView = $MainViewportContainer/MainViewport/SpectralView
+@onready var flashlightView = $MainViewportContainer/MainViewport/FlashlightView
+@onready var spectralViewDither = $GhostViewportContainer/SpectralFilter
+@onready var flashlight = $MainViewportContainer/MainViewport/Camera/Torch
+@onready var radar = $MainViewportContainer/MainViewport/Camera/RadarLight
 var mouse_captured = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -22,13 +29,16 @@ func _input(event):
 			rotate(Vector3(0, 1, 0), -event.relative.x * 0.001)
 			camera.rotate(Vector3(1, 0, 0), -event.relative.y * 0.001)
 			camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -80, 60)
-			
+			ghostCamera.rotate(Vector3(1, 0, 0), -event.relative.y * 0.001)
+			ghostCamera.rotation_degrees.x = clamp(ghostCamera.rotation_degrees.x, -80, 60)
+	
 func cycle_views():
-	$SpectralView.visible = not $SpectralView.visible
-	$SpectralViewDither.visible = not $SpectralViewDither.visible
-	$FlashlightView.visible = not $FlashlightView.visible
-	$Camera/Torch.light_energy = 0 if $Camera/Torch.light_energy == torch_power else torch_power
-	$Camera/RadarLight.visible = not $Camera/RadarLight.visible
+	spectralView.visible = not spectralView.visible
+	spectralViewDither.visible = not spectralViewDither.visible
+	flashlightView.visible = not flashlightView.visible
+	flashlight.light_energy = 0 if flashlight.light_energy == torch_power else torch_power
+	radar.visible = not radar.visible
+	ghostViewport.visible = not ghostViewport.visible
 
 func _physics_process(delta):
 	# Add the gravity.

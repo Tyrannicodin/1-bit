@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b2kx7baln36h3"]
+[gd_scene load_steps=16 format=3 uid="uid://b2kx7baln36h3"]
 
 [ext_resource type="PackedScene" uid="uid://com6fd5ykhrct" path="res://scenes/player.tscn" id="1_ukcs2"]
 [ext_resource type="PackedScene" uid="uid://bhh1i3is4bxi2" path="res://assets/models/table/table.gltf" id="3_c1med"]
@@ -7,6 +7,7 @@
 [ext_resource type="Animation" uid="uid://dsxae0m2fiu6o" path="res://assets/models/table/animation_drawer_close.res" id="5_ka5ym"]
 [ext_resource type="Animation" uid="uid://ctjnlffnfxm7f" path="res://assets/models/table/animation_drawer_open.res" id="6_8cj7h"]
 [ext_resource type="Script" path="res://scripts/projection_label.gd" id="7_ks4lg"]
+[ext_resource type="PackedScene" uid="uid://boi48hqv3bpxj" path="res://scenes/ghost.tscn" id="8_eocet"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_p8jub"]
 
@@ -55,6 +56,7 @@ shape = SubResource("BoxShape3D_gar4t")
 mesh = SubResource("BoxMesh_bvebu")
 
 [node name="player" parent="." groups=["player"] instance=ExtResource("1_ukcs2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.21497)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_c75c4")
@@ -74,3 +76,6 @@ visible = false
 text = "q"
 uppercase = true
 script = ExtResource("7_ks4lg")
+
+[node name="ghost" parent="." instance=ExtResource("8_eocet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.13356, 1, 1.58245)
