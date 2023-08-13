@@ -9,7 +9,7 @@ var player:CharacterBody3D = null
 @onready var pathfinder = $Navigator
 
 func _ready():
-	player = get_tree().get_first_node_in_group("player") # Get the player
+	player = get_tree().get_first_node_in_group("player") # Try to get the player
 
 func _physics_process(_d):
 	if not player: # If we didnt't find a player onready, look for one
