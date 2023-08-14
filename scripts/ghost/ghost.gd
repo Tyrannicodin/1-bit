@@ -17,9 +17,13 @@ func _physics_process(_d):
 		if not player:
 			return # No need to move if no player found
 	
-	pathfinder.target_position = player.position
+	var player_position = player.global_position
+	player_position.y = global_position.y
+	look_at(player_position)
+	
+	pathfinder.target_position = player.global_position
 	var next_position = pathfinder.get_next_path_position()
-	if pathfinder.is_navigation_finished() or not pathfinder.is_target_reachable():
+	if pathfinder.is_navigation_finished():
 		return # TODO: Add idle behaviour
 	# Take the direction the ghost wants to go then multiply by our set speed
 	velocity = position.direction_to(next_position).normalized() * speed
