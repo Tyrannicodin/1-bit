@@ -1,10 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://com6fd5ykhrct"]
+[gd_scene load_steps=24 format=3 uid="uid://com6fd5ykhrct"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_d1gec"]
 [ext_resource type="Shader" path="res://assets/shaders/edge_detection/shader.gdshader" id="2_7eeor"]
 [ext_resource type="PackedScene" uid="uid://c8vahnqaf353d" path="res://scenes/backpack/backpack.tscn" id="2_ftu1l"]
 [ext_resource type="Texture2D" uid="uid://n85ohutwfk0a" path="res://assets/shaders/dithering/palette_1.png" id="3_6dtlo"]
 [ext_resource type="Script" path="res://scripts/sub_viewports.gd" id="3_gpn2e"]
+[ext_resource type="Shader" path="res://assets/shaders/colors/orange.gdshader" id="6_2e3wm"]
+[ext_resource type="Script" path="res://scenes/UIViewport.gd" id="6_46ppg"]
+[ext_resource type="Theme" uid="uid://b6x5a56bs6oov" path="res://assets/themes/ui.tres" id="7_8s8sj"]
+[ext_resource type="Texture2D" uid="uid://dnaidbtpymjor" path="res://assets/ui/hotbar_slot.png" id="8_1ktqa"]
+[ext_resource type="Texture2D" uid="uid://bq3q0m8w8q6d6" path="res://assets/ui/flashlight.png" id="8_y0o0g"]
+[ext_resource type="Script" path="res://scripts/TextureRect.gd" id="11_q7r6q"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_soasp"]
 
 [sub_resource type="Shader" id="Shader_3cqbs"]
 code = "/* 
@@ -104,8 +112,6 @@ shader_parameter/edge_color = Color(1, 1, 1, 1)
 shader_parameter/threshold = 0.5
 shader_parameter/blend = 0.01
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_soasp"]
-
 [sub_resource type="Shader" id="Shader_uujx6"]
 code = "/* 
 This shader is under MIT license. Feel free to use, improve and 
@@ -200,64 +206,67 @@ shader_parameter/u_dither_size = 2
 shader_parameter/u_dither_tex = SubResource("CompressedTexture2D_a31qm")
 shader_parameter/u_color_tex = SubResource("CompressedTexture2D_maixx")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nry6i"]
+shader = ExtResource("6_2e3wm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7yrv"]
+shader = ExtResource("6_2e3wm")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dnxb8"]
+viewport_path = NodePath("GameContainer/GameViewport/UIViewport")
+
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_d1gec")
 
 [node name="backpack" parent="." instance=ExtResource("2_ftu1l")]
 
-[node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="Collider" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_soasp")
 
-[node name="MainViewportContainer" type="SubViewportContainer" parent="."]
+[node name="ghostCameraLoc" type="RemoteTransform3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+remote_path = NodePath("../GameContainer/GameViewport/GhostViewportContainer/GhostViewport/GhostCamera")
+
+[node name="cameraLoc" type="RemoteTransform3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+remote_path = NodePath("../GameContainer/GameViewport/MainViewportContainer/MainViewport/Camera")
+
+[node name="GameContainer" type="SubViewportContainer" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="MainViewport" type="SubViewport" parent="MainViewportContainer"]
+[node name="GameViewport" type="SubViewport" parent="GameContainer"]
 handle_input_locally = false
 render_target_update_mode = 4
 script = ExtResource("3_gpn2e")
 
-[node name="Tooltip" type="HBoxContainer" parent="MainViewportContainer/MainViewport"]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -20.0
-offset_right = 40.0
-offset_bottom = 20.0
-grow_vertical = 2
+[node name="MainViewportContainer" type="SubViewportContainer" parent="GameContainer/GameViewport"]
+offset_right = 512.0
+offset_bottom = 512.0
 
-[node name="Button" type="Label" parent="MainViewportContainer/MainViewport/Tooltip"]
-layout_mode = 2
-text = "Q"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
+[node name="MainViewport" type="SubViewport" parent="GameContainer/GameViewport/MainViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 4
+script = ExtResource("3_gpn2e")
 
-[node name="Label" type="Label" parent="MainViewportContainer/MainViewport/Tooltip"]
-layout_mode = 2
-text = "Q"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="Camera" type="Camera3D" parent="MainViewportContainer/MainViewport"]
+[node name="Camera" type="Camera3D" parent="GameContainer/GameViewport/MainViewportContainer/MainViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 cull_mask = 1047553
 
-[node name="Torch" type="SpotLight3D" parent="MainViewportContainer/MainViewport/Camera"]
+[node name="Torch" type="SpotLight3D" parent="GameContainer/GameViewport/MainViewportContainer/MainViewport/Camera"]
 light_energy = 4.0
-light_indirect_energy = 2.0
 spot_range = 17.0
-spot_angle = 31.1121
+spot_angle = 30.0
 
-[node name="RadarLight" type="OmniLight3D" parent="MainViewportContainer/MainViewport/Camera"]
+[node name="RadarLight" type="OmniLight3D" parent="GameContainer/GameViewport/MainViewportContainer/MainViewport/Camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.80883, 0)
 visible = false
 light_energy = 10.0
+omni_range = 10.0
 
-[node name="FlashlightView" type="CanvasLayer" parent="MainViewportContainer/MainViewport"]
+[node name="FlashlightView" type="CanvasLayer" parent="GameContainer/GameViewport/MainViewportContainer/MainViewport"]
 
-[node name="ColorRect" type="ColorRect" parent="MainViewportContainer/MainViewport/FlashlightView"]
+[node name="ColorRect" type="ColorRect" parent="GameContainer/GameViewport/MainViewportContainer/MainViewport/FlashlightView"]
 material = SubResource("ShaderMaterial_hb05h")
 anchors_preset = 15
 anchor_right = 1.0
@@ -265,10 +274,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SpectralView" type="CanvasLayer" parent="MainViewportContainer/MainViewport"]
+[node name="SpectralView" type="CanvasLayer" parent="GameContainer/GameViewport/MainViewportContainer/MainViewport"]
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="MainViewportContainer/MainViewport/SpectralView"]
+[node name="ColorRect" type="ColorRect" parent="GameContainer/GameViewport/MainViewportContainer/MainViewport/SpectralView"]
 material = SubResource("ShaderMaterial_s0yu0")
 anchors_preset = 15
 anchor_right = 1.0
@@ -276,25 +285,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Collider" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_soasp")
-
-[node name="ghostCameraLoc" type="RemoteTransform3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-remote_path = NodePath("../GhostViewportContainer/GhostViewport/GhostCamera")
-
-[node name="cameraLoc" type="RemoteTransform3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-remote_path = NodePath("../MainViewportContainer/MainViewport/Camera")
-
-[node name="GhostViewportContainer" type="SubViewportContainer" parent="."]
+[node name="GhostViewportContainer" type="SubViewportContainer" parent="GameContainer/GameViewport"]
 visible = false
 light_mask = 2
 visibility_layer = 2
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="GhostViewport" type="SubViewport" parent="GhostViewportContainer"]
+[node name="GhostViewport" type="SubViewport" parent="GameContainer/GameViewport/GhostViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
 size_2d_override = Vector2i(1920, 1080)
@@ -302,21 +300,89 @@ size_2d_override_stretch = true
 render_target_update_mode = 0
 script = ExtResource("3_gpn2e")
 
-[node name="GhostCamera" type="Camera3D" parent="GhostViewportContainer/GhostViewport"]
+[node name="GhostCamera" type="Camera3D" parent="GameContainer/GameViewport/GhostViewportContainer/GhostViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 cull_mask = 1047554
 
-[node name="SpotLight3D" type="SpotLight3D" parent="GhostViewportContainer/GhostViewport/GhostCamera"]
+[node name="SpotLight3D" type="SpotLight3D" parent="GameContainer/GameViewport/GhostViewportContainer/GhostViewport/GhostCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.42629)
 layers = 2
+light_energy = 3.0
 spot_range = 50.0
 
-[node name="SpectralFilter" type="CanvasLayer" parent="GhostViewportContainer"]
+[node name="SpectralFilter" type="CanvasLayer" parent="GameContainer/GameViewport/GhostViewportContainer"]
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="GhostViewportContainer/SpectralFilter"]
+[node name="ColorRect" type="ColorRect" parent="GameContainer/GameViewport/GhostViewportContainer/SpectralFilter"]
 material = SubResource("ShaderMaterial_jq5nw")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="UIViewport" type="SubViewport" parent="GameContainer/GameViewport"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+script = ExtResource("6_46ppg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameContainer/GameViewport/UIViewport"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -112.0
+offset_right = 25.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Tooltip" type="HBoxContainer" parent="GameContainer/GameViewport/UIViewport/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Label" parent="GameContainer/GameViewport/UIViewport/VBoxContainer/Tooltip"]
+material = SubResource("ShaderMaterial_nry6i")
+layout_mode = 2
+theme = ExtResource("7_8s8sj")
+text = "Q"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Label" type="Label" parent="GameContainer/GameViewport/UIViewport/VBoxContainer/Tooltip"]
+layout_mode = 2
+theme = ExtResource("7_8s8sj")
+text = "Q"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameContainer/GameViewport/UIViewport/VBoxContainer"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GameContainer/GameViewport/UIViewport/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_1ktqa")
+region_rect = Rect2(-0.24361, -0.269973, 32.2962, 32.4313)
+patch_margin_left = 6
+patch_margin_top = 4
+patch_margin_right = 31
+patch_margin_bottom = 28
+
+[node name="Flashlight" type="TextureRect" parent="GameContainer/GameViewport/UIViewport/VBoxContainer/HBoxContainer/NinePatchRect"]
+layout_mode = 2
+offset_left = 4.0
+offset_right = 36.0
+offset_bottom = 32.0
+texture = ExtResource("8_y0o0g")
+
+[node name="UIRect" type="TextureRect" parent="."]
+texture_filter = 3
+material = SubResource("ShaderMaterial_i7yrv")
+offset_right = 512.0
+offset_bottom = 512.0
+texture = SubResource("ViewportTexture_dnxb8")
+script = ExtResource("11_q7r6q")

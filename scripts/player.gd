@@ -3,17 +3,17 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
-@onready var torch_power = $MainViewportContainer/MainViewport/Camera/Torch.light_energy
+@onready var torch_power = $GameContainer/GameViewport/MainViewportContainer/MainViewport/Camera/Torch.light_energy
 @onready var camera = $"cameraLoc"
 @onready var ghostCamera = $"ghostCameraLoc"
-@onready var ghostViewport = $GhostViewportContainer
-@onready var spectralView = $MainViewportContainer/MainViewport/SpectralView
-@onready var flashlightView = $MainViewportContainer/MainViewport/FlashlightView
-@onready var spectralViewDither = $GhostViewportContainer/SpectralFilter
-@onready var flashlight = $MainViewportContainer/MainViewport/Camera/Torch
-@onready var radar = $MainViewportContainer/MainViewport/Camera/RadarLight
-@onready var tooltipButton = $MainViewportContainer/MainViewport/Tooltip/Button
-@onready var tooltipLabel = $MainViewportContainer/MainViewport/Tooltip/Label
+@onready var ghostViewport = $GameContainer/GameViewport/GhostViewportContainer
+@onready var spectralView = $GameContainer/GameViewport/MainViewportContainer/MainViewport/SpectralView
+@onready var flashlightView = $GameContainer/GameViewport/MainViewportContainer/MainViewport/FlashlightView
+@onready var spectralViewDither = $GameContainer/GameViewport/GhostViewportContainer/SpectralFilter
+@onready var flashlight = $GameContainer/GameViewport/MainViewportContainer/MainViewport/Camera/Torch
+@onready var radar = $GameContainer/GameViewport/MainViewportContainer/MainViewport/Camera/RadarLight
+@onready var tooltipButton = $GameContainer/GameViewport/UIViewport/VBoxContainer/Tooltip/Button
+@onready var tooltipLabel = $GameContainer/GameViewport/UIViewport/VBoxContainer/Tooltip/Label
 
 var mouse_captured = false
 var available_interactions = []
