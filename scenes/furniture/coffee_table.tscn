@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://dhxn5hmn2aoos"]
+
+[ext_resource type="PackedScene" uid="uid://brbkowa744oq1" path="res://assets/models/coffe_table/coffee_table.gltf" id="1_d5cpw"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_pgwfs"]
+data = PackedVector3Array(0.5, 0.375, -0.375, 0.5, 0.375, -0.5, 0.5, 0, -0.375, 0.5, 0, -0.375, 0.5, 0.375, -0.5, 0.5, 0, -0.5, 0.375, 0.375, -0.5, 0.375, 0.375, -0.375, 0.375, 0, -0.5, 0.375, 0, -0.5, 0.375, 0.375, -0.375, 0.375, 0, -0.375, 0.375, 0.375, -0.5, 0.5, 0.375, -0.5, 0.375, 0.375, -0.375, 0.375, 0.375, -0.375, 0.5, 0.375, -0.5, 0.5, 0.375, -0.375, 0.375, 0, -0.375, 0.5, 0, -0.375, 0.375, 0, -0.5, 0.375, 0, -0.5, 0.5, 0, -0.375, 0.5, 0, -0.5, 0.375, 0.375, -0.375, 0.5, 0.375, -0.375, 0.375, 0, -0.375, 0.375, 0, -0.375, 0.5, 0.375, -0.375, 0.5, 0, -0.375, 0.5, 0.375, -0.5, 0.375, 0.375, -0.5, 0.5, 0, -0.5, 0.5, 0, -0.5, 0.375, 0.375, -0.5, 0.375, 0, -0.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_8hla8"]
+data = PackedVector3Array(-0.375, 0.375, -0.375, -0.375, 0.375, -0.5, -0.375, 0, -0.375, -0.375, 0, -0.375, -0.375, 0.375, -0.5, -0.375, 0, -0.5, -0.5, 0.375, -0.5, -0.5, 0.375, -0.375, -0.5, 0, -0.5, -0.5, 0, -0.5, -0.5, 0.375, -0.375, -0.5, 0, -0.375, -0.5, 0.375, -0.5, -0.375, 0.375, -0.5, -0.5, 0.375, -0.375, -0.5, 0.375, -0.375, -0.375, 0.375, -0.5, -0.375, 0.375, -0.375, -0.5, 0, -0.375, -0.375, 0, -0.375, -0.5, 0, -0.5, -0.5, 0, -0.5, -0.375, 0, -0.375, -0.375, 0, -0.5, -0.5, 0.375, -0.375, -0.375, 0.375, -0.375, -0.5, 0, -0.375, -0.5, 0, -0.375, -0.375, 0.375, -0.375, -0.375, 0, -0.375, -0.375, 0.375, -0.5, -0.5, 0.375, -0.5, -0.375, 0, -0.5, -0.375, 0, -0.5, -0.5, 0.375, -0.5, -0.5, 0, -0.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_qaptt"]
+data = PackedVector3Array(-0.375, 0.375, 0.5, -0.375, 0.375, 0.375, -0.375, 0, 0.5, -0.375, 0, 0.5, -0.375, 0.375, 0.375, -0.375, 0, 0.375, -0.5, 0.375, 0.375, -0.5, 0.375, 0.5, -0.5, 0, 0.375, -0.5, 0, 0.375, -0.5, 0.375, 0.5, -0.5, 0, 0.5, -0.5, 0.375, 0.375, -0.375, 0.375, 0.375, -0.5, 0.375, 0.5, -0.5, 0.375, 0.5, -0.375, 0.375, 0.375, -0.375, 0.375, 0.5, -0.5, 0, 0.5, -0.375, 0, 0.5, -0.5, 0, 0.375, -0.5, 0, 0.375, -0.375, 0, 0.5, -0.375, 0, 0.375, -0.5, 0.375, 0.5, -0.375, 0.375, 0.5, -0.5, 0, 0.5, -0.5, 0, 0.5, -0.375, 0.375, 0.5, -0.375, 0, 0.5, -0.375, 0.375, 0.375, -0.5, 0.375, 0.375, -0.375, 0, 0.375, -0.375, 0, 0.375, -0.5, 0.375, 0.375, -0.5, 0, 0.375)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_y732w"]
+data = PackedVector3Array(0.5, 0.375, 0.5, 0.5, 0.375, 0.375, 0.5, 0, 0.5, 0.5, 0, 0.5, 0.5, 0.375, 0.375, 0.5, 0, 0.375, 0.375, 0.375, 0.375, 0.375, 0.375, 0.5, 0.375, 0, 0.375, 0.375, 0, 0.375, 0.375, 0.375, 0.5, 0.375, 0, 0.5, 0.375, 0.375, 0.375, 0.5, 0.375, 0.375, 0.375, 0.375, 0.5, 0.375, 0.375, 0.5, 0.5, 0.375, 0.375, 0.5, 0.375, 0.5, 0.375, 0, 0.5, 0.5, 0, 0.5, 0.375, 0, 0.375, 0.375, 0, 0.375, 0.5, 0, 0.5, 0.5, 0, 0.375, 0.375, 0.375, 0.5, 0.5, 0.375, 0.5, 0.375, 0, 0.5, 0.375, 0, 0.5, 0.5, 0.375, 0.5, 0.5, 0, 0.5, 0.5, 0.375, 0.375, 0.375, 0.375, 0.375, 0.5, 0, 0.375, 0.5, 0, 0.375, 0.375, 0.375, 0.375, 0.375, 0, 0.375)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_sjhfs"]
+data = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.375, 0.5, 0.5, 0.375, 0.5, 0.5, 0.5, -0.5, 0.5, 0.375, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.375, -0.5, -0.5, 0.375, -0.5, -0.5, 0.5, 0.5, -0.5, 0.375, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.375, 0.5, 0.5, 0.375, 0.5, -0.5, 0.375, -0.5, -0.5, 0.375, -0.5, 0.5, 0.375, 0.5, 0.5, 0.375, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.375, 0.5, -0.5, 0.375, 0.5, 0.5, 0.5, 0.5, 0.5, 0.375, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.375, -0.5, 0.5, 0.375, -0.5, -0.5, 0.5, -0.5, -0.5, 0.375, -0.5)
+
+[node name="coffee_table" instance=ExtResource("1_d5cpw")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node2/table/legs/1" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node2/table/legs/1/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_pgwfs")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node2/table/legs/2" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node2/table/legs/2/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_8hla8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node2/table/legs/3" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node2/table/legs/3/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_qaptt")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node2/table/legs/4" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node2/table/legs/4/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_y732w")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node2/table/body/base" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node2/table/body/base/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_sjhfs")
