@@ -68,3 +68,12 @@ def process_scene(file_path):
 
 for file in listdir("scenes\\rooms"):
     process_scene("scenes\\rooms\\" + file)
+
+compiled_tiles = []
+
+for file in listdir("assets\\grid_data\\tiles"):
+    with open(f"assets\\grid_data\\tiles\\{file}", "r", encoding="utf-8") as f:
+        compiled_tiles.extend(load(f))
+
+with open("assets\\grid_data\\tiles.json", "w", encoding="utf-8") as f:
+    dump(compiled_tiles, f, indent=4)
