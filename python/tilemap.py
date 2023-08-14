@@ -55,7 +55,7 @@ def process_scene(file_path):
                 if "required" in tile:
                     tile["required"][tile_id] = OPPOSING_SIDES[direction]
                 else:
-                    tile["required"] = {OPPOSING_SIDES[direction]: tile_id}
+                    tile["required"] = {tile_id: OPPOSING_SIDES[direction]}
         sides = {"id": tile_id}
         sides.update(wall_data[f"{atlas_coords[0]}_{atlas_coords[1]}"])
         if len(requirements) > 0:
@@ -66,8 +66,8 @@ def process_scene(file_path):
         dump(list(tiles.values()), scene, indent=4)
 
 
-for file in listdir("scenes\\rooms"):
-    process_scene("scenes\\rooms\\" + file)
+for file in listdir("scenes\\room_layouts"):
+    process_scene("scenes\\room_layouts\\" + file)
 
 compiled_tiles = []
 

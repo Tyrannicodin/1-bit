@@ -16,19 +16,12 @@ BOX = {
 }
 
 
-class Square:
-    """A square on the grid"""
-
-    def __init__(self) -> None:
-        self.cell = None
-
-
-with open("assets\\grid_data\\squares.json", "r", encoding="utf-8") as f:
+with open("assets\\grid_data\\tiles.json", "r", encoding="utf-8") as f:
     square = load(f)
 
 size = (8, 8)
 
-grid = [[Square() for _1 in range(size[0])] for _2 in range(size[1])]
+grid = [[None for _1 in range(size[0])] for _2 in range(size[1])]
 
 
 def get_walled(options, side):
@@ -50,6 +43,7 @@ def valid_position(cell, side):
         return cell[0] > 0
     if side == "right":
         return cell[0] < size[0] - 1
+    return ""
 
 
 def check_required(outcome, cell, stop=None) -> tuple[bool, list[str]]:
@@ -79,8 +73,8 @@ def check_required(outcome, cell, stop=None) -> tuple[bool, list[str]]:
 def get_possibilities(x, y, x_change, y_change, side):
     """Get possibilities for a cell"""
     if valid_position((x, y), side):
-        if grid[y + y_change][x + x_change].cell:
-            target_cell = grid[y + y_change][x + x_change].cell
+        if grid[y + y_change][x + x_change]:
+            target_cell = grid[y + y_change][x + x_change]
             final_outcome = []
             for cell in square:
                 if "required" in target_cell and side in target_cell["required"]:
@@ -89,15 +83,14 @@ def get_possibilities(x, y, x_change, y_change, side):
                         and cell[OPPOSING_SIDES[side]] == target_cell["id"]
                         and valid_position((x + x_change, y + y_change), side)
                         and (
-                            grid[y + y_change * 2][x + x_change * 2].cell is None
-                            or grid[y + y_change * 2][x + x_change * 2].cell["id"]
+                            grid[y + y_change * 2][x + x_change * 2] is None
+                            or grid[y + y_change * 2][x + x_change * 2]["id"]
                             == target_cell["required"][side]
                         )
                     ):
                         final_outcome.append(cell)
                 elif (
-                    cell[side]
-                    == grid[y + y_change][x + x_change].cell[OPPOSING_SIDES[side]]
+                    cell[side] == grid[y + y_change][x + x_change][OPPOSING_SIDES[side]]
                 ):
                     final_outcome.append(cell)
                 return final_outcome
@@ -142,7 +135,7 @@ def place_required(chosen_square, chosen_lock, stop=None):
             if new_lock in stop:  # If we have already placed something here, ignore
                 continue
             selected_square = next((sq for sq in square if sq["id"] == square_id))
-            grid[new_lock[1]][new_lock[0]].cell = selected_square
+            grid[new_lock[1]][new_lock[0]] = selected_square
             stop = place_required(
                 selected_square,
                 new_lock,
@@ -157,7 +150,7 @@ def lock_square():
     min_options = []
     for y in range(size[1]):
         for x in range(size[0]):
-            if grid[y][x].cell:
+            if grid[y][x]:
                 continue
             options = get_entropy(x, y)
             option_count = len(options)
@@ -177,7 +170,7 @@ def lock_square():
         ent.remove(BOX)
     chosen_square = choice(ent)
     place_required(chosen_square, chosen_lock)
-    grid[chosen_lock[1]][chosen_lock[0]].cell = chosen_square
+    grid[chosen_lock[1]][chosen_lock[0]] = chosen_square
 
 
 seed(int(input()))
@@ -192,6 +185,6 @@ for y in range(size[1]):
     for x in range(size[0]):
         imD.rectangle(
             (x * 100, y * 100, (x + 1) * 100, (y + 1) * 100),
-            tuple(grid[y][x].cell["colour"]) if grid[y][x].cell else (0, 0, 0),
+            tuple(grid[y][x]["colour"]) if grid[y][x] else (0, 0, 0),
         )
 im.save("out.png")

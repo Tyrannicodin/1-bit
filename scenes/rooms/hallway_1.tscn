@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ij5pri1m37p8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jehpt"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4qge8"]
+material = SubResource("StandardMaterial3D_jehpt")
+size = Vector2(3, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6ngm5"]
+data = PackedVector3Array(1.5, 0, 0.5, -1.5, 0, 0.5, 1.5, 0, -0.5, -1.5, 0, 0.5, -1.5, 0, -0.5, 1.5, 0, -0.5)
+
+[node name="hallway_1" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+mesh = SubResource("PlaneMesh_4qge8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_6ngm5")

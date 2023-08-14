@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://6vn5vc843hvx"]
+
+[ext_resource type="PackedScene" uid="uid://bg17woub1lb6c" path="res://assets/models/armchair/armchair.tscn" id="1_cw2ex"]
+[ext_resource type="PackedScene" uid="uid://c6e4dya70hh7a" path="res://assets/models/coffe_table/coffee_table.tscn" id="2_bl002"]
+[ext_resource type="PackedScene" uid="uid://dujewhxfdn3gi" path="res://assets/models/sofa/sofa.tscn" id="3_nu1uo"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_0hl6l"]
+vertices = PackedVector3Array(3, 0.5, 1.25, 3.25, 0.5, 1.75, 3.5, 0.5, 1.5, 3.25, 0.5, 0.5, 0.5, 0.5, 5.5, 1.25, 0.5, 5.25, 0.75, 0.5, 3.25, 3, 0.5, 5.5, 3, 0.5, 5, 1.25, 0.5, 5.25, 0.5, 0.5, 5.5, 0.75, 0.5, 3.25, 1.25, 0.5, 1.25, 0.5, 0.5, 0.5, 1.25, 0.5, 1.25, 3, 0.5, 1.25, 3.25, 0.5, 0.5, 0.5, 0.5, 0.5, 0.75, 0.5, 3.25, 0.5, 0.5, 0.5, 0.5, 0.5, 5.5, 4.5, 0.75, 1.5, 3.5, 0.5, 1.5, 3.25, 0.5, 1.75, 3, 0.5, 5, 4.25, 0.5, 3, 3, 0.5, 5, 3, 0.5, 5.5, 5.5, 0.5, 5.5, 5.5, 0.5, 3.25, 4.25, 0.5, 3)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(6, 5, 4), PackedInt32Array(8, 7, 9), PackedInt32Array(9, 7, 10), PackedInt32Array(13, 12, 11), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 17), PackedInt32Array(20, 19, 18), PackedInt32Array(22, 21, 23), PackedInt32Array(23, 21, 25), PackedInt32Array(23, 25, 24), PackedInt32Array(27, 26, 28), PackedInt32Array(28, 26, 30), PackedInt32Array(28, 30, 29)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4kupu"]
+size = Vector2(6, 6)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_dkjft"]
+data = PackedVector3Array(1.5, 0, 1.5, -1.5, 0, 1.5, 1.5, 0, -1.5, -1.5, 0, 1.5, -1.5, 0, -1.5, 1.5, 0, -1.5)
+
+[node name="lounge" type="Node3D"]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_0hl6l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
+mesh = SubResource("PlaneMesh_4kupu")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_dkjft")
+
+[node name="armchair" parent="NavigationRegion3D" instance=ExtResource("1_cw2ex")]
+transform = Transform3D(0.953591, 0, 0.301105, 0, 1, 0, -0.301105, 0, 0.953591, 2.08258, 0, 3.9574)
+
+[node name="coffee_table" parent="NavigationRegion3D" instance=ExtResource("2_bl002")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.03083, 0, 2.36956)
+
+[node name="sofa" parent="NavigationRegion3D" instance=ExtResource("3_nu1uo")]
+transform = Transform3D(-0.424468, 0, 0.905443, 0, 1, 0, -0.905443, 0, -0.424468, 4.66145, 0, 1.04125)
