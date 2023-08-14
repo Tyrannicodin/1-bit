@@ -70,7 +70,8 @@ func _unhandled_input(event):
 
 	for v in backpack_squares.values():
 		v.hovered = false
-
+	
+	@warning_ignore("narrowing_conversion")
 	var v = backpack_squares.get(Vector2i(x_hovered, y_hovered))
 	if v:
 		v.hovered = true

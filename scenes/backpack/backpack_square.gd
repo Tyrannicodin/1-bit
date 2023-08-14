@@ -16,11 +16,11 @@ var x: int
 var y: int
 
 func set_location(
-	x: int,
-	y: int,
+	new_x: int,
+	new_y: int,
 	origin: Vector2i,
 	cell_size: Vector2i,
 ):
-	self.x = x
-	self.y = y
+	self.x = new_x
+	self.y = new_y
 	self.position = Vector2i(origin.x + 32 + cell_size.x * x, origin.y + 32 + cell_size.y * y)
