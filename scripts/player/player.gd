@@ -19,7 +19,7 @@ var VIEW_MODE = "flashlight"
 @onready var flashlightSelected = $GameContainer/GameViewport/UIViewport/VBoxContainer/Mainhand/FlashlightBox/SelectedSlot
 @onready var radarSelected = $GameContainer/GameViewport/UIViewport/VBoxContainer/Mainhand/RadarBox/SelectedSlot
 @onready var UI = $UIRect
-@onready var batteryBar = $"GameContainer/GameViewport/UIViewport/VBoxContainer/Power Bar/TextureProgressBar"
+@onready var batteryBar = $"GameContainer/GameViewport/UIViewport/VBoxContainer/Power Bar/ProgressBar"
 
 var mouse_captured = false
 var available_interactions = []

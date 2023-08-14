@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1t2bj8mqm60a"
-path.s3tc="res://.godot/imported/sofa_0.png-deeb803be39f53176013b11b896cf0b0.s3tc.ctex"
+uid="uid://d4ke2n2638s0b"
+path.s3tc="res://.godot/imported/single_bed_1.png-902d3c76ee6fd52ad6d05a94ddb0d496.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://assets/models/sofa/sofa_0.png"
-dest_files=["res://.godot/imported/sofa_0.png-deeb803be39f53176013b11b896cf0b0.s3tc.ctex"]
+source_file="res://assets/models/single_bed/single_bed_1.png"
+dest_files=["res://.godot/imported/single_bed_1.png-902d3c76ee6fd52ad6d05a94ddb0d496.s3tc.ctex"]
 
 [params]
 

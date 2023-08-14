@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c8vahnqaf353d" path="res://scenes/backpack/backpack.tscn" id="2_ftu1l"]
 [ext_resource type="Texture2D" uid="uid://n85ohutwfk0a" path="res://assets/shaders/dithering/palette_1.png" id="3_6dtlo"]
 [ext_resource type="Script" path="res://scripts/player/sub_viewports.gd" id="3_usir5"]
-[ext_resource type="Script" path="res://scenes/UIViewport.gd" id="6_46ppg"]
+[ext_resource type="Script" path="res://scripts/player/UIViewport.gd" id="6_c2vw8"]
 [ext_resource type="Theme" uid="uid://b6x5a56bs6oov" path="res://assets/themes/ui.tres" id="7_8s8sj"]
 [ext_resource type="Texture2D" uid="uid://ba1u66pq1pqov" path="res://assets/ui/power_bar_filled.png" id="7_hnq16"]
 [ext_resource type="Texture2D" uid="uid://b1msi2g1wbpsx" path="res://assets/ui/power_bar.png" id="7_mvmnc"]
@@ -335,7 +335,7 @@ grow_vertical = 2
 transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 4
-script = ExtResource("6_46ppg")
+script = ExtResource("6_c2vw8")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameContainer/GameViewport/UIViewport"]
 anchors_preset = 4
