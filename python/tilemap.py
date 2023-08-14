@@ -30,11 +30,14 @@ def process_scene(file_path):
     name = file_path.split("\\")[-1].split(".")[0]
 
     with open(file_path, "r", encoding="utf-8") as scene:
+        scene_text = scene.read()
+        if not "layer_0/tile_data" in scene_text:
+            return
         res = loads(
             "["
-            + scene.read()
-            .split("layer_0/tile_data = PackedInt32Array(", 1)[-1]
-            .split(")", 1)[0]
+            + scene_text.split("layer_0/tile_data = PackedInt32Array(", 1)[-1].split(
+                ")", 1
+            )[0]
             + "]"
         )
 

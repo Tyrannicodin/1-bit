@@ -1,36 +1,5 @@
 [
     {
-        "id": "hallway_1_0",
-        "left": "w",
-        "up": "d",
-        "right": "w",
-        "down": "",
-        "required": {
-            "hallway_1_1": "down"
-        }
-    },
-    {
-        "id": "hallway_1_1",
-        "left": "d",
-        "up": "",
-        "right": "w",
-        "down": "",
-        "required": {
-            "hallway_1_0": "up",
-            "hallway_1_2": "down"
-        }
-    },
-    {
-        "id": "hallway_1_2",
-        "left": "w",
-        "up": "",
-        "right": "w",
-        "down": "d",
-        "required": {
-            "hallway_1_1": "up"
-        }
-    },
-    {
         "id": "lounge_0",
         "left": "",
         "up": "w",
