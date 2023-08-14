@@ -542,16 +542,16 @@ grow_vertical = 2
 layout_mode = 2
 texture = ExtResource("12_ihcyb")
 
-[node name="sound_radar_off" type="AudioStreamPlayer" parent="GameContainer/GameViewport"]
-stream = ExtResource("21_cy445")
-
-[node name="sound_radar" type="AudioStreamPlayer" parent="GameContainer/GameViewport"]
-stream = ExtResource("20_y0ap5")
-
-[node name="sound_radar_loop" type="AudioStreamPlayer" parent="GameContainer/GameViewport"]
+[node name="sound_radar_loop" type="AudioStreamPlayer3D" parent="GameContainer/GameViewport"]
 stream = ExtResource("20_v6nb1")
 
-[node name="sound_flashlight" type="AudioStreamPlayer" parent="GameContainer/GameViewport"]
+[node name="sound_radar" type="AudioStreamPlayer3D" parent="GameContainer/GameViewport"]
+stream = ExtResource("20_y0ap5")
+
+[node name="sound_radar_off" type="AudioStreamPlayer3D" parent="GameContainer/GameViewport"]
+stream = ExtResource("21_cy445")
+
+[node name="sound_flashlight" type="AudioStreamPlayer3D" parent="GameContainer/GameViewport"]
 stream = ExtResource("22_b41qx")
 
 [node name="UIRect" type="TextureRect" parent="."]

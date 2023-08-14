@@ -21,6 +21,16 @@ var VIEW_MODE = "flashlight"
 @onready var UI = $UIRect
 @onready var batteryBar = $"GameContainer/GameViewport/UIViewport/VBoxContainer/Power Bar/ProgressBar"
 
+# Sound
+@onready var sound_flashlight = $GameContainer/GameViewport/sound_flashlight
+@onready var sound_radar = $GameContainer/GameViewport/sound_radar
+@onready var sound_radar_off = $GameContainer/GameViewport/sound_radar_off
+@onready var sound_radar_loop = $GameContainer/GameViewport/sound_radar_loop
+
+# To make cycling easier
+@onready var spectral_view_visible = [spectralView, spectralViewDither, radar, ghostViewport, radarSelected]
+@onready var flashlight_view_visible = [flashlight, flashlightSelected]
+
 var mouse_captured = false
 var available_interactions = []
 
@@ -106,19 +116,37 @@ func _physics_process(delta):
 	move_and_slide()
 
 func cycle_views():
-	spectralView.visible = not spectralView.visible
-	spectralViewDither.visible = not spectralViewDither.visible
-	flashlightView.visible = not flashlightView.visible
-	flashlight.light_energy = 0 if flashlight.light_energy == torch_power else torch_power
-	radar.visible = not radar.visible
-	ghostViewport.visible = not ghostViewport.visible
-	flashlightSelected.visible = not flashlightSelected.visible
-	radarSelected.visible = not radarSelected.visible
+	sound_radar.stop()
+	sound_radar_loop.stop()
+	if VIEW_MODE == "spectral":
+		sound_flashlight.play()
+	else:
+		sound_radar_off.play()
 	
-	if (VIEW_MODE == "flashlight"):
+	for element in spectral_view_visible:
+		element.visible = false
+	for element in flashlight_view_visible:
+		element.visible = false
+		
+	await get_tree().create_timer(0.4).timeout 
+	
+	if VIEW_MODE == "flashlight":
+		sound_flashlight.play()
+		
+		for element in flashlight_view_visible:
+			element.visible = true
 		UI.get_material().set_shader_parameter("ui_color",Color(1,0.7450980392156863,0.4980392156862745,1))
-	elif (VIEW_MODE == "spectral"):
+	elif VIEW_MODE == "spectral":
+		sound_radar.play()
+		
+		for element in spectral_view_visible:
+			element.visible = true
 		UI.get_material().set_shader_parameter("ui_color",Color(0.3333333333333333,1,1,1))
+		
+		await get_tree().create_timer(2.43).timeout 
+		
+		if VIEW_MODE == "spectral":
+			sound_radar_loop.play()
 
 func in_range(node:Node3D):
 	if not node in available_interactions:

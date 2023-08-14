@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://com6fd5ykhrct"]
+[gd_scene load_steps=35 format=3 uid="uid://com6fd5ykhrct"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_o7pwf"]
 [ext_resource type="Shader" path="res://assets/shaders/edge_detection/shader.gdshader" id="2_7eeor"]
@@ -20,10 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://mnh2jp2uw5ix" path="res://assets/ui/map.png" id="12_pfnom"]
 [ext_resource type="Texture2D" uid="uid://ctse4m8h6g3v4" path="res://assets/ui/b_icon.png" id="13_fcld1"]
 [ext_resource type="Texture2D" uid="uid://pl6f8yqq0opm" path="res://assets/ui/backpack.png" id="14_55kkp"]
-[ext_resource type="AudioStream" uid="uid://b6b0qabshagq2" path="res://assets/audio/ghost_radar_loop.mp3" id="20_v6nb1"]
-[ext_resource type="AudioStream" uid="uid://cnnp0jejolpow" path="res://assets/audio/ghost_radar_start.mp3" id="20_y0ap5"]
 [ext_resource type="Script" path="res://scripts/player/TextureRect.gd" id="21_3fx5b"]
-[ext_resource type="AudioStream" uid="uid://dgqwxoidtfwh1" path="res://assets/audio/ghost_radar_off.mp3" id="21_cy445"]
 [ext_resource type="AudioStream" uid="uid://di40twlbtb0c8" path="res://assets/audio/flashlight.mp3" id="22_b41qx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_soasp"]
@@ -251,8 +248,6 @@ offset_bottom = 40.0
 
 [node name="GameViewport" type="SubViewport" parent="GameContainer"]
 handle_input_locally = false
-audio_listener_enable_2d = true
-audio_listener_enable_3d = true
 render_target_update_mode = 4
 script = ExtResource("3_usir5")
 
@@ -262,8 +257,6 @@ offset_bottom = 512.0
 
 [node name="MainViewport" type="SubViewport" parent="GameContainer/GameViewport/MainViewportContainer"]
 handle_input_locally = false
-audio_listener_enable_2d = true
-audio_listener_enable_3d = true
 render_target_update_mode = 4
 script = ExtResource("3_usir5")
 
@@ -542,18 +535,6 @@ grow_vertical = 2
 layout_mode = 2
 texture = ExtResource("12_ihcyb")
 
-[node name="sound_radar_off" type="AudioStreamPlayer" parent="GameContainer/GameViewport"]
-stream = ExtResource("21_cy445")
-
-[node name="sound_radar" type="AudioStreamPlayer" parent="GameContainer/GameViewport"]
-stream = ExtResource("20_y0ap5")
-
-[node name="sound_radar_loop" type="AudioStreamPlayer" parent="GameContainer/GameViewport"]
-stream = ExtResource("20_v6nb1")
-
-[node name="sound_flashlight" type="AudioStreamPlayer" parent="GameContainer/GameViewport"]
-stream = ExtResource("22_b41qx")
-
 [node name="UIRect" type="TextureRect" parent="."]
 texture_filter = 3
 material = SubResource("ShaderMaterial_i7yrv")
@@ -561,3 +542,7 @@ offset_right = 512.0
 offset_bottom = 512.0
 texture = SubResource("ViewportTexture_dnxb8")
 script = ExtResource("21_3fx5b")
+
+[node name="sound_flashlight" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("22_b41qx")
+autoplay = true
