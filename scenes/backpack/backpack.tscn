@@ -4,3 +4,5 @@
 
 [node name="backpack" type="Node2D"]
 script = ExtResource("1_2in2c")
+BACKPACK_LENGTH = 5
+BACKPACK_WIDTH = 5

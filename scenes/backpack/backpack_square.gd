@@ -1,11 +1,27 @@
 extends Node2D
 
+var hovered: bool = false :
+	set(value):
+		if value:
+			$normal.hide()
+			$hovered.show()
+		else:
+			$normal.show()
+			$hovered.hide()
+			
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
+# Location that this cell is in the backpack
+var x: int
+var y: int
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_d):
-	pass
+func set_location(
+	x: int,
+	y: int,
+	origin: Vector2i,
+	cell_size: Vector2i,
+):
+	print("here")
+	self.x = x
+	self.y = y
+	self.position = Vector2i(origin.x + 32 + cell_size.x * x, origin.y + 32 + cell_size.y * y)
