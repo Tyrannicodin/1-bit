@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dli8k0xs6b25l"]
+
+[ext_resource type="PackedScene" uid="uid://bt73m8tvoa2xd" path="res://assets/models/table/table.gltf" id="1_1x2om"]
+
+[node name="table" instance=ExtResource("1_1x2om")]
