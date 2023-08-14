@@ -9,6 +9,7 @@ size = Vector3(1.00381, 1.6959, 1)
 
 [node name="ghost" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+motion_mode = 1
 script = ExtResource("1_7f2kv")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
@@ -16,6 +17,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0674825, 0)
 shape = SubResource("BoxShape3D_rkwbi")
 
 [node name="Navigator" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+radius = 1.0
 
 [node name="ghost" parent="." instance=ExtResource("2_cynw8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
