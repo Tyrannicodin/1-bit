@@ -1,16 +1,18 @@
-[gd_scene load_steps=24 format=3 uid="uid://com6fd5ykhrct"]
+[gd_scene load_steps=26 format=3 uid="uid://com6fd5ykhrct"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_d1gec"]
 [ext_resource type="Shader" path="res://assets/shaders/edge_detection/shader.gdshader" id="2_7eeor"]
 [ext_resource type="PackedScene" uid="uid://c8vahnqaf353d" path="res://scenes/backpack/backpack.tscn" id="2_ftu1l"]
 [ext_resource type="Texture2D" uid="uid://n85ohutwfk0a" path="res://assets/shaders/dithering/palette_1.png" id="3_6dtlo"]
 [ext_resource type="Script" path="res://scripts/sub_viewports.gd" id="3_gpn2e"]
-[ext_resource type="Shader" path="res://assets/shaders/colors/orange.gdshader" id="6_2e3wm"]
 [ext_resource type="Script" path="res://scenes/UIViewport.gd" id="6_46ppg"]
 [ext_resource type="Theme" uid="uid://b6x5a56bs6oov" path="res://assets/themes/ui.tres" id="7_8s8sj"]
 [ext_resource type="Texture2D" uid="uid://dnaidbtpymjor" path="res://assets/ui/hotbar_slot.png" id="8_1ktqa"]
 [ext_resource type="Texture2D" uid="uid://bq3q0m8w8q6d6" path="res://assets/ui/flashlight.png" id="8_y0o0g"]
+[ext_resource type="Texture2D" uid="uid://ckiqh638hwrh5" path="res://assets/ui/selected_slot.png" id="11_i1i0r"]
+[ext_resource type="Texture2D" uid="uid://dphibpmijdrsi" path="res://assets/ui/radar.png" id="11_jjlj8"]
 [ext_resource type="Script" path="res://scripts/TextureRect.gd" id="11_q7r6q"]
+[ext_resource type="Shader" path="res://assets/shaders/colors/ui.gdshader" id="12_cu0yb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_soasp"]
 
@@ -207,10 +209,10 @@ shader_parameter/u_dither_tex = SubResource("CompressedTexture2D_a31qm")
 shader_parameter/u_color_tex = SubResource("CompressedTexture2D_maixx")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nry6i"]
-shader = ExtResource("6_2e3wm")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i7yrv"]
-shader = ExtResource("6_2e3wm")
+shader = ExtResource("12_cu0yb")
+shader_parameter/ui_color = Color(1, 0.745098, 0.498039, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_dnxb8"]
 viewport_path = NodePath("GameContainer/GameViewport/UIViewport")
@@ -333,17 +335,81 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -25.0
-offset_top = -112.0
-offset_right = 25.0
-offset_bottom = -72.0
+offset_left = -33.0
+offset_top = -62.0
+offset_right = 33.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Tooltip" type="HBoxContainer" parent="GameContainer/GameViewport/UIViewport/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameContainer/GameViewport/UIViewport/VBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Label" parent="GameContainer/GameViewport/UIViewport/VBoxContainer/Tooltip"]
+[node name="FlashlightBox" type="NinePatchRect" parent="GameContainer/GameViewport/UIViewport/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_1ktqa")
+region_rect = Rect2(0.367874, 0.000366211, 31.1156, 31.6551)
+patch_margin_left = 1
+patch_margin_top = 4
+patch_margin_right = 30
+patch_margin_bottom = 28
+
+[node name="Flashlight" type="TextureRect" parent="GameContainer/GameViewport/UIViewport/VBoxContainer/HBoxContainer/FlashlightBox"]
+layout_mode = 2
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("8_y0o0g")
+
+[node name="SelectedSlot" type="TextureRect" parent="GameContainer/GameViewport/UIViewport/VBoxContainer/HBoxContainer/FlashlightBox"]
+layout_mode = 2
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 34.0
+offset_bottom = 34.0
+scale = Vector2(0.98, 1)
+texture = ExtResource("11_i1i0r")
+stretch_mode = 2
+
+[node name="RadarBox" type="NinePatchRect" parent="GameContainer/GameViewport/UIViewport/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_1ktqa")
+region_rect = Rect2(0.367874, 0.000366211, 31.1156, 31.6551)
+patch_margin_left = 1
+patch_margin_top = 4
+patch_margin_right = 30
+patch_margin_bottom = 28
+
+[node name="Flashlight" type="TextureRect" parent="GameContainer/GameViewport/UIViewport/VBoxContainer/HBoxContainer/RadarBox"]
+layout_mode = 2
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("11_jjlj8")
+
+[node name="SelectedSlot" type="TextureRect" parent="GameContainer/GameViewport/UIViewport/VBoxContainer/HBoxContainer/RadarBox"]
+visible = false
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 34.0
+offset_bottom = 34.0
+scale = Vector2(0.98, 1)
+texture = ExtResource("11_i1i0r")
+stretch_mode = 2
+
+[node name="Tooltip" type="HBoxContainer" parent="GameContainer/GameViewport/UIViewport"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -33.0
+offset_top = -92.0
+offset_right = 33.0
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Label" parent="GameContainer/GameViewport/UIViewport/Tooltip"]
 material = SubResource("ShaderMaterial_nry6i")
 layout_mode = 2
 theme = ExtResource("7_8s8sj")
@@ -352,32 +418,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Label" type="Label" parent="GameContainer/GameViewport/UIViewport/VBoxContainer/Tooltip"]
+[node name="Label" type="Label" parent="GameContainer/GameViewport/UIViewport/Tooltip"]
 layout_mode = 2
 theme = ExtResource("7_8s8sj")
 text = "Q"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GameContainer/GameViewport/UIViewport/VBoxContainer"]
-layout_mode = 2
-
-[node name="NinePatchRect" type="NinePatchRect" parent="GameContainer/GameViewport/UIViewport/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("8_1ktqa")
-region_rect = Rect2(-0.24361, -0.269973, 32.2962, 32.4313)
-patch_margin_left = 6
-patch_margin_top = 4
-patch_margin_right = 31
-patch_margin_bottom = 28
-
-[node name="Flashlight" type="TextureRect" parent="GameContainer/GameViewport/UIViewport/VBoxContainer/HBoxContainer/NinePatchRect"]
-layout_mode = 2
-offset_left = 4.0
-offset_right = 36.0
-offset_bottom = 32.0
-texture = ExtResource("8_y0o0g")
 
 [node name="UIRect" type="TextureRect" parent="."]
 texture_filter = 3

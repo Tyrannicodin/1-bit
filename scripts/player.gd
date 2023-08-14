@@ -3,6 +3,8 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+var VIEW_MODE = "flashlight"
+
 @onready var torch_power = $GameContainer/GameViewport/MainViewportContainer/MainViewport/Camera/Torch.light_energy
 @onready var camera = $"cameraLoc"
 @onready var ghostCamera = $"ghostCameraLoc"
@@ -12,8 +14,11 @@ const JUMP_VELOCITY = 4.5
 @onready var spectralViewDither = $GameContainer/GameViewport/GhostViewportContainer/SpectralFilter
 @onready var flashlight = $GameContainer/GameViewport/MainViewportContainer/MainViewport/Camera/Torch
 @onready var radar = $GameContainer/GameViewport/MainViewportContainer/MainViewport/Camera/RadarLight
-@onready var tooltipButton = $GameContainer/GameViewport/UIViewport/VBoxContainer/Tooltip/Button
-@onready var tooltipLabel = $GameContainer/GameViewport/UIViewport/VBoxContainer/Tooltip/Label
+@onready var tooltipButton = $GameContainer/GameViewport/UIViewport/Tooltip/Button
+@onready var tooltipLabel = $GameContainer/GameViewport/UIViewport/Tooltip/Label
+@onready var flashlightSelected = $GameContainer/GameViewport/UIViewport/VBoxContainer/HBoxContainer/FlashlightBox/SelectedSlot
+@onready var radarSelected = $GameContainer/GameViewport/UIViewport/VBoxContainer/HBoxContainer/RadarBox/SelectedSlot
+@onready var UI = $UIRect
 
 var mouse_captured = false
 var available_interactions = []
@@ -65,6 +70,7 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 	
 	if Input.is_action_just_pressed("torch"):
+		VIEW_MODE = "spectral" if VIEW_MODE == "flashlight" else "flashlight"
 		cycle_views()
 	
 	if Input.is_action_just_pressed("interact"):
@@ -105,6 +111,13 @@ func cycle_views():
 	flashlight.light_energy = 0 if flashlight.light_energy == torch_power else torch_power
 	radar.visible = not radar.visible
 	ghostViewport.visible = not ghostViewport.visible
+	flashlightSelected.visible = not flashlightSelected.visible
+	radarSelected.visible = not radarSelected.visible
+	
+	if (VIEW_MODE == "flashlight"):
+		UI.get_material().set_shader_parameter("ui_color",Color(1,0.7450980392156863,0.4980392156862745,1))
+	elif (VIEW_MODE == "spectral"):
+		UI.get_material().set_shader_parameter("ui_color",Color(0.3333333333333333,1,1,1))
 
 func in_range(node:Node3D):
 	if not node in available_interactions:
