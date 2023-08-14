@@ -79,7 +79,7 @@ func _unhandled_input(event):
 # Open the menu. Pass in all the items the user picked up as an array
 # if they have picked any up.
 # The menu is shown or hidden by hiding the root node.
-func open_menu(add_items: Array[Item]):
+func open(add_items: Array[Item]):
 	show()
 
 	for item in add_items:
@@ -88,6 +88,6 @@ func open_menu(add_items: Array[Item]):
 		pass
 
 # Close the menu. Return the items that the user trashed.
-func close_menu() -> Array[Item]:
+func close() -> Array[Item]:
 	hide()
 	return []
