@@ -1,6 +1,11 @@
 [
     {
         "id": "hallway_1_0",
+        "colour": [
+            255,
+            0,
+            0
+        ],
         "left": "w",
         "up": "d",
         "right": "w",
@@ -11,23 +16,33 @@
     },
     {
         "id": "hallway_1_1",
-        "left": "d",
-        "up": "",
-        "right": "w",
-        "down": "",
+        "colour": [
+            255,
+            0,
+            0
+        ],
         "required": {
             "hallway_1_0": "up",
             "hallway_1_2": "down"
-        }
+        },
+        "left": "d",
+        "up": "",
+        "right": "w",
+        "down": ""
     },
     {
         "id": "hallway_1_2",
+        "colour": [
+            255,
+            0,
+            0
+        ],
+        "required": {
+            "hallway_1_1": "up"
+        },
         "left": "w",
         "up": "",
         "right": "w",
-        "down": "d",
-        "required": {
-            "hallway_1_1": "up"
-        }
+        "down": "d"
     }
 ]

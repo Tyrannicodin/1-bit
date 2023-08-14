@@ -19,7 +19,7 @@ BOX = {
 with open("assets\\grid_data\\tiles.json", "r", encoding="utf-8") as f:
     square = load(f)
 
-size = (8, 8)
+size = (32, 32)
 
 grid = [[None for _1 in range(size[0])] for _2 in range(size[1])]
 
@@ -27,7 +27,7 @@ grid = [[None for _1 in range(size[0])] for _2 in range(size[1])]
 def get_walled(options, side):
     """Get valid options from list when a wall is required on a side"""
     valid_options = []
-    for option in options:
+    for option in options.values():
         if option[side] == "w":
             valid_options.append(option)
     return valid_options
@@ -43,7 +43,20 @@ def valid_position(cell, side):
         return cell[0] > 0
     if side == "right":
         return cell[0] < size[0] - 1
-    return ""
+    return False
+
+
+def check_valid(selected_square, cell, side):
+    """Check if a cell can connect to its side"""
+    if not valid_position(cell, side):
+        return selected_square[side] == "w"
+    new_lock = (cell[0] + SIDE_VECTORS[side][0], cell[1] + SIDE_VECTORS[side][1])
+    if (
+        grid[new_lock[1]][new_lock[0]] is None
+        or selected_square[side] == grid[new_lock[1]][new_lock[0]]
+    ):
+        return True
+    return False
 
 
 def check_required(outcome, cell, stop=None) -> tuple[bool, list[str]]:
@@ -54,8 +67,8 @@ def check_required(outcome, cell, stop=None) -> tuple[bool, list[str]]:
     if "required" in outcome:
         stop.append(outcome["id"])
         for square_id, side in outcome["required"].items():
-            if valid_position(cell, side):
-                selected_square = next((sq for sq in square if sq["id"] == square_id))
+            selected_square = square[square_id]
+            if check_valid(selected_square, cell, side):
                 if square_id in stop:  # If we have already check it, ignore
                     continue
                 require_check = check_required(
@@ -70,32 +83,22 @@ def check_required(outcome, cell, stop=None) -> tuple[bool, list[str]]:
     return True, stop
 
 
-def get_possibilities(x, y, x_change, y_change, side):
+def get_possibilities(x, y, side):
     """Get possibilities for a cell"""
     if valid_position((x, y), side):
-        if grid[y + y_change][x + x_change]:
-            target_cell = grid[y + y_change][x + x_change]
+        if grid[y + SIDE_VECTORS[side][1]][x + SIDE_VECTORS[side][0]]:
             final_outcome = []
-            for cell in square:
-                if "required" in target_cell and side in target_cell["required"]:
-                    if (
-                        cell["id"] == target_cell["required"][side]
-                        and cell[OPPOSING_SIDES[side]] == target_cell["id"]
-                        and valid_position((x + x_change, y + y_change), side)
-                        and (
-                            grid[y + y_change * 2][x + x_change * 2] is None
-                            or grid[y + y_change * 2][x + x_change * 2]["id"]
-                            == target_cell["required"][side]
-                        )
-                    ):
-                        final_outcome.append(cell)
-                elif (
-                    cell[side] == grid[y + y_change][x + x_change][OPPOSING_SIDES[side]]
+            for cell in square.values():
+                if (
+                    cell[side]
+                    == grid[y + SIDE_VECTORS[side][1]][x + SIDE_VECTORS[side][0]][
+                        OPPOSING_SIDES[side]
+                    ]
                 ):
                     final_outcome.append(cell)
                 return final_outcome
         else:
-            return square
+            return list(square.values())
     else:
         return get_walled(square, side)
 
@@ -103,10 +106,10 @@ def get_possibilities(x, y, x_change, y_change, side):
 def get_entropy(x, y):
     """Get the possibilities a tile can be"""
     final_outcome = [[], [], [], [], []]
-    final_outcome[0] = get_possibilities(x, y, -1, 0, "left")
-    final_outcome[1] = get_possibilities(x, y, 1, 0, "right")
-    final_outcome[2] = get_possibilities(x, y, 0, -1, "up")
-    final_outcome[3] = get_possibilities(x, y, 0, 1, "down")
+    final_outcome[0] = get_possibilities(x, y, "left")
+    final_outcome[1] = get_possibilities(x, y, "right")
+    final_outcome[2] = get_possibilities(x, y, "up")
+    final_outcome[3] = get_possibilities(x, y, "down")
     for outcome in final_outcome[3]:
         if (
             outcome in final_outcome[2]
@@ -125,8 +128,6 @@ def place_required(chosen_square, chosen_lock, stop=None):
     stop.append(chosen_lock)
 
     if "required" in chosen_square:
-        # if len(stop) > 4:
-        #    return stop
         for square_id, side in chosen_square["required"].items():
             new_lock = (
                 chosen_lock[0] + SIDE_VECTORS[side][0],
@@ -134,7 +135,7 @@ def place_required(chosen_square, chosen_lock, stop=None):
             )
             if new_lock in stop:  # If we have already placed something here, ignore
                 continue
-            selected_square = next((sq for sq in square if sq["id"] == square_id))
+            selected_square = square[square_id]
             grid[new_lock[1]][new_lock[0]] = selected_square
             stop = place_required(
                 selected_square,
@@ -173,10 +174,23 @@ def lock_square():
     grid[chosen_lock[1]][chosen_lock[0]] = chosen_square
 
 
+from time import time
+
 seed(int(input()))
 
-for i in range(12):
+LOCKS = 8
+TIMES = []
+start_time = time()
+
+for i in range(LOCKS):
+    print(f"{i}/{LOCKS}", end="\r")
     lock_square()
+    TIMES.append(time() - start_time)
+    start_time = time()
+print(f"{i+1}/{LOCKS}")
+print(
+    f"Finished with average lock time: {round(sum(TIMES)/len(TIMES))}s and total time of {round(sum(TIMES))}s"
+)
 
 im = Image.new("RGB", (size[0] * 100, size[1] * 100))
 imD = ImageDraw.Draw(im)

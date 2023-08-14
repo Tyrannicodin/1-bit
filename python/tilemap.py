@@ -25,7 +25,7 @@ with open("assets\\grid_data\\tilemap_data.json", "r", encoding="utf-8") as f:
     wall_data = load(f)
 
 
-def process_scene(file_path):
+def process_scene(file_path, colour):
     """Process a scene with a gridmap inside it"""
     name = file_path.split("\\")[-1].split(".")[0]
 
@@ -49,34 +49,39 @@ def process_scene(file_path):
         if (res[i + 1] & ((2**16) - 1)) != 1 or (res[i + 2] >> 16) != 0:
             continue
         tile_id = f"{name}_{len(tiles)}"
-        requirements = {}
+        sides = {"id": tile_id, "colour": colour, "required": {}}
         for coord, tile in tiles.items():
-            tile_coords = (int(coord.split("_")[0]), int(coord.split("_")[1]))
-            direction = next_to(map_coords, tile_coords)
+            direction = next_to(
+                map_coords, (int(coord.split("_")[0]), int(coord.split("_")[1]))
+            )
             if direction:
-                requirements[tile["id"]] = direction
+                sides["required"][tile["id"]] = direction
                 if "required" in tile:
                     tile["required"][tile_id] = OPPOSING_SIDES[direction]
                 else:
                     tile["required"] = {tile_id: OPPOSING_SIDES[direction]}
-        sides = {"id": tile_id}
         sides.update(wall_data[f"{atlas_coords[0]}_{atlas_coords[1]}"])
-        if len(requirements) > 0:
-            sides["required"] = requirements
+        if len(sides["required"]) == 0:
+            del sides["required"]
         tiles[f"{map_coords[0]}_{map_coords[1]}"] = sides
 
     with open(f"assets\\grid_data\\tiles\\{name}.json", "w", encoding="utf-8") as scene:
         dump(list(tiles.values()), scene, indent=4)
 
 
-for file in listdir("scenes\\room_layouts"):
-    process_scene("scenes\\room_layouts\\" + file)
+COLOURS = [(255, 0, 0), (0, 255, 0), (0, 0, 255)]
 
-compiled_tiles = []
+COL = 0
+for file in listdir("scenes\\room_layouts"):
+    process_scene("scenes\\room_layouts\\" + file, COLOURS[COL])
+    COL += 1
+
+compiled_tiles = {}
 
 for file in listdir("assets\\grid_data\\tiles"):
     with open(f"assets\\grid_data\\tiles\\{file}", "r", encoding="utf-8") as f:
-        compiled_tiles.extend(load(f))
+        for tile in load(f):
+            compiled_tiles[tile["id"]] = tile
 
 with open("assets\\grid_data\\tiles.json", "w", encoding="utf-8") as f:
     dump(compiled_tiles, f, indent=4)
