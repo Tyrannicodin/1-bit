@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://com6fd5ykhrct" path="res://scenes/player.tscn" id="1_ukcs2"]
 [ext_resource type="Material" uid="uid://dyc4fe2tge02t" path="res://assets/shaders/dithering/material.tres" id="3_y73xg"]
-[ext_resource type="PackedScene" uid="uid://c5dxuisq2cp0l" path="res://assets/models/table/table.tscn" id="4_ibnxb"]
 [ext_resource type="Script" path="res://scripts/models/NavigationMeshCotroller.gd" id="4_lby6l"]
 [ext_resource type="PackedScene" uid="uid://dujewhxfdn3gi" path="res://assets/models/sofa/sofa.tscn" id="5_w1dt5"]
 [ext_resource type="PackedScene" uid="uid://c7dumph3ic737" path="res://assets/models/nightstand/nightstand.tscn" id="6_n85sl"]
 [ext_resource type="PackedScene" uid="uid://boi48hqv3bpxj" path="res://scenes/ghost.tscn" id="8_eocet"]
 [ext_resource type="PackedScene" uid="uid://c6e4dya70hh7a" path="res://assets/models/coffe_table/coffee_table.tscn" id="9_aalh6"]
+[ext_resource type="PackedScene" uid="uid://1p04eeiqakba" path="res://assets/models/table/table.tscn" id="11_8vthu"]
 [ext_resource type="PackedScene" uid="uid://bg17woub1lb6c" path="res://assets/models/armchair/armchair.tscn" id="11_bnftw"]
 [ext_resource type="PackedScene" uid="uid://da2mbi2h4shnm" path="res://assets/models/double_bed/double_bed.tscn" id="12_8kw06"]
 [ext_resource type="PackedScene" uid="uid://cjiwam4fxpfyq" path="res://assets/models/single_bed/single_bed.tscn" id="13_qdq58"]
@@ -72,5 +72,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.27044, 0, -6.96988)
 [node name="sofa" parent="NavigationRegion3D" instance=ExtResource("5_w1dt5")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.00451, 0, -0.833556)
 
-[node name="table" parent="NavigationRegion3D" instance=ExtResource("4_ibnxb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.73894, 0, 4.01154)
+[node name="table" parent="NavigationRegion3D" instance=ExtResource("11_8vthu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2)
