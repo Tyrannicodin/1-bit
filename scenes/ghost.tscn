@@ -1,23 +1,22 @@
 [gd_scene load_steps=5 format=3 uid="uid://boi48hqv3bpxj"]
 
-[ext_resource type="Script" path="res://scripts/ghost.gd" id="1_vrhsr"]
+[ext_resource type="Script" path="res://scripts/ghost/ghost.gd" id="1_7f2kv"]
+[ext_resource type="PackedScene" uid="uid://dl4oqld8ermxr" path="res://assets/models/ghost/ghost.gltf" id="2_cynw8"]
+[ext_resource type="Script" path="res://scripts/ghost/mesh_setter.gd" id="3_cm2o2"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_gtfyl"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bofco"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jwkk7"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_rkwbi"]
+size = Vector3(1.00381, 1.6959, 1)
 
 [node name="ghost" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("1_vrhsr")
-
-[node name="Mesh" type="MeshInstance3D" parent="."]
-layers = 2
-mesh = SubResource("CapsuleMesh_gtfyl")
-surface_material_override/0 = SubResource("StandardMaterial3D_bofco")
+script = ExtResource("1_7f2kv")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_jwkk7")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0674825, 0)
+shape = SubResource("BoxShape3D_rkwbi")
 
 [node name="Navigator" type="NavigationAgent3D" parent="."]
+
+[node name="ghost" parent="." instance=ExtResource("2_cynw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+script = ExtResource("3_cm2o2")
