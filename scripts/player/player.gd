@@ -129,11 +129,6 @@ func cycle_views():
 		sound_flashlight.play()
 	else:
 		sound_radar_off.play()
-	
-	for element in spectral_view_visible:
-		element.show()
-	for element in flashlight_view_visible:
-		element.hide()
 		
 	await get_tree().create_timer(0.4).timeout 
 	
@@ -141,13 +136,18 @@ func cycle_views():
 		sound_flashlight.play()
 		
 		for element in flashlight_view_visible:
-			element.visible = true
+			element.show()
+		for element in spectral_view_visible:
+			element.hide()
 		UI.get_material().set_shader_parameter("ui_color",Color(1,0.7450980392156863,0.4980392156862745,1))
 	elif VIEW_MODE == "spectral":
 		sound_radar.play()
 		
+		for element in flashlight_view_visible:
+			element.hide()
 		for element in spectral_view_visible:
-			element.visible = true
+			element.show()
+		
 		UI.get_material().set_shader_parameter("ui_color",Color(0.3333333333333333,1,1,1))
 		
 		await get_tree().create_timer(2.43).timeout 
