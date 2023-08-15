@@ -7,10 +7,6 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	count = get_child_count()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func play():
 	get_child(rng.randf_range(0, count)).play()
 	#if not audioStreamPlayers[next].playing:

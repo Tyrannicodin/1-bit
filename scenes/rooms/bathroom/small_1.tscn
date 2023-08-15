@@ -1,14 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://c45jf4tdnjtgg"]
+[gd_scene load_steps=4 format=3 uid="uid://c45jf4tdnjtgg"]
 
 [ext_resource type="PackedScene" uid="uid://cdo1rc43j024g" path="res://scenes/furniture/door.tscn" id="1_sdctx"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0bwv8"]
 size = Vector2(10, 8)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ybe46"]
+size = Vector3(10, 2, 8)
+
 [node name="bathroom_1" type="Node3D"]
 
 [node name="floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_0bwv8")
+
+[node name="area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_ybe46")
 
 [node name="door" parent="." instance=ExtResource("1_sdctx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)

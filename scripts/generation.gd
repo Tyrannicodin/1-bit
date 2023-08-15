@@ -59,6 +59,7 @@ func generate_new_branch(base_room: Node):
 			var new_room = pick_room().instantiate()
 			base_room.add_child(new_room)
 			
+			# Pick a random door in the new room to attach to
 			var new_room_doors = []
 			for child in new_room.get_children():
 				if child.name.contains("door"):
@@ -68,16 +69,19 @@ func generate_new_branch(base_room: Node):
 			
 			# get position from origin of door
 			var door_position = Vector2(door.global_position.x, door.global_position.z)
-			var door_rotation = door.global_rotation.y + new_chosen_door.rotation.y
 			
-			# rotate the room to meet with the door
+			# find the required rotation of the room
+			var door_rotation = door.global_rotation.y + new_chosen_door.rotation.y
 			new_room.global_rotation = Vector3.UP * -door_rotation
 			
+			# rotate the door's position to find the proper offset
 			var new_door_position = new_chosen_door.position.rotated(Vector3.UP, -door_rotation)
 			
 			# set position so it the two door touches
 			new_room.global_position.x = door_position.x - new_door_position.x
 			new_room.global_position.z = door_position.y - new_door_position.z
+			
+			print(new_room.get_node("area").has_overlapping_areas())
 			
 			# delete door so only the new one remains
 			door.queue_free()
@@ -103,7 +107,3 @@ func _ready():
 	for i in recursion_depth:
 		var new_nodes = generate_new_branch(base_room)
 		generate_branches(new_nodes, recursion_depth-1)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

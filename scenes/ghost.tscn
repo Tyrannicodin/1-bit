@@ -21,4 +21,5 @@ avoidance_enabled = true
 radius = 1.0
 
 [node name="ghost" parent="." instance=ExtResource("2_cynw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 script = ExtResource("3_cm2o2")

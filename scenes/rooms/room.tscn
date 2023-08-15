@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1jwq4rq2byxd"]
+[gd_scene load_steps=9 format=3 uid="uid://d1jwq4rq2byxd"]
 
 [ext_resource type="Material" uid="uid://dyc4fe2tge02t" path="res://assets/shaders/dithering/material.tres" id="1_3f86h"]
 [ext_resource type="PackedScene" uid="uid://c8g038tinktrv" path="res://scenes/furniture/armchair.tscn" id="2_l4ryb"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_sk8xb"]
 size = Vector2(24, 24)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1cnkw"]
+size = Vector3(24, 2, 24)
 
 [sub_resource type="Sky" id="Sky_n1d8p"]
 sky_material = ExtResource("1_3f86h")
@@ -24,6 +27,12 @@ fog_light_energy = 0.01
 [node name="floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_sk8xb")
 skeleton = NodePath("../StaticBody3D")
+
+[node name="area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_1cnkw")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_3m5kl")
