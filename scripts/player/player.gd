@@ -113,7 +113,7 @@ func _physics_process(delta):
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 		
-		if footsteps_timer.time_left <= 0:
+		if footsteps_timer.time_left <= 0 and is_on_floor():
 			footsteps.play()
 			footsteps_timer.start(0.4)
 	else:
