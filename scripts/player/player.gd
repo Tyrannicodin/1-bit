@@ -32,7 +32,7 @@ var VIEW_MODE = "flashlight"
 
 # To make cycling easier
 @onready var spectral_view_visible = [spectralView, spectralViewDither, radar, ghostViewport, radarSelected]
-@onready var flashlight_view_visible = [flashlight, flashlightSelected]
+@onready var flashlight_view_visible = [flashlightView, flashlight, flashlightSelected]
 
 var mouse_captured = false
 var available_interactions = []
@@ -131,9 +131,9 @@ func cycle_views():
 		sound_radar_off.play()
 	
 	for element in spectral_view_visible:
-		element.visible = false
+		element.show()
 	for element in flashlight_view_visible:
-		element.visible = false
+		element.hide()
 		
 	await get_tree().create_timer(0.4).timeout 
 	
