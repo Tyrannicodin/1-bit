@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://com6fd5ykhrct"]
+[gd_scene load_steps=47 format=3 uid="uid://com6fd5ykhrct"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_o7pwf"]
 [ext_resource type="Shader" path="res://assets/shaders/edge_detection/shader.gdshader" id="2_7eeor"]
@@ -25,6 +25,15 @@
 [ext_resource type="Script" path="res://scripts/player/TextureRect.gd" id="21_3fx5b"]
 [ext_resource type="AudioStream" uid="uid://dgqwxoidtfwh1" path="res://assets/audio/ghost_radar_off.mp3" id="21_cy445"]
 [ext_resource type="AudioStream" uid="uid://di40twlbtb0c8" path="res://assets/audio/flashlight.mp3" id="22_b41qx"]
+[ext_resource type="AudioStream" uid="uid://cxoxwctprao4s" path="res://assets/audio/footsteps/footsteps-1.mp3" id="24_63utq"]
+[ext_resource type="Script" path="res://scripts/sound_queue.gd" id="24_vdkos"]
+[ext_resource type="AudioStream" uid="uid://co4bk42ssmffe" path="res://assets/audio/footsteps/footsteps-3.mp3" id="26_hvwhh"]
+[ext_resource type="AudioStream" uid="uid://c7tesquxt0t5u" path="res://assets/audio/footsteps/footsteps-2.mp3" id="26_vy5bg"]
+[ext_resource type="AudioStream" uid="uid://cogiacgbrgch2" path="res://assets/audio/footsteps/footsteps-4.mp3" id="28_1g3uk"]
+[ext_resource type="AudioStream" uid="uid://dkb0l25jlxdfe" path="res://assets/audio/footsteps/footsteps-5.mp3" id="29_071lx"]
+[ext_resource type="AudioStream" uid="uid://chiavgqgg0p5g" path="res://assets/audio/footsteps/footsteps-6.mp3" id="30_xr3gv"]
+[ext_resource type="AudioStream" uid="uid://ul836mjv8u3" path="res://assets/audio/footsteps/footsteps-7.mp3" id="31_0ny0r"]
+[ext_resource type="AudioStream" uid="uid://b2kwtyprk6o5h" path="res://assets/audio/footsteps/footsteps-8.mp3" id="32_dwlp3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_soasp"]
 
@@ -553,6 +562,45 @@ stream = ExtResource("20_v6nb1")
 
 [node name="sound_flashlight" type="AudioStreamPlayer" parent="GameContainer/GameViewport"]
 stream = ExtResource("22_b41qx")
+
+[node name="footsteps_timer" type="Timer" parent="GameContainer/GameViewport"]
+wait_time = 0.2
+one_shot = true
+
+[node name="footsteps_master" type="Node2D" parent="GameContainer/GameViewport"]
+script = ExtResource("24_vdkos")
+
+[node name="Footsteps 1" type="AudioStreamPlayer" parent="GameContainer/GameViewport/footsteps_master"]
+stream = ExtResource("24_63utq")
+volume_db = -6.0
+
+[node name="Footsteps 2" type="AudioStreamPlayer" parent="GameContainer/GameViewport/footsteps_master"]
+stream = ExtResource("26_vy5bg")
+volume_db = -6.0
+
+[node name="Footsteps 3" type="AudioStreamPlayer" parent="GameContainer/GameViewport/footsteps_master"]
+stream = ExtResource("26_hvwhh")
+volume_db = -6.0
+
+[node name="Footsteps 4" type="AudioStreamPlayer" parent="GameContainer/GameViewport/footsteps_master"]
+stream = ExtResource("28_1g3uk")
+volume_db = -6.0
+
+[node name="Footsteps 5" type="AudioStreamPlayer" parent="GameContainer/GameViewport/footsteps_master"]
+stream = ExtResource("29_071lx")
+volume_db = -6.0
+
+[node name="Footsteps 6" type="AudioStreamPlayer" parent="GameContainer/GameViewport/footsteps_master"]
+stream = ExtResource("30_xr3gv")
+volume_db = -6.0
+
+[node name="Footsteps 7" type="AudioStreamPlayer" parent="GameContainer/GameViewport/footsteps_master"]
+stream = ExtResource("31_0ny0r")
+volume_db = -6.0
+
+[node name="Footsteps 8" type="AudioStreamPlayer" parent="GameContainer/GameViewport/footsteps_master"]
+stream = ExtResource("32_dwlp3")
+volume_db = -6.0
 
 [node name="UIRect" type="TextureRect" parent="."]
 texture_filter = 3

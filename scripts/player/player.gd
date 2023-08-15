@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const SPEED = 5.0
+const SPEED = 3
 const JUMP_VELOCITY = 4.5
 
 var VIEW_MODE = "flashlight"
@@ -26,6 +26,9 @@ var VIEW_MODE = "flashlight"
 @onready var sound_radar = $GameContainer/GameViewport/sound_radar
 @onready var sound_radar_off = $GameContainer/GameViewport/sound_radar_off
 @onready var sound_radar_loop = $GameContainer/GameViewport/sound_radar_loop
+
+@onready var footsteps = $GameContainer/GameViewport/footsteps_master
+@onready var footsteps_timer = $GameContainer/GameViewport/footsteps_timer
 
 # To make cycling easier
 @onready var spectral_view_visible = [spectralView, spectralViewDither, radar, ghostViewport, radarSelected]
@@ -109,6 +112,10 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
+		
+		if footsteps_timer.time_left <= 0:
+			footsteps.play()
+			footsteps_timer.start(0.4)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
