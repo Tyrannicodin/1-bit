@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dlduningxo033"]
+[gd_scene load_steps=3 format=3 uid="uid://dlduningxo033"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_suw3x"]
+emission_enabled = true
+emission_energy_multiplier = 9.09
 
 [sub_resource type="BoxMesh" id="BoxMesh_ch5os"]
+material = SubResource("StandardMaterial3D_suw3x")
 size = Vector3(0.1, 0.1, 0.2)
 
 [node name="battery" type="Node3D"]
