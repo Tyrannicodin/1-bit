@@ -5,4 +5,5 @@ extends Node3D
 
 func _ready():
 	add_to_group("ITEM_SPAWN_POINT")
-	$MeshInstance3D.hide()
+	if $MeshInstance3D != null:
+		$MeshInstance3D.hide()
