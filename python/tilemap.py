@@ -69,7 +69,7 @@ def process_scene(file_path, colour):
         dump(list(tiles.values()), scene, indent=4)
 
 
-COLOURS = [(255, 0, 0), (0, 255, 0), (0, 0, 255)]
+COLOURS = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0)]
 
 COL = 0
 for file in listdir("scenes\\room_layouts"):

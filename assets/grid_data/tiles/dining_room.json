@@ -1,5 +1,5 @@
-{
-    "dining_room_0": {
+[
+    {
         "id": "dining_room_0",
         "colour": [
             255,
@@ -16,7 +16,7 @@
             "dining_room_34": "up"
         }
     },
-    "dining_room_1": {
+    {
         "id": "dining_room_1",
         "colour": [
             255,
@@ -33,7 +33,7 @@
         "right": "",
         "down": "d"
     },
-    "dining_room_2": {
+    {
         "id": "dining_room_2",
         "colour": [
             255,
@@ -50,7 +50,7 @@
         "right": "",
         "down": "w"
     },
-    "dining_room_3": {
+    {
         "id": "dining_room_3",
         "colour": [
             255,
@@ -67,7 +67,7 @@
         "right": "",
         "down": "w"
     },
-    "dining_room_4": {
+    {
         "id": "dining_room_4",
         "colour": [
             255,
@@ -84,7 +84,7 @@
         "right": "",
         "down": "w"
     },
-    "dining_room_5": {
+    {
         "id": "dining_room_5",
         "colour": [
             255,
@@ -101,7 +101,7 @@
         "right": "",
         "down": "w"
     },
-    "dining_room_6": {
+    {
         "id": "dining_room_6",
         "colour": [
             255,
@@ -118,7 +118,7 @@
         "right": "",
         "down": "w"
     },
-    "dining_room_7": {
+    {
         "id": "dining_room_7",
         "colour": [
             255,
@@ -135,7 +135,7 @@
         "right": "",
         "down": "w"
     },
-    "dining_room_8": {
+    {
         "id": "dining_room_8",
         "colour": [
             255,
@@ -152,7 +152,7 @@
         "right": "",
         "down": "w"
     },
-    "dining_room_9": {
+    {
         "id": "dining_room_9",
         "colour": [
             255,
@@ -169,7 +169,7 @@
         "right": "",
         "down": "w"
     },
-    "dining_room_10": {
+    {
         "id": "dining_room_10",
         "colour": [
             255,
@@ -186,7 +186,7 @@
         "right": "",
         "down": "w"
     },
-    "dining_room_11": {
+    {
         "id": "dining_room_11",
         "colour": [
             255,
@@ -202,7 +202,7 @@
         "right": "w",
         "down": "d"
     },
-    "dining_room_12": {
+    {
         "id": "dining_room_12",
         "colour": [
             255,
@@ -218,7 +218,7 @@
         "right": "",
         "down": "w"
     },
-    "dining_room_13": {
+    {
         "id": "dining_room_13",
         "colour": [
             255,
@@ -235,7 +235,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_14": {
+    {
         "id": "dining_room_14",
         "colour": [
             255,
@@ -252,7 +252,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_15": {
+    {
         "id": "dining_room_15",
         "colour": [
             255,
@@ -269,7 +269,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_16": {
+    {
         "id": "dining_room_16",
         "colour": [
             255,
@@ -286,7 +286,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_17": {
+    {
         "id": "dining_room_17",
         "colour": [
             255,
@@ -303,7 +303,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_18": {
+    {
         "id": "dining_room_18",
         "colour": [
             255,
@@ -319,7 +319,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_19": {
+    {
         "id": "dining_room_19",
         "colour": [
             255,
@@ -336,7 +336,7 @@
             "dining_room_50": "down"
         }
     },
-    "dining_room_20": {
+    {
         "id": "dining_room_20",
         "colour": [
             255,
@@ -353,7 +353,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_21": {
+    {
         "id": "dining_room_21",
         "colour": [
             255,
@@ -370,7 +370,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_22": {
+    {
         "id": "dining_room_22",
         "colour": [
             255,
@@ -387,7 +387,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_23": {
+    {
         "id": "dining_room_23",
         "colour": [
             255,
@@ -404,7 +404,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_24": {
+    {
         "id": "dining_room_24",
         "colour": [
             255,
@@ -421,7 +421,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_25": {
+    {
         "id": "dining_room_25",
         "colour": [
             255,
@@ -438,7 +438,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_26": {
+    {
         "id": "dining_room_26",
         "colour": [
             255,
@@ -455,7 +455,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_27": {
+    {
         "id": "dining_room_27",
         "colour": [
             255,
@@ -472,7 +472,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_28": {
+    {
         "id": "dining_room_28",
         "colour": [
             255,
@@ -489,7 +489,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_29": {
+    {
         "id": "dining_room_29",
         "colour": [
             255,
@@ -506,7 +506,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_30": {
+    {
         "id": "dining_room_30",
         "colour": [
             255,
@@ -524,7 +524,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_31": {
+    {
         "id": "dining_room_31",
         "colour": [
             255,
@@ -542,7 +542,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_32": {
+    {
         "id": "dining_room_32",
         "colour": [
             255,
@@ -560,7 +560,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_33": {
+    {
         "id": "dining_room_33",
         "colour": [
             255,
@@ -578,7 +578,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_34": {
+    {
         "id": "dining_room_34",
         "colour": [
             255,
@@ -596,7 +596,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_35": {
+    {
         "id": "dining_room_35",
         "colour": [
             255,
@@ -614,7 +614,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_36": {
+    {
         "id": "dining_room_36",
         "colour": [
             255,
@@ -632,7 +632,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_37": {
+    {
         "id": "dining_room_37",
         "colour": [
             255,
@@ -650,7 +650,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_38": {
+    {
         "id": "dining_room_38",
         "colour": [
             255,
@@ -668,7 +668,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_39": {
+    {
         "id": "dining_room_39",
         "colour": [
             255,
@@ -686,7 +686,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_40": {
+    {
         "id": "dining_room_40",
         "colour": [
             255,
@@ -704,7 +704,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_41": {
+    {
         "id": "dining_room_41",
         "colour": [
             255,
@@ -722,7 +722,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_42": {
+    {
         "id": "dining_room_42",
         "colour": [
             255,
@@ -740,7 +740,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_43": {
+    {
         "id": "dining_room_43",
         "colour": [
             255,
@@ -758,7 +758,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_44": {
+    {
         "id": "dining_room_44",
         "colour": [
             255,
@@ -776,7 +776,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_45": {
+    {
         "id": "dining_room_45",
         "colour": [
             255,
@@ -794,7 +794,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_46": {
+    {
         "id": "dining_room_46",
         "colour": [
             255,
@@ -812,7 +812,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_47": {
+    {
         "id": "dining_room_47",
         "colour": [
             255,
@@ -830,7 +830,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_48": {
+    {
         "id": "dining_room_48",
         "colour": [
             255,
@@ -848,7 +848,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_49": {
+    {
         "id": "dining_room_49",
         "colour": [
             255,
@@ -866,7 +866,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_50": {
+    {
         "id": "dining_room_50",
         "colour": [
             255,
@@ -884,7 +884,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_51": {
+    {
         "id": "dining_room_51",
         "colour": [
             255,
@@ -902,7 +902,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_52": {
+    {
         "id": "dining_room_52",
         "colour": [
             255,
@@ -920,7 +920,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_53": {
+    {
         "id": "dining_room_53",
         "colour": [
             255,
@@ -938,7 +938,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_54": {
+    {
         "id": "dining_room_54",
         "colour": [
             255,
@@ -956,7 +956,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_55": {
+    {
         "id": "dining_room_55",
         "colour": [
             255,
@@ -974,7 +974,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_56": {
+    {
         "id": "dining_room_56",
         "colour": [
             255,
@@ -992,7 +992,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_57": {
+    {
         "id": "dining_room_57",
         "colour": [
             255,
@@ -1010,7 +1010,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_58": {
+    {
         "id": "dining_room_58",
         "colour": [
             255,
@@ -1028,7 +1028,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_59": {
+    {
         "id": "dining_room_59",
         "colour": [
             255,
@@ -1046,7 +1046,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_60": {
+    {
         "id": "dining_room_60",
         "colour": [
             255,
@@ -1064,7 +1064,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_61": {
+    {
         "id": "dining_room_61",
         "colour": [
             255,
@@ -1082,7 +1082,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_62": {
+    {
         "id": "dining_room_62",
         "colour": [
             255,
@@ -1100,7 +1100,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_63": {
+    {
         "id": "dining_room_63",
         "colour": [
             255,
@@ -1118,7 +1118,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_64": {
+    {
         "id": "dining_room_64",
         "colour": [
             255,
@@ -1136,7 +1136,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_65": {
+    {
         "id": "dining_room_65",
         "colour": [
             255,
@@ -1154,7 +1154,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_66": {
+    {
         "id": "dining_room_66",
         "colour": [
             255,
@@ -1172,7 +1172,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_67": {
+    {
         "id": "dining_room_67",
         "colour": [
             255,
@@ -1190,7 +1190,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_68": {
+    {
         "id": "dining_room_68",
         "colour": [
             255,
@@ -1208,7 +1208,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_69": {
+    {
         "id": "dining_room_69",
         "colour": [
             255,
@@ -1226,7 +1226,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_70": {
+    {
         "id": "dining_room_70",
         "colour": [
             255,
@@ -1244,7 +1244,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_71": {
+    {
         "id": "dining_room_71",
         "colour": [
             255,
@@ -1262,7 +1262,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_72": {
+    {
         "id": "dining_room_72",
         "colour": [
             255,
@@ -1280,7 +1280,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_73": {
+    {
         "id": "dining_room_73",
         "colour": [
             255,
@@ -1298,7 +1298,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_74": {
+    {
         "id": "dining_room_74",
         "colour": [
             255,
@@ -1316,7 +1316,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_75": {
+    {
         "id": "dining_room_75",
         "colour": [
             255,
@@ -1334,7 +1334,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_76": {
+    {
         "id": "dining_room_76",
         "colour": [
             255,
@@ -1352,7 +1352,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_77": {
+    {
         "id": "dining_room_77",
         "colour": [
             255,
@@ -1370,7 +1370,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_78": {
+    {
         "id": "dining_room_78",
         "colour": [
             255,
@@ -1388,7 +1388,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_79": {
+    {
         "id": "dining_room_79",
         "colour": [
             255,
@@ -1406,7 +1406,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_80": {
+    {
         "id": "dining_room_80",
         "colour": [
             255,
@@ -1424,7 +1424,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_81": {
+    {
         "id": "dining_room_81",
         "colour": [
             255,
@@ -1442,7 +1442,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_82": {
+    {
         "id": "dining_room_82",
         "colour": [
             255,
@@ -1460,7 +1460,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_83": {
+    {
         "id": "dining_room_83",
         "colour": [
             255,
@@ -1478,7 +1478,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_84": {
+    {
         "id": "dining_room_84",
         "colour": [
             255,
@@ -1496,7 +1496,7 @@
         "right": "",
         "down": ""
     },
-    "dining_room_85": {
+    {
         "id": "dining_room_85",
         "colour": [
             255,
@@ -1512,7 +1512,7 @@
         "right": "w",
         "down": ""
     },
-    "dining_room_86": {
+    {
         "id": "dining_room_86",
         "colour": [
             255,
@@ -1529,7 +1529,7 @@
         "right": "w",
         "down": ""
     },
-    "dining_room_87": {
+    {
         "id": "dining_room_87",
         "colour": [
             255,
@@ -1546,7 +1546,7 @@
         "right": "w",
         "down": ""
     },
-    "dining_room_88": {
+    {
         "id": "dining_room_88",
         "colour": [
             255,
@@ -1563,7 +1563,7 @@
         "right": "w",
         "down": ""
     },
-    "dining_room_89": {
+    {
         "id": "dining_room_89",
         "colour": [
             255,
@@ -1580,7 +1580,7 @@
         "right": "w",
         "down": ""
     },
-    "dining_room_90": {
+    {
         "id": "dining_room_90",
         "colour": [
             255,
@@ -1596,675 +1596,5 @@
         "up": "",
         "right": "w",
         "down": ""
-    },
-    "hallway_1_0": {
-        "id": "hallway_1_0",
-        "colour": [
-            0,
-            255,
-            0
-        ],
-        "left": "w",
-        "up": "d",
-        "right": "w",
-        "down": "",
-        "required": {
-            "hallway_1_1": "down"
-        }
-    },
-    "hallway_1_1": {
-        "id": "hallway_1_1",
-        "colour": [
-            0,
-            255,
-            0
-        ],
-        "required": {
-            "hallway_1_0": "up",
-            "hallway_1_2": "down"
-        },
-        "left": "d",
-        "up": "",
-        "right": "w",
-        "down": ""
-    },
-    "hallway_1_2": {
-        "id": "hallway_1_2",
-        "colour": [
-            0,
-            255,
-            0
-        ],
-        "required": {
-            "hallway_1_1": "up"
-        },
-        "left": "w",
-        "up": "",
-        "right": "w",
-        "down": "d"
-    },
-    "lounge_0": {
-        "id": "lounge_0",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "left": "",
-        "up": "w",
-        "right": "",
-        "down": "",
-        "required": {
-            "lounge_1": "left",
-            "lounge_2": "down",
-            "lounge_14": "right"
-        }
-    },
-    "lounge_1": {
-        "id": "lounge_1",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_0": "right",
-            "lounge_20": "down"
-        },
-        "left": "w",
-        "up": "w",
-        "right": "",
-        "down": ""
-    },
-    "lounge_2": {
-        "id": "lounge_2",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_0": "up",
-            "lounge_20": "left",
-            "lounge_21": "right",
-            "lounge_27": "down"
-        },
-        "left": "",
-        "up": "",
-        "right": "",
-        "down": ""
-    },
-    "lounge_3": {
-        "id": "lounge_3",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "left": "w",
-        "up": "",
-        "right": "",
-        "down": "w",
-        "required": {
-            "lounge_8": "right",
-            "lounge_18": "up"
-        }
-    },
-    "lounge_4": {
-        "id": "lounge_4",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "left": "",
-        "up": "",
-        "right": "w",
-        "down": "w",
-        "required": {
-            "lounge_5": "left",
-            "lounge_9": "up"
-        }
-    },
-    "lounge_5": {
-        "id": "lounge_5",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_4": "right",
-            "lounge_6": "left",
-            "lounge_32": "up"
-        },
-        "left": "",
-        "up": "",
-        "right": "",
-        "down": "w"
-    },
-    "lounge_6": {
-        "id": "lounge_6",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_5": "right",
-            "lounge_7": "left",
-            "lounge_33": "up"
-        },
-        "left": "",
-        "up": "",
-        "right": "",
-        "down": "w"
-    },
-    "lounge_7": {
-        "id": "lounge_7",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_6": "right",
-            "lounge_8": "left",
-            "lounge_34": "up"
-        },
-        "left": "",
-        "up": "",
-        "right": "",
-        "down": "w"
-    },
-    "lounge_8": {
-        "id": "lounge_8",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_3": "left",
-            "lounge_7": "right",
-            "lounge_35": "up"
-        },
-        "left": "",
-        "up": "",
-        "right": "",
-        "down": "w"
-    },
-    "lounge_9": {
-        "id": "lounge_9",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_4": "down",
-            "lounge_10": "up",
-            "lounge_32": "left"
-        },
-        "left": "",
-        "up": "",
-        "right": "w",
-        "down": ""
-    },
-    "lounge_10": {
-        "id": "lounge_10",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_9": "down",
-            "lounge_11": "up",
-            "lounge_31": "left"
-        },
-        "left": "",
-        "up": "",
-        "right": "w",
-        "down": ""
-    },
-    "lounge_11": {
-        "id": "lounge_11",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_10": "down",
-            "lounge_12": "up",
-            "lounge_24": "left"
-        },
-        "left": "",
-        "up": "",
-        "right": "w",
-        "down": ""
-    },
-    "lounge_12": {
-        "id": "lounge_12",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_11": "down",
-            "lounge_13": "up",
-            "lounge_23": "left"
-        },
-        "left": "",
-        "up": "",
-        "right": "w",
-        "down": ""
-    },
-    "lounge_13": {
-        "id": "lounge_13",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_12": "down",
-            "lounge_16": "left"
-        },
-        "left": "",
-        "up": "d",
-        "right": "w",
-        "down": ""
-    },
-    "lounge_14": {
-        "id": "lounge_14",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_0": "left",
-            "lounge_15": "right",
-            "lounge_21": "down"
-        },
-        "left": "",
-        "up": "w",
-        "right": "",
-        "down": ""
-    },
-    "lounge_15": {
-        "id": "lounge_15",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_14": "left",
-            "lounge_16": "right",
-            "lounge_22": "down"
-        },
-        "left": "",
-        "up": "w",
-        "right": "",
-        "down": ""
-    },
-    "lounge_16": {
-        "id": "lounge_16",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_13": "right",
-            "lounge_15": "left",
-            "lounge_23": "down"
-        },
-        "left": "",
-        "up": "w",
-        "right": "",
-        "down": ""
-    },
-    "lounge_17": {
-        "id": "lounge_17",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "left": "w",
-        "up": "",
-        "right": "",
-        "down": "",
-        "required": {
-            "lounge_19": "down",
-            "lounge_20": "up",
-            "lounge_27": "right"
-        }
-    },
-    "lounge_18": {
-        "id": "lounge_18",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_3": "down",
-            "lounge_19": "up",
-            "lounge_35": "right"
-        },
-        "left": "w",
-        "up": "",
-        "right": "",
-        "down": ""
-    },
-    "lounge_19": {
-        "id": "lounge_19",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_17": "up",
-            "lounge_18": "down",
-            "lounge_28": "right"
-        },
-        "left": "d",
-        "up": "",
-        "right": "",
-        "down": ""
-    },
-    "lounge_20": {
-        "id": "lounge_20",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_1": "up",
-            "lounge_2": "right",
-            "lounge_17": "down"
-        },
-        "left": "w",
-        "up": "",
-        "right": "",
-        "down": ""
-    },
-    "lounge_21": {
-        "id": "lounge_21",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_2": "left",
-            "lounge_14": "up",
-            "lounge_22": "right",
-            "lounge_26": "down"
-        },
-        "left": "",
-        "up": "",
-        "right": "",
-        "down": ""
-    },
-    "lounge_22": {
-        "id": "lounge_22",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_15": "up",
-            "lounge_21": "left",
-            "lounge_23": "right",
-            "lounge_25": "down"
-        },
-        "left": "",
-        "up": "",
-        "right": "",
-        "down": ""
-    },
-    "lounge_23": {
-        "id": "lounge_23",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_12": "right",
-            "lounge_16": "up",
-            "lounge_22": "left",
-            "lounge_24": "down"
-        },
-        "left": "",
-        "up": "",
-        "right": "",
-        "down": ""
-    },
-    "lounge_24": {
-        "id": "lounge_24",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_11": "right",
-            "lounge_23": "up",
-            "lounge_25": "left",
-            "lounge_31": "down"
-        },
-        "left": "",
-        "up": "",
-        "right": "",
-        "down": ""
-    },
-    "lounge_25": {
-        "id": "lounge_25",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_22": "up",
-            "lounge_24": "right",
-            "lounge_26": "left",
-            "lounge_30": "down"
-        },
-        "left": "",
-        "up": "",
-        "right": "",
-        "down": ""
-    },
-    "lounge_26": {
-        "id": "lounge_26",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_21": "up",
-            "lounge_25": "right",
-            "lounge_27": "left",
-            "lounge_29": "down"
-        },
-        "left": "",
-        "up": "",
-        "right": "",
-        "down": ""
-    },
-    "lounge_27": {
-        "id": "lounge_27",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_2": "up",
-            "lounge_17": "left",
-            "lounge_26": "right",
-            "lounge_28": "down"
-        },
-        "left": "",
-        "up": "",
-        "right": "",
-        "down": ""
-    },
-    "lounge_28": {
-        "id": "lounge_28",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_19": "left",
-            "lounge_27": "up",
-            "lounge_29": "right",
-            "lounge_35": "down"
-        },
-        "left": "",
-        "up": "",
-        "right": "",
-        "down": ""
-    },
-    "lounge_29": {
-        "id": "lounge_29",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_26": "up",
-            "lounge_28": "left",
-            "lounge_30": "right",
-            "lounge_34": "down"
-        },
-        "left": "",
-        "up": "",
-        "right": "",
-        "down": ""
-    },
-    "lounge_30": {
-        "id": "lounge_30",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_25": "up",
-            "lounge_29": "left",
-            "lounge_31": "right",
-            "lounge_33": "down"
-        },
-        "left": "",
-        "up": "",
-        "right": "",
-        "down": ""
-    },
-    "lounge_31": {
-        "id": "lounge_31",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_10": "right",
-            "lounge_24": "up",
-            "lounge_30": "left",
-            "lounge_32": "down"
-        },
-        "left": "",
-        "up": "",
-        "right": "",
-        "down": ""
-    },
-    "lounge_32": {
-        "id": "lounge_32",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_5": "down",
-            "lounge_9": "right",
-            "lounge_31": "up",
-            "lounge_33": "left"
-        },
-        "left": "",
-        "up": "",
-        "right": "",
-        "down": ""
-    },
-    "lounge_33": {
-        "id": "lounge_33",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_6": "down",
-            "lounge_30": "up",
-            "lounge_32": "right",
-            "lounge_34": "left"
-        },
-        "left": "",
-        "up": "",
-        "right": "",
-        "down": ""
-    },
-    "lounge_34": {
-        "id": "lounge_34",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_7": "down",
-            "lounge_29": "up",
-            "lounge_33": "right",
-            "lounge_35": "left"
-        },
-        "left": "",
-        "up": "",
-        "right": "",
-        "down": ""
-    },
-    "lounge_35": {
-        "id": "lounge_35",
-        "colour": [
-            0,
-            0,
-            255
-        ],
-        "required": {
-            "lounge_8": "down",
-            "lounge_18": "left",
-            "lounge_28": "up",
-            "lounge_34": "right"
-        },
-        "left": "",
-        "up": "",
-        "right": "",
-        "down": ""
     }
-}
+]

@@ -27,36 +27,31 @@ grid = [[None for _1 in range(size[0])] for _2 in range(size[1])]
 def get_walled(options, side):
     """Get valid options from list when a wall is required on a side"""
     valid_options = []
-    for option in options.values():
+    for option in options:
         if option[side] == "w":
             valid_options.append(option)
     return valid_options
 
 
-def valid_position(cell, side):
+def valid_position(loc):
     """Check if a cell's side is a valid position"""
-    if side == "up":
-        return cell[1] > 0
-    if side == "down":
-        return cell[1] < size[1] - 1
-    if side == "left":
-        return cell[0] > 0
-    if side == "right":
-        return cell[0] < size[0] - 1
-    return False
+    return 0 <= loc[0] < size[0] and 0 <= loc[1] < size[1]
 
 
-def check_valid(selected_square, cell, side):
+def check_valid(selected_square, cell):
     """Check if a cell can connect to its side"""
-    if not valid_position(cell, side):
-        return selected_square[side] == "w"
-    new_lock = (cell[0] + SIDE_VECTORS[side][0], cell[1] + SIDE_VECTORS[side][1])
-    if (
-        grid[new_lock[1]][new_lock[0]] is None
-        or selected_square[side] == grid[new_lock[1]][new_lock[0]]
-    ):
-        return True
-    return False
+    for side in OPPOSING_SIDES:
+        new_lock = (cell[0] + SIDE_VECTORS[side][0], cell[1] + SIDE_VECTORS[side][1])
+        if not valid_position(new_lock):
+            if selected_square[side] == "w":
+                continue
+            return False
+        if not (
+            grid[new_lock[1]][new_lock[0]] is None
+            or selected_square[side] == grid[new_lock[1]][new_lock[0]]
+        ):
+            return False
+    return True
 
 
 def check_required(outcome, cell, stop=None) -> tuple[bool, list[str]]:
@@ -67,10 +62,10 @@ def check_required(outcome, cell, stop=None) -> tuple[bool, list[str]]:
     if "required" in outcome:
         stop.append(outcome["id"])
         for square_id, side in outcome["required"].items():
+            if square_id in stop:  # If we have already check it, ignore
+                continue
             selected_square = square[square_id]
-            if check_valid(selected_square, cell, side):
-                if square_id in stop:  # If we have already check it, ignore
-                    continue
+            if check_valid(selected_square, cell):
                 require_check = check_required(
                     selected_square,
                     (cell[0] + SIDE_VECTORS[side][0], cell[1] + SIDE_VECTORS[side][1]),
@@ -83,12 +78,16 @@ def check_required(outcome, cell, stop=None) -> tuple[bool, list[str]]:
     return True, stop
 
 
-def get_possibilities(x, y, side):
+def get_possibilities(x, y, side, within):
     """Get possibilities for a cell"""
-    if valid_position((x, y), side):
-        if grid[y + SIDE_VECTORS[side][1]][x + SIDE_VECTORS[side][0]]:
+    new_lock = (
+        x + SIDE_VECTORS[side][0],
+        y + SIDE_VECTORS[side][1],
+    )
+    if valid_position(new_lock):
+        if grid[new_lock[1]][new_lock[0]]:
             final_outcome = []
-            for cell in square.values():
+            for cell in within:
                 if (
                     cell[side]
                     == grid[y + SIDE_VECTORS[side][1]][x + SIDE_VECTORS[side][0]][
@@ -96,29 +95,25 @@ def get_possibilities(x, y, side):
                     ]
                 ):
                     final_outcome.append(cell)
-                return final_outcome
+            return final_outcome
         else:
-            return list(square.values())
+            return within
     else:
-        return get_walled(square, side)
+        return get_walled(within, side)
 
 
 def get_entropy(x, y):
     """Get the possibilities a tile can be"""
-    final_outcome = [[], [], [], [], []]
-    final_outcome[0] = get_possibilities(x, y, "left")
-    final_outcome[1] = get_possibilities(x, y, "right")
-    final_outcome[2] = get_possibilities(x, y, "up")
-    final_outcome[3] = get_possibilities(x, y, "down")
-    for outcome in final_outcome[3]:
-        if (
-            outcome in final_outcome[2]
-            and outcome in final_outcome[1]
-            and outcome in final_outcome[0]
-            and check_required(outcome, (x, y))[0]
-        ):
-            final_outcome[4].append(outcome)
-    return final_outcome[4]
+    final_outcome = []
+    for i, side in enumerate(OPPOSING_SIDES):
+        final_outcome = get_possibilities(
+            x, y, side, final_outcome if i > 0 else square.values()
+        )
+    output = []
+    for outcome in final_outcome:
+        if check_required(outcome, (x, y))[0]:
+            output.append(outcome)
+    return output
 
 
 def place_required(chosen_square, chosen_lock, stop=None):
@@ -155,16 +150,13 @@ def lock_square():
                 continue
             options = get_entropy(x, y)
             option_count = len(options)
-            if BOX in options and option_count > 1:
-                options.remove(BOX)
-                option_count -= 0.9
             if option_count == min_entropy:
                 min_options.append((x, y))
             elif min_entropy > option_count > 0:
                 min_entropy = option_count
                 min_options = [(x, y)]
     if not min_options:
-        return
+        return True
     chosen_lock = choice(min_options)
     ent = get_entropy(chosen_lock[0], chosen_lock[1])
     if BOX in ent and len(ent) > 1:
@@ -172,6 +164,7 @@ def lock_square():
     chosen_square = choice(ent)
     place_required(chosen_square, chosen_lock)
     grid[chosen_lock[1]][chosen_lock[0]] = chosen_square
+    return False
 
 
 from time import time
@@ -181,13 +174,21 @@ seed(int(input()))
 LOCKS = 8
 TIMES = []
 start_time = time()
+i = 0
 
-for i in range(LOCKS):
-    print(f"{i}/{LOCKS}", end="\r")
-    lock_square()
+while True:
+    print(f"{i}", end="\r")
+    try:
+        done = lock_square()
+    except KeyboardInterrupt:
+        break
     TIMES.append(time() - start_time)
     start_time = time()
-print(f"{i+1}/{LOCKS}")
+    i += 1
+    if done:
+        break
+
+print(f"Locked {i+1} squares")
 print(
     f"Finished with average lock time: {round(sum(TIMES)/len(TIMES))}s and total time of {round(sum(TIMES))}s"
 )

@@ -3,8 +3,8 @@
         "id": "lounge_0",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "left": "",
         "up": "w",
@@ -20,8 +20,8 @@
         "id": "lounge_1",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_0": "right",
@@ -36,8 +36,8 @@
         "id": "lounge_2",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_0": "up",
@@ -54,8 +54,8 @@
         "id": "lounge_3",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "left": "w",
         "up": "",
@@ -70,8 +70,8 @@
         "id": "lounge_4",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "left": "",
         "up": "",
@@ -86,8 +86,8 @@
         "id": "lounge_5",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_4": "right",
@@ -103,8 +103,8 @@
         "id": "lounge_6",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_5": "right",
@@ -120,8 +120,8 @@
         "id": "lounge_7",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_6": "right",
@@ -137,8 +137,8 @@
         "id": "lounge_8",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_3": "left",
@@ -154,8 +154,8 @@
         "id": "lounge_9",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_4": "down",
@@ -171,8 +171,8 @@
         "id": "lounge_10",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_9": "down",
@@ -188,8 +188,8 @@
         "id": "lounge_11",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_10": "down",
@@ -205,8 +205,8 @@
         "id": "lounge_12",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_11": "down",
@@ -222,8 +222,8 @@
         "id": "lounge_13",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_12": "down",
@@ -238,8 +238,8 @@
         "id": "lounge_14",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_0": "left",
@@ -255,8 +255,8 @@
         "id": "lounge_15",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_14": "left",
@@ -272,8 +272,8 @@
         "id": "lounge_16",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_13": "right",
@@ -289,8 +289,8 @@
         "id": "lounge_17",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "left": "w",
         "up": "",
@@ -306,8 +306,8 @@
         "id": "lounge_18",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_3": "down",
@@ -323,8 +323,8 @@
         "id": "lounge_19",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_17": "up",
@@ -340,8 +340,8 @@
         "id": "lounge_20",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_1": "up",
@@ -357,8 +357,8 @@
         "id": "lounge_21",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_2": "left",
@@ -375,8 +375,8 @@
         "id": "lounge_22",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_15": "up",
@@ -393,8 +393,8 @@
         "id": "lounge_23",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_12": "right",
@@ -411,8 +411,8 @@
         "id": "lounge_24",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_11": "right",
@@ -429,8 +429,8 @@
         "id": "lounge_25",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_22": "up",
@@ -447,8 +447,8 @@
         "id": "lounge_26",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_21": "up",
@@ -465,8 +465,8 @@
         "id": "lounge_27",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_2": "up",
@@ -483,8 +483,8 @@
         "id": "lounge_28",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_19": "left",
@@ -501,8 +501,8 @@
         "id": "lounge_29",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_26": "up",
@@ -519,8 +519,8 @@
         "id": "lounge_30",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_25": "up",
@@ -537,8 +537,8 @@
         "id": "lounge_31",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_10": "right",
@@ -555,8 +555,8 @@
         "id": "lounge_32",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_5": "down",
@@ -573,8 +573,8 @@
         "id": "lounge_33",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_6": "down",
@@ -591,8 +591,8 @@
         "id": "lounge_34",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_7": "down",
@@ -609,8 +609,8 @@
         "id": "lounge_35",
         "colour": [
             0,
-            255,
-            0
+            0,
+            255
         ],
         "required": {
             "lounge_8": "down",

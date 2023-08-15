@@ -2,8 +2,8 @@
     {
         "id": "hallway_1_0",
         "colour": [
-            255,
             0,
+            255,
             0
         ],
         "left": "w",
@@ -17,8 +17,8 @@
     {
         "id": "hallway_1_1",
         "colour": [
-            255,
             0,
+            255,
             0
         ],
         "required": {
@@ -33,8 +33,8 @@
     {
         "id": "hallway_1_2",
         "colour": [
-            255,
             0,
+            255,
             0
         ],
         "required": {
