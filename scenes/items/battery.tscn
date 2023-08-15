@@ -1,7 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://78ud10khh2yw"]
+[gd_scene load_steps=3 format=3 uid="uid://78ud10khh2yw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v18mc"]
+size = Vector3(0.1, 0.1, 0.2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_y1k2m"]
 size = Vector3(0.1, 0.1, 0.2)
 
-[node name="battery" type="MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_v18mc")
+
+[node name="battery" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_y1k2m")
+skeleton = NodePath("../CollisionShape3D")

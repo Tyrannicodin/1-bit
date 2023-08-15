@@ -20,6 +20,7 @@ var VIEW_MODE = "flashlight"
 @onready var radarSelected = $GameContainer/GameViewport/UIViewport/VBoxContainer/Mainhand/RadarBox/SelectedSlot
 @onready var UI = $UIRect
 @onready var batteryBar = $"GameContainer/GameViewport/UIViewport/VBoxContainer/Power Bar/ProgressBar"
+@onready var raycast3d = $cameraLoc/RayCast3D
 
 var mouse_captured = false
 var available_interactions = []
@@ -102,6 +103,10 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+
+	# Ray casting to see what the player is looking at
+	var looking_at = raycast3d.get_collider()
+	print(looking_at)
 
 	move_and_slide()
 
