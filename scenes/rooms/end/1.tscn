@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cf0efe0jx1bm4"]
+
+[ext_resource type="PackedScene" uid="uid://cdo1rc43j024g" path="res://scenes/furniture/door.tscn" id="1_dklas"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1dakv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cao74"]
+size = Vector3(2, 2, 2)
+
+[node name="1" type="Node3D"]
+
+[node name="floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_1dakv")
+
+[node name="door" parent="." instance=ExtResource("1_dklas")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 1)
+
+[node name="area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_cao74")
