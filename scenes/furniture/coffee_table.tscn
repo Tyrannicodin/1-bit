@@ -48,4 +48,9 @@ shape = SubResource("ConcavePolygonShape3D_y732w")
 shape = SubResource("ConcavePolygonShape3D_sjhfs")
 
 [node name="item_spawner" parent="." index="1" instance=ExtResource("3_vwop3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.264486, 0.503262, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.264486, 0.591401, 0)
+RANDOM_Y_ROTATION = true
+
+[node name="item_spawner2" parent="." index="2" instance=ExtResource("3_vwop3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102245, 0.593974, 0.316668)
+RANDOM_Y_ROTATION = true
