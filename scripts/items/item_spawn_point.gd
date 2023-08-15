@@ -5,8 +5,11 @@ extends Node3D
 ## The chance an item will spawn on this spawner. 
 @export var SPAWN_CHANCE = 1
 
+## Give the item a random rotation around the x axis when spawned.
 @export var RANDOM_X_ROTATION = false
+## Give the item a random rotation around the y axis when spawned.
 @export var RANDOM_Y_ROTATION = false
+## Give the item a random rotation around the z axis when spawned.
 @export var RANDOM_Z_ROTATION = false
 
 var rng = RandomNumberGenerator.new()
