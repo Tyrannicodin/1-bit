@@ -2,6 +2,8 @@ extends Node3D
 
 @export var recursion_depth := 3
 
+@onready var mesh_template = $MeshInstance3D
+
 var generator := RandomNumberGenerator.new()
 var rooms := {}
 var category_info := {}
@@ -47,6 +49,18 @@ func load_rooms():
 	rooms.erase("entrance")
 	end = rooms["end"]
 	rooms.erase("end")
+	
+func create_ceiling_and_walls(new_room, new_area):
+	var ceiling_mesh:MeshInstance3D = mesh_template.duplicate()
+	new_room.add_child(ceiling_mesh)
+	ceiling_mesh.global_position.x = new_room.global_position.x
+	ceiling_mesh.global_position.y = 3
+	ceiling_mesh.global_position.z = new_room.global_position.z
+	ceiling_mesh.scale.x = new_area.shape.size.x
+	ceiling_mesh.scale.z = new_area.shape.size.z
+	ceiling_mesh.scale.y = 0.1
+	if (ceiling_mesh != null):
+		ceiling_mesh.visible = true
 
 func try_place_room(door:Node3D, new_door:Node3D, new_room:Node3D):
 	if not door.is_inside_tree():
@@ -67,8 +81,13 @@ func try_place_room(door:Node3D, new_door:Node3D, new_room:Node3D):
 	new_room.global_position.x = door.global_position.x - new_door_position.x
 	new_room.global_position.z = door.global_position.z - new_door_position.z
 	
+	# Create room bounding
 	var new_area:CollisionShape3D = new_room.get_node("area").get_child(0)
 	var new_bounding = AABB(new_room.global_position, new_area.shape.size)
+	
+	# Create ceiling
+	create_ceiling_and_walls(new_room, new_area)
+	
 	for room in room_boundings:
 		if room.intersects(new_bounding):
 			return false
@@ -149,6 +168,8 @@ func _ready():
 	var base_area:CollisionShape3D = base_room.get_node("area").get_child(0)
 	var base_aabb = AABB(base_room.global_position, base_area.shape.size)
 	room_boundings.append(base_aabb)
+	
+	create_ceiling_and_walls(base_room, base_area)
 	
 	for i in recursion_depth:
 		var new_nodes = generate_new_branch(base_room)
