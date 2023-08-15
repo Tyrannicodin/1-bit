@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://mian22mgko2u"]
+
+[ext_resource type="Shader" path="res://assets/shaders/battery.gdshader" id="1_e0iby"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ch5os"]
+size = Vector3(0.1, 0.1, 0.2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_miosa"]
+render_priority = 0
+shader = ExtResource("1_e0iby")
+
+[node name="battery" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000451438, 0)
+mesh = SubResource("BoxMesh_ch5os")
+surface_material_override/0 = SubResource("ShaderMaterial_miosa")

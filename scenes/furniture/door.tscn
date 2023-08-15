@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdo1rc43j024g"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_dr5gc"]
+size = Vector2(4, 4)
+
+[node name="door" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_dr5gc")

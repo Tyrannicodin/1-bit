@@ -6,13 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://c8g038tinktrv" path="res://scenes/furniture/armchair.tscn" id="5_hdh2b"]
 [ext_resource type="PackedScene" uid="uid://boi48hqv3bpxj" path="res://scenes/ghost.tscn" id="8_eocet"]
 
-[sub_resource type="Sky" id="Sky_n1d8p"]
+[sub_resource type="Sky" id="Sky_peljl"]
 sky_material = ExtResource("3_y73xg")
 
 [sub_resource type="Environment" id="Environment_c75c4"]
 background_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
 background_energy_multiplier = 0.0
-sky = SubResource("Sky_n1d8p")
+sky = SubResource("Sky_peljl")
 fog_enabled = true
 fog_light_energy = 0.01
 

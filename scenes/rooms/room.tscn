@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1jwq4rq2byxd"]
+
+[ext_resource type="Material" uid="uid://dyc4fe2tge02t" path="res://assets/shaders/dithering/material.tres" id="1_3f86h"]
+[ext_resource type="PackedScene" uid="uid://c8g038tinktrv" path="res://scenes/furniture/armchair.tscn" id="2_l4ryb"]
+[ext_resource type="PackedScene" uid="uid://cdo1rc43j024g" path="res://scenes/furniture/door.tscn" id="3_2xjne"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sk8xb"]
+size = Vector2(25, 25)
+
+[sub_resource type="Sky" id="Sky_n1d8p"]
+sky_material = ExtResource("1_3f86h")
+
+[sub_resource type="Environment" id="Environment_3m5kl"]
+background_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
+background_energy_multiplier = 0.0
+sky = SubResource("Sky_n1d8p")
+fog_enabled = true
+fog_light_energy = 0.01
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_faeb7"]
+
+[node name="room" type="Node3D"]
+
+[node name="floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_sk8xb")
+skeleton = NodePath("../StaticBody3D")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3m5kl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_faeb7")
+
+[node name="armchair" parent="." instance=ExtResource("2_l4ryb")]
+
+[node name="door2" parent="." instance=ExtResource("3_2xjne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.5267)
+
+[node name="door" parent="." instance=ExtResource("3_2xjne")]
+transform = Transform3D(-0.00183265, 0, -0.999998, 0, 1, 0, 0.999998, 0, -0.00183265, 12.5108, 0, -0.0130067)
+
+[node name="door3" parent="." instance=ExtResource("3_2xjne")]
+transform = Transform3D(-0.00183265, 0, -0.999998, 0, 1, 0, 0.999998, 0, -0.00183265, -12.4889, 0, -0.0130067)
+
+[node name="door4" parent="." instance=ExtResource("3_2xjne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.5672)
