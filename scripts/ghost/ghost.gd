@@ -4,7 +4,7 @@ extends CharacterBody3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var player:CharacterBody3D = null
 
-@export var speed = 2.5
+@export var speed = 1.5
 
 @onready var pathfinder = $Navigator
 
