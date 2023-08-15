@@ -18,9 +18,8 @@ func _physics_process(_d):
 			return # No need to move if no player found
 	
 	var player_position = player.global_position
-	player_position.y = global_position.y
+	global_position.y = player_position.y
 	look_at(player_position)
-	
 	pathfinder.target_position = player.global_position
 	var next_position = pathfinder.get_next_path_position()
 	if pathfinder.is_navigation_finished():

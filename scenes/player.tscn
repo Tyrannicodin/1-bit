@@ -556,9 +556,11 @@ stream = ExtResource("21_cy445")
 
 [node name="sound_radar" type="AudioStreamPlayer" parent="GameContainer/GameViewport"]
 stream = ExtResource("20_y0ap5")
+volume_db = -10.0
 
 [node name="sound_radar_loop" type="AudioStreamPlayer" parent="GameContainer/GameViewport"]
 stream = ExtResource("20_v6nb1")
+volume_db = -10.0
 
 [node name="sound_flashlight" type="AudioStreamPlayer" parent="GameContainer/GameViewport"]
 stream = ExtResource("22_b41qx")
