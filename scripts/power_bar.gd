@@ -32,6 +32,5 @@ func _process(delta):
 			#apply easing function
 			var easeValue = pow(distanceFromGhost, 3)
 			valueFloat -= easeValue * 15 * delta
-			print(easeValue)
 	
 	this.value = valueFloat
