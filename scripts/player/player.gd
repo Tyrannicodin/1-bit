@@ -55,8 +55,8 @@ var spectral_dither_palette = preload("res://assets/shaders/dithering/palette_2.
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-# THe previous node that the player looked at.
-var last_looked_at = null
+# The node that the player is looking at.
+var focusing_node = null
 
 
 func _ready():
@@ -171,15 +171,20 @@ func _physics_process(delta):
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			mouse_captured = false
 
-	if last_looked_at != null and looking_at != last_looked_at:
-		if last_looked_at.is_in_group("ITEM_3D"):
-			last_looked_at.unfocus()
+	if focusing_node != null and looking_at != focusing_node:
+		if focusing_node.is_in_group("ITEM_3D"):
+			focusing_node.unfocus()
 
-	if looking_at != last_looked_at:
+	if looking_at != focusing_node:
 		if looking_at != null and looking_at.is_in_group("ITEM_3D"):
 			looking_at.focus()
 
-		last_looked_at = looking_at
+		focusing_node = looking_at
+
+
+	if Input.is_action_just_pressed("interact") and focusing_node != null:
+		if focusing_node.is_in_group("ITEM_3D"):
+			pass
 
 	move_and_slide()
 
