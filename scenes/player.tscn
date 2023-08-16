@@ -36,6 +36,8 @@
 [ext_resource type="AudioStream" uid="uid://b2kwtyprk6o5h" path="res://assets/audio/footsteps/footsteps-8.mp3" id="32_dwlp3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_soasp"]
+radius = 0.25
+height = 1.8
 
 [sub_resource type="Shader" id="Shader_3cqbs"]
 code = "/* 

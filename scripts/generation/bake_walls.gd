@@ -1,7 +1,6 @@
 @tool
-extends Node3D
+extends EditorScript
 
-func _ready():
-	for child in get_children():
-		if child.name.contains("walls"):
-			child.create_convex_collision(true, true)
+func _run():
+	for child in get_scene().find_children("walls*"):
+		child.create_convex_collision(true, true)

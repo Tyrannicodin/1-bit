@@ -62,20 +62,19 @@ func create_ceiling_and_walls(new_room, new_area):
 	if (ceiling_mesh != null):
 		ceiling_mesh.visible = true
 
-func try_place_room(door:Node3D, new_door:Node3D, new_room:Node3D):
-	if not door.is_inside_tree():
-		print(door)
-	if not new_door.is_inside_tree():
-		print(new_door)
-	if not new_room.is_inside_tree():
-		print(new_room)
-	
+func try_place_room(door:Node3D, new_door:Node3D, new_room:Node3D):	
 	# find the required rotation of the room
-	var door_rotation = door.global_rotation.y + new_door.rotation.y
-	new_room.global_rotation = Vector3.UP * -door_rotation
+	var original_rot = new_door.global_rotation_degrees
+	var door_rotation = door.global_rotation.y - new_door.global_rotation.y - PI
+		
+	new_room.global_rotation.y += door_rotation
+	if new_room.name == "1":
+		print(door_rotation)
+		print(new_door.global_rotation)
+		print(door.global_rotation)
 	
 	# rotate the door's position to find the proper offset
-	var new_door_position = new_door.position.rotated(Vector3.UP, -door_rotation)
+	var new_door_position = new_door.position.rotated(Vector3.UP, door_rotation)
 	
 	# set position so it the two door touches
 	new_room.global_position.x = door.global_position.x - new_door_position.x
@@ -90,7 +89,9 @@ func try_place_room(door:Node3D, new_door:Node3D, new_room:Node3D):
 	
 	for room in room_boundings:
 		if room.intersects(new_bounding):
+			new_room.queue_free()
 			return false
+	print(door.global_rotation_degrees, original_rot)
 	room_boundings.append(new_bounding)
 	return true
 
@@ -107,15 +108,18 @@ func place_end(door):
 		new_room.queue_free()
 		if len(available_rooms) == 0:
 			# TODO: make door get boarded up
+			door.set_meta("connected", true)
 			return
 		new_packed_scene = random_choice(end)
 		available_rooms.erase(new_packed_scene)
 		new_room = new_packed_scene.instantiate()
 		room_parent.add_child(new_room)
 		placed = try_place_room(door, new_room.get_node("door"), new_room)
+	door.queue_free()
 	new_room.get_node("door").set_meta("connected", true)
 
 func generate_new_branch(base_room: Node3D):
+	var next_recursion:Array[Node] = []
 	for node in base_room.get_children():
 		if node.name.contains("door"):
 			if node.get_meta("connected", false): # Ignore door if it has connection
@@ -140,15 +144,17 @@ func generate_new_branch(base_room: Node3D):
 				if len(new_room_doors) == 0:
 					new_room.queue_free()
 					place_end(door)
-					placed = true
-					continue
+					break
 				new_chosen_door = random_choice(new_room_doors)
 				placed = try_place_room(door, new_chosen_door, new_room)
 			# delete door so only the new one remains
 			new_chosen_door.set_meta("connected", true)
+			if not new_room.is_queued_for_deletion():
+				next_recursion.append(new_room)
+			door.set_meta("connected", true)
 			door.queue_free()
 	# output for next level of recursion
-	return base_room.get_children()
+	return next_recursion
 	
 func generate_branches(new_nodes: Array[Node], depth: int):
 	if depth == 0:
