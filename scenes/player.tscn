@@ -246,7 +246,7 @@ viewport_path = NodePath("GameContainer/GameViewport/UIViewport")
 
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_o7pwf")
-END_GAME_WHEN_OUT_OF_POWER = false
+END_GAME_WHEN_OUT_OF_POWER = true
 
 [node name="backpack" parent="." instance=ExtResource("2_ftu1l")]
 

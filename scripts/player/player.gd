@@ -4,7 +4,7 @@ const SPEED = 3
 const JUMP_VELOCITY = 4.5
 
 @export var VIEW_MODE = "flashlight"
-@export var END_GAME_WHEN_OUT_OF_POWER = true
+@export var END_GAME_WHEN_OUT_OF_POWER = false
 
 @onready var torch_power = $GameContainer/GameViewport/MainViewportContainer/MainViewport/Camera/Torch.light_energy
 @onready var camera = $"cameraLoc"
@@ -56,11 +56,7 @@ func _ready():
 	"""Setup for game"""
 	mouse_captured = true # Capture the mouse and remember it for later
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
-	# end of game stuff
-	if END_GAME_WHEN_OUT_OF_POWER == true:
-		power.power_is_zero.connect(death)
-		
+	power.power_is_zero.connect(death)
 	gos_viewport.visible = false
 
 func _input(event):
@@ -214,7 +210,8 @@ func draw_item():
 	pass
 
 func death():
-	if is_game_over == true:
+	if is_game_over == true or END_GAME_WHEN_OUT_OF_POWER != true:
+		power.power_is_zero.disconnect(death)
 		return
 	power.power_is_zero.disconnect(death)
 	
