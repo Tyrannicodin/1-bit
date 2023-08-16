@@ -71,7 +71,7 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.76869)
 
 [node name="nightstand" parent="region" instance=ExtResource("2_kbtpf")]
-transform = Transform3D(0.57, 0, 0, 0, 0.57, 0, 0, 0, 0.57, 0.9, 0, 2.02253)
+transform = Transform3D(0.57, 0, 0, 0, 0.57, 0, 0, 0, 0.57, 0.776667, 0, 2.02253)
 
 [node name="door_link" type="NavigationLink3D" parent="region"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -1)
