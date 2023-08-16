@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://com6fd5ykhrct"]
+[gd_scene load_steps=49 format=3 uid="uid://com6fd5ykhrct"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_o7pwf"]
 [ext_resource type="Shader" path="res://assets/shaders/edge_detection/shader.gdshader" id="2_7eeor"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dnaidbtpymjor" path="res://assets/ui/hotbar_slot.png" id="8_1ktqa"]
 [ext_resource type="Texture2D" uid="uid://bq3q0m8w8q6d6" path="res://assets/ui/flashlight.png" id="8_y0o0g"]
 [ext_resource type="Script" path="res://scripts/power_bar.gd" id="9_txuw2"]
+[ext_resource type="AudioStream" uid="uid://xy56jvbx6skm" path="res://assets/audio/radar_tick.mp3" id="10_diik7"]
 [ext_resource type="Texture2D" uid="uid://n62cunvv8u14" path="res://assets/ui/e_icon.png" id="11_511jd"]
 [ext_resource type="Texture2D" uid="uid://ckiqh638hwrh5" path="res://assets/ui/selected_slot.png" id="11_i1i0r"]
 [ext_resource type="Texture2D" uid="uid://dphibpmijdrsi" path="res://assets/ui/radar.png" id="11_jjlj8"]
@@ -40,7 +41,7 @@
 radius = 0.25
 height = 1.8
 
-[sub_resource type="Shader" id="Shader_3cqbs"]
+[sub_resource type="Shader" id="Shader_i2kj2"]
 code = "/* 
 This shader is under MIT license. Feel free to use, improve and 
 change this shader according to your needs and consider sharing 
@@ -119,16 +120,16 @@ void fragment() {
 	COLOR.rgb = final_col;
 }"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jp58f"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oxqji"]
 load_path = "res://.godot/imported/pattern.png-ef3cfac201ae719d7f03ee1649f9098b.s3tc.ctex"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hb05h"]
-shader = SubResource("Shader_3cqbs")
+shader = SubResource("Shader_i2kj2")
 shader_parameter/u_bit_depth = 32
 shader_parameter/u_contrast = 1.0
 shader_parameter/u_offset = null
 shader_parameter/u_dither_size = 2
-shader_parameter/u_dither_tex = SubResource("CompressedTexture2D_jp58f")
+shader_parameter/u_dither_tex = SubResource("CompressedTexture2D_oxqji")
 shader_parameter/u_color_tex = ExtResource("3_6dtlo")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s0yu0"]
@@ -389,6 +390,12 @@ fill_mode = 3
 texture_under = ExtResource("7_mvmnc")
 texture_progress = ExtResource("7_hnq16")
 script = ExtResource("9_txuw2")
+
+[node name="powerbar_sound_timer" type="Timer" parent="GameContainer/GameViewport/UIViewport/VBoxContainer/Power Bar"]
+
+[node name="powerbar_sound" type="AudioStreamPlayer" parent="GameContainer/GameViewport/UIViewport/VBoxContainer/Power Bar"]
+stream = ExtResource("10_diik7")
+volume_db = -5.0
 
 [node name="Mainhand" type="HBoxContainer" parent="GameContainer/GameViewport/UIViewport/VBoxContainer"]
 layout_mode = 2

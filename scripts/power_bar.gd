@@ -3,6 +3,8 @@ extends TextureProgressBar
 
 @onready var this = $"."
 @onready var player = $"../../../../../.."
+@onready var timer = $"../powerbar_sound_timer"
+@onready var tick = $"../powerbar_sound"
 @onready var ghost = get_tree().get_nodes_in_group("ghost")[0]
 
 var valueFloat = 100.0
@@ -29,7 +31,7 @@ func _process(delta):
 			distanceFromGhost -= 0.7
 			distanceFromGhost = 1 - (distanceFromGhost / 3.3)
 			
-			#apply easing function
+			# apply easing function
 			var easeValue = pow(distanceFromGhost, 3)
 			valueFloat -= easeValue * 15 * delta
 	

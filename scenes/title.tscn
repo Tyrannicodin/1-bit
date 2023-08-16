@@ -1,0 +1,319 @@
+[gd_scene load_steps=21 format=3 uid="uid://dkp0ee0b5vhfl"]
+
+[ext_resource type="Texture2D" uid="uid://n85ohutwfk0a" path="res://assets/shaders/dithering/palette_1.png" id="1_6w3li"]
+[ext_resource type="Script" path="res://scripts/player/sub_viewports.gd" id="1_251q8"]
+[ext_resource type="Shader" path="res://assets/shaders/colors/ui.gdshader" id="3_a7hc8"]
+[ext_resource type="Script" path="res://scripts/player/UIViewport.gd" id="3_dcwk6"]
+[ext_resource type="Script" path="res://scripts/player/TextureRect.gd" id="4_26ra8"]
+[ext_resource type="Theme" uid="uid://b6x5a56bs6oov" path="res://assets/themes/ui.tres" id="4_a4mhb"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qkw5p"]
+size = Vector3(2, 1, 2)
+
+[sub_resource type="Shader" id="Shader_3cqbs"]
+code = "/* 
+This shader is under MIT license. Feel free to use, improve and 
+change this shader according to your needs and consider sharing 
+the modified result to godotshaders.com.
+*/
+
+shader_type canvas_item;
+
+uniform sampler2D u_dither_tex : repeat_enable;
+uniform sampler2D u_color_tex;
+
+uniform int u_bit_depth;
+uniform float u_contrast;
+uniform float u_offset;
+uniform int u_dither_size;
+
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
+
+void fragment() {
+	// sample the screen texture at the desired output resolution (according to u_dither_size)
+	// this will effectively pixelate the resulting output
+	vec2 screen_size = vec2(textureSize(screen_texture, 0)) / float(u_dither_size);
+	vec2 screen_sample_uv = floor(UV * screen_size) / screen_size;
+	vec3 screen_col = texture(screen_texture, screen_sample_uv).rgb;
+	
+	// calculate pixel luminosity (https://stackoverflow.com/questions/596216/formula-to-determine-brightness-of-rgb-color)
+	float lum = (screen_col.r * 0.299) + (screen_col.g * 0.587) + (screen_col.b * 0.114);
+	
+	// adjust with contrast and offset parameters
+	float contrast = u_contrast;
+	lum = (lum - 0.5 + u_offset) * contrast + 0.5;
+	lum = clamp(lum, 0.0, 1.0);
+	
+	// reduce luminosity bit depth to give a more banded visual if desired	
+	float bits = float(u_bit_depth);
+	lum = floor(lum * bits) / bits;
+	
+	// to support multicolour palettes, we want to dither between the two colours on the palette
+	// which are adjacent to the current pixel luminosity.
+	// to do this, we need to determine which 'band' lum falls into, calculate the upper and lower
+	// bound of that band, then later we will use the dither texture to pick either the upper or 
+	// lower colour.
+	
+	// get the palette texture size mapped so it is 1px high (so the x value however many colour bands there are)
+	ivec2 col_size = textureSize(u_color_tex, 0);
+	col_size /= col_size.y;
+	
+	float col_x = float(col_size.x) - 1.0; // colour boundaries is 1 less than the number of colour bands
+	float col_texel_size = 1.0 / col_x; // the size of one colour boundary
+	
+	lum = max(lum - 0.00001, 0.0); // makes sure our floor calculation below behaves when lum == 1.0
+	float lum_lower = floor(lum * col_x) * col_texel_size;
+	float lum_upper = (floor(lum * col_x) + 1.0) * col_texel_size;
+	float lum_scaled = lum * col_x - floor(lum * col_x); // calculates where lum lies between the upper and lower bound
+	
+	// map the dither texture onto the screen. there are better ways of doing this that makes the dither pattern 'stick'
+	// with objects in the 3D world, instead of being mapped onto the screen. see lucas pope's details posts on how he 
+	// achieved this in Obra Dinn: https://forums.tigsource.com/index.php?topic=40832.msg1363742#msg1363742
+	ivec2 noise_size = textureSize(u_dither_tex, 0);
+	vec2 inv_noise_size = vec2(1.0 / float(noise_size.x), 1.0 / float(noise_size.y));
+	vec2 noise_uv = UV * inv_noise_size * vec2(float(screen_size.x), float(screen_size.y));
+	float threshold = texture(u_dither_tex, noise_uv).r;
+	
+	// adjust the dither slightly so min and max aren't quite at 0.0 and 1.0
+	// otherwise we wouldn't get fullly dark and fully light dither patterns at lum 0.0 and 1.0
+	threshold = threshold * 0.99 + 0.005;
+	
+	// the lower lum_scaled is, the fewer pixels will be below the dither threshold,
+	// and thus will use the lower bound colour, and vice-versa
+	float ramp_val = lum_scaled < threshold ? 0.0f : 1.0f;
+	// sample at the lower bound colour if ramp_val is 0.0, upper bound colour if 1.0
+	float col_sample = mix(lum_lower, lum_upper, ramp_val);
+	vec3 final_col = texture(u_color_tex, vec2(col_sample, 0.5)).rgb;
+	
+	// return the final colour!
+	COLOR.rgb = final_col;
+}"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jp58f"]
+load_path = "res://.godot/imported/pattern.png-ef3cfac201ae719d7f03ee1649f9098b.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_orjv5"]
+shader = SubResource("Shader_3cqbs")
+shader_parameter/u_bit_depth = 32
+shader_parameter/u_contrast = 1.0
+shader_parameter/u_offset = null
+shader_parameter/u_dither_size = 2
+shader_parameter/u_dither_tex = SubResource("CompressedTexture2D_jp58f")
+shader_parameter/u_color_tex = ExtResource("1_6w3li")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_assat"]
+albedo_color = Color(0.52549, 0.52549, 0.52549, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7wqo7"]
+material = SubResource("StandardMaterial3D_assat")
+size = Vector3(0.2, 5, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_evot6"]
+albedo_color = Color(0.478431, 0.478431, 0.478431, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bl5xs"]
+material = SubResource("StandardMaterial3D_evot6")
+size = Vector3(2, 4, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixhdo"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6bhok"]
+material = SubResource("StandardMaterial3D_evot6")
+size = Vector3(2, 2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qehxx"]
+albedo_color = Color(0.403922, 0.403922, 0.403922, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xo8if"]
+material = SubResource("StandardMaterial3D_qehxx")
+size = Vector3(2, 4, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bmftk"]
+shader = ExtResource("3_a7hc8")
+shader_parameter/ui_color = Color(1, 0.745098, 0.498039, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qgcju"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 4
+script = ExtResource("1_251q8")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.00308, 1.24983)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.536784, 0, -0.843719, -0.192836, 0.973531, -0.122685, 0.821387, 0.228555, 0.522576, 6.58927, 0.415546, -8.36695)
+mesh = SubResource("BoxMesh_qkw5p")
+skeleton = NodePath("../../..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.92615, 0)
+
+[node name="FlashlightView" type="CanvasLayer" parent="SubViewportContainer/SubViewport"]
+
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport/FlashlightView"]
+material = SubResource("ShaderMaterial_orjv5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.823738, -0.156554, -0.544928, -0.246882, 0.964262, 0.0961716, 0.510397, 0.213753, -0.832949, 3.74298, 0.415546, -6.11678)
+mesh = SubResource("BoxMesh_qkw5p")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.384469, -0.00636838, -0.923116, -0.181325, 0.981017, 0.0687524, 0.905155, 0.193817, -0.378326, 1.47985, 0.415546, -7.75894)
+mesh = SubResource("BoxMesh_qkw5p")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.644267, -0.00675686, -1.48087, -0.303852, 1.04086, 0.110293, 1.5168, 0.20564, -0.606912, 2.96195, 1.44714, -8.62875)
+mesh = SubResource("BoxMesh_qkw5p")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.644267, -0.00675686, -1.48087, -0.303852, 1.04086, 0.110293, 1.5168, 0.20564, -0.606912, 5.05237, 3.68517, -7.40981)
+mesh = SubResource("BoxMesh_qkw5p")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.644267, -0.00675686, -1.48087, -0.303852, 1.04086, 0.110293, 1.5168, 0.20564, -0.606912, 5.89331, 1.0424, -6.32405)
+mesh = SubResource("BoxMesh_7wqo7")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.644267, -0.00675686, -1.48087, -0.303852, 1.04086, 0.110293, 1.5168, 0.20564, -0.606912, 4.83576, 2.50778, -10.2777)
+mesh = SubResource("BoxMesh_qkw5p")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.644267, -0.00675686, -1.48087, -0.303852, 1.04086, 0.110293, 1.5168, 0.20564, -0.606912, 6.06974, 1.0424, -10.7762)
+mesh = SubResource("BoxMesh_7wqo7")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.572394, -0.210205, -1.47384, -0.423994, 1.01944, -0.181475, 1.5168, 0.20564, -0.606912, 5.34446, 4.47387, -12.3215)
+mesh = SubResource("BoxMesh_bl5xs")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.686351, 0.169251, -1.44093, -0.190597, 1.02703, 0.358981, 1.5168, 0.20564, -0.606912, 8.50006, 0.830258, -10.902)
+mesh = SubResource("BoxMesh_bl5xs")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.714368, 0.110455, -1.32521, -0.198377, 0.670247, 0.330152, 1.57871, 0.134202, -0.558172, 8.50006, 4.69828, -13.2621)
+mesh = SubResource("BoxMesh_bl5xs")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.384469, -0.00636838, -0.923116, -0.181325, 0.981017, 0.0687524, 0.905155, 0.193817, -0.378326, 1.47985, 0.415546, -11.7389)
+mesh = SubResource("BoxMesh_qkw5p")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.384469, -0.00636838, -0.923116, -0.181325, 0.981017, 0.0687524, 0.905155, 0.193817, -0.378326, -0.0781362, 0.415546, -15.1394)
+mesh = SubResource("BoxMesh_qkw5p")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.525486, -0.0134966, -1.58439, -0.247832, 2.07909, 0.118003, 1.23715, 0.41076, -0.649339, 2.96195, 1.60405, -14.6967)
+mesh = SubResource("BoxMesh_qkw5p")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ixhdo")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.990596, 0.417063, -1.12984, 0.0426955, 0.916351, 0.807586, 1.35091, -0.334784, 0.802961, 1.13964, 0.251163, -13.6567)
+mesh = SubResource("BoxMesh_7wqo7")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.0751222, 0.53481, -1.38363, 0.0426955, 0.916352, 0.807586, 1.6735, 0.000628561, -0.0827144, 0.73052, 1.44931, -10.6602)
+mesh = SubResource("BoxMesh_7wqo7")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.525486, -0.0134966, -1.58439, -0.418055, 2.00142, 0.207466, 1.19046, 0.696884, -0.626517, 2.96195, 4.32393, -11.3482)
+mesh = SubResource("BoxMesh_qkw5p")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ixhdo")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.620442, -0.0824986, -1.48497, -0.349939, 1.03761, 0.00221446, 1.5168, 0.20564, -0.606912, 3.33213, 7.41983, -17.1463)
+mesh = SubResource("BoxMesh_bl5xs")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.620442, -0.0824986, -1.48497, -0.349939, 1.03761, 0.00221446, 1.5168, 0.20564, -0.606912, 7.32496, 7.00122, -17.1463)
+mesh = SubResource("BoxMesh_6bhok")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.620442, -0.0824986, -1.48497, -0.349939, 1.03761, 0.00221446, 1.5168, 0.20564, -0.606912, 5.35293, 9.11818, -19.0085)
+mesh = SubResource("BoxMesh_bl5xs")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.620442, -0.0824986, -1.48497, -0.349939, 1.03761, 0.00221446, 1.5168, 0.20564, -0.606912, 6.71716, 11.0655, -19.474)
+mesh = SubResource("BoxMesh_6bhok")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D22" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.597143, -0.147757, -1.48215, -0.388363, 1.03034, -0.0914198, 1.5168, 0.20564, -0.606912, 8.91728, 8.10076, -20.8748)
+mesh = SubResource("BoxMesh_7wqo7")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D23" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.620442, -0.0824986, -1.48497, -0.101901, 1.05716, -0.0952454, 1.5533, 0.0363999, -0.599396, 6.52318, 14.1351, -22.001)
+mesh = SubResource("BoxMesh_xo8if")
+skeleton = NodePath("../../..")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+script = ExtResource("3_dcwk6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport"]
+offset_left = 40.0
+offset_top = 100.0
+offset_right = 236.0
+offset_bottom = 130.0
+
+[node name="Label" type="Label" parent="SubViewport/VBoxContainer"]
+layout_mode = 2
+text = "Name of Game goes here"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="SubViewport/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/VBoxContainer/NinePatchRect"]
+layout_mode = 2
+offset_top = 4.0
+offset_right = 100.0
+offset_bottom = 31.0
+
+[node name="Button" type="Button" parent="SubViewport/VBoxContainer/NinePatchRect/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_a4mhb")
+text = "Start"
+
+[node name="UIRect" type="TextureRect" parent="."]
+texture_filter = 3
+material = SubResource("ShaderMaterial_bmftk")
+offset_right = 512.0
+offset_bottom = 512.0
+texture = SubResource("ViewportTexture_qgcju")
+script = ExtResource("4_26ra8")
