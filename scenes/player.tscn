@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://com6fd5ykhrct"]
+[gd_scene load_steps=51 format=3 uid="uid://com6fd5ykhrct"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_o7pwf"]
 [ext_resource type="Shader" path="res://assets/shaders/edge_detection/shader.gdshader" id="2_7eeor"]
@@ -37,6 +37,7 @@
 [ext_resource type="AudioStream" uid="uid://chiavgqgg0p5g" path="res://assets/audio/footsteps/footsteps-6.mp3" id="30_xr3gv"]
 [ext_resource type="AudioStream" uid="uid://ul836mjv8u3" path="res://assets/audio/footsteps/footsteps-7.mp3" id="31_0ny0r"]
 [ext_resource type="AudioStream" uid="uid://b2kwtyprk6o5h" path="res://assets/audio/footsteps/footsteps-8.mp3" id="32_dwlp3"]
+[ext_resource type="PackedScene" uid="uid://dkp0ee0b5vhfl" path="res://scenes/game_over.tscn" id="38_xge84"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_soasp"]
 radius = 0.25
@@ -245,6 +246,7 @@ viewport_path = NodePath("GameContainer/GameViewport/UIViewport")
 
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_o7pwf")
+END_GAME_WHEN_OUT_OF_POWER = false
 
 [node name="backpack" parent="." instance=ExtResource("2_ftu1l")]
 
@@ -588,6 +590,7 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="GameContainer/GameViewport/UIViewport/VBoxContainer2"]
 layout_mode = 2
+theme = ExtResource("7_8s8sj")
 text = "0:00.00"
 script = ExtResource("22_fwvhy")
 
@@ -651,3 +654,5 @@ offset_right = 512.0
 offset_bottom = 512.0
 texture = SubResource("ViewportTexture_dnxb8")
 script = ExtResource("21_3fx5b")
+
+[node name="Game over" parent="." instance=ExtResource("38_xge84")]

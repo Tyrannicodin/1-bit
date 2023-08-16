@@ -7,6 +7,8 @@ extends TextureProgressBar
 @onready var tick = $"../powerbar_sound"
 @onready var ghost = get_tree().get_nodes_in_group("ghost")[0]
 
+signal power_is_zero
+
 var valueFloat = 100.0
 const timeToEmpty = 120
 
@@ -36,3 +38,6 @@ func _process(delta):
 			valueFloat -= easeValue * 15 * delta
 	
 	this.value = valueFloat
+	
+	if this.value == 0:
+		power_is_zero.emit()

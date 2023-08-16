@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://dkp0ee0b5vhfl"]
+
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_0u6po"]
+[ext_resource type="Script" path="res://scripts/player/UIViewport.gd" id="3_q08ve"]
+[ext_resource type="Theme" uid="uid://b6x5a56bs6oov" path="res://assets/themes/ui.tres" id="4_hem1d"]
+[ext_resource type="Shader" path="res://assets/shaders/colors/ui.gdshader" id="5_n01m1"]
+[ext_resource type="Script" path="res://scripts/player/TextureRect.gd" id="6_o73t2"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3hy6l"]
+
+[sub_resource type="Theme" id="Theme_q4xvg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bmftk"]
+shader = ExtResource("5_n01m1")
+shader_parameter/ui_color = Color(1, 0.745098, 0.498039, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qgcju"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_0u6po")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+script = ExtResource("3_q08ve")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport"]
+material = SubResource("CanvasItemMaterial_3hy6l")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -43.0
+offset_right = 98.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_q4xvg")
+
+[node name="game_over" type="Label" parent="SubViewport/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Game Over"
+
+[node name="time" type="Label" parent="SubViewport/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Time:"
+
+[node name="best_time" type="Label" parent="SubViewport/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Best time:"
+
+[node name="Button" type="Button" parent="SubViewport/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_hem1d")
+text = "Title"
+
+[node name="UIRect" type="TextureRect" parent="."]
+texture_filter = 3
+material = SubResource("ShaderMaterial_bmftk")
+offset_right = 512.0
+offset_bottom = 512.0
+texture = SubResource("ViewportTexture_qgcju")
+script = ExtResource("6_o73t2")

@@ -4,6 +4,7 @@ const SPEED = 3
 const JUMP_VELOCITY = 4.5
 
 @export var VIEW_MODE = "flashlight"
+@export var END_GAME_WHEN_OUT_OF_POWER = true
 
 @onready var torch_power = $GameContainer/GameViewport/MainViewportContainer/MainViewport/Camera/Torch.light_energy
 @onready var camera = $"cameraLoc"
@@ -35,6 +36,13 @@ const JUMP_VELOCITY = 4.5
 @onready var spectral_view_visible = [spectralView, spectralViewDither, radar, ghostViewport, radarSelected]
 @onready var flashlight_view_visible = [flashlightView, flashlight, flashlightSelected]
 
+# Power bar/game over
+@onready var power = $"GameContainer/GameViewport/UIViewport/VBoxContainer/Power Bar/ProgressBar"
+@onready var gos = $"Game over"
+@onready var gos_viewport = gos.get_child(0).get_child(0)
+@onready var game_timer = $GameContainer/GameViewport/UIViewport/VBoxContainer2/Label
+var is_game_over = false
+
 var mouse_captured = false
 var available_interactions = []
 
@@ -48,6 +56,12 @@ func _ready():
 	"""Setup for game"""
 	mouse_captured = true # Capture the mouse and remember it for later
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+	# end of game stuff
+	if END_GAME_WHEN_OUT_OF_POWER == true:
+		power.power_is_zero.connect(death)
+		
+	gos_viewport.visible = false
 
 func _input(event):
 	"""Handle mouse movement"""
@@ -75,8 +89,16 @@ func _process(_d):
 	else:
 		tooltipButton.hide()
 		tooltipLabel.hide()
+		
+	# death
+	if power.value == 0:
+		death()
 
 func _physics_process(delta):
+	"""Make sure that we don't run when the player lost"""
+	if is_game_over == true:
+		return
+	
 	"""Handle the player's input and movement"""
 	# Add the gravity.
 	if not is_on_floor():
@@ -190,3 +212,24 @@ func out_range(node:Node3D):
 func draw_item():
 	"""Called when an interactable item is searched, adds an item to the player's inventory"""
 	pass
+
+func death():
+	if is_game_over == true:
+		return
+	power.power_is_zero.disconnect(death)
+	
+	# enter the game over mode
+	gos_viewport.visible = true
+	game_timer.stop()
+	gos.set_time(game_timer.get_time())
+	gos.set_best_time(game_timer.get_best_time())
+	is_game_over = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	mouse_captured = false
+	
+	# end sounds
+	sound_radar.stop()
+	sound_radar_loop.stop()
+	
+	if VIEW_MODE == "spectral":
+		gos.get_child(1).get_material().set_shader_parameter("ui_color",Color(0.3333333333333333,1,1,1))
