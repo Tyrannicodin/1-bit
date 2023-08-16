@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhxn5hmn2aoos"]
+[gd_scene load_steps=9 format=3 uid="uid://dhxn5hmn2aoos"]
 
 [ext_resource type="PackedScene" uid="uid://brbkowa744oq1" path="res://assets/models/coffe_table/coffee_table.gltf" id="1_d5cpw"]
+[ext_resource type="Script" path="res://scripts/items/item_spawn_point.gd" id="2_yf21h"]
+[ext_resource type="PackedScene" uid="uid://ceee0d0d5ff0c" path="res://scenes/items/item_spawn_point.tscn" id="3_vwop3"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_pgwfs"]
 data = PackedVector3Array(0.5, 0.375, -0.375, 0.5, 0.375, -0.5, 0.5, 0, -0.375, 0.5, 0, -0.375, 0.5, 0.375, -0.5, 0.5, 0, -0.5, 0.375, 0.375, -0.5, 0.375, 0.375, -0.375, 0.375, 0, -0.5, 0.375, 0, -0.5, 0.375, 0.375, -0.375, 0.375, 0, -0.375, 0.375, 0.375, -0.5, 0.5, 0.375, -0.5, 0.375, 0.375, -0.375, 0.375, 0.375, -0.375, 0.5, 0.375, -0.5, 0.5, 0.375, -0.375, 0.375, 0, -0.375, 0.5, 0, -0.375, 0.375, 0, -0.5, 0.375, 0, -0.5, 0.5, 0, -0.375, 0.5, 0, -0.5, 0.375, 0.375, -0.375, 0.5, 0.375, -0.375, 0.375, 0, -0.375, 0.375, 0, -0.375, 0.5, 0.375, -0.375, 0.5, 0, -0.375, 0.5, 0.375, -0.5, 0.375, 0.375, -0.5, 0.5, 0, -0.5, 0.5, 0, -0.5, 0.375, 0.375, -0.5, 0.375, 0, -0.5)
@@ -18,6 +20,7 @@ data = PackedVector3Array(0.5, 0.375, 0.5, 0.5, 0.375, 0.375, 0.5, 0, 0.5, 0.5, 
 data = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.375, 0.5, 0.5, 0.375, 0.5, 0.5, 0.5, -0.5, 0.5, 0.375, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.375, -0.5, -0.5, 0.375, -0.5, -0.5, 0.5, 0.5, -0.5, 0.375, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.375, 0.5, 0.5, 0.375, 0.5, -0.5, 0.375, -0.5, -0.5, 0.375, -0.5, 0.5, 0.375, 0.5, 0.5, 0.375, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.375, 0.5, -0.5, 0.375, 0.5, 0.5, 0.5, 0.5, 0.5, 0.375, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.375, -0.5, 0.5, 0.375, -0.5, -0.5, 0.5, -0.5, -0.5, 0.375, -0.5)
 
 [node name="coffee_table" instance=ExtResource("1_d5cpw")]
+script = ExtResource("2_yf21h")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Node2/table/legs/1" index="0"]
 
@@ -43,3 +46,11 @@ shape = SubResource("ConcavePolygonShape3D_y732w")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node2/table/body/base/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_sjhfs")
+
+[node name="item_spawner" parent="." index="1" instance=ExtResource("3_vwop3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.264486, 0.591401, 0)
+RANDOM_Y_ROTATION = true
+
+[node name="item_spawner2" parent="." index="2" instance=ExtResource("3_vwop3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102245, 0.593974, 0.316668)
+RANDOM_Y_ROTATION = true

@@ -257,6 +257,13 @@ remote_path = NodePath("../GameContainer/GameViewport/GhostViewportContainer/Gho
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 remote_path = NodePath("../GameContainer/GameViewport/MainViewportContainer/MainViewport/Camera")
 
+[node name="RayCast3D" type="RayCast3D" parent="cameraLoc"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.015721, 0)
+target_position = Vector3(0, 0, -3)
+collide_with_areas = true
+debug_shape_custom_color = Color(1, 0, 0, 1)
+debug_shape_thickness = 5
+
 [node name="GameContainer" type="SubViewportContainer" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
@@ -282,6 +289,7 @@ script = ExtResource("3_usir5")
 [node name="Camera" type="Camera3D" parent="GameContainer/GameViewport/MainViewportContainer/MainViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 cull_mask = 1047553
+current = true
 
 [node name="Torch" type="SpotLight3D" parent="GameContainer/GameViewport/MainViewportContainer/MainViewport/Camera"]
 light_energy = 4.0
@@ -333,6 +341,7 @@ script = ExtResource("3_usir5")
 [node name="GhostCamera" type="Camera3D" parent="GameContainer/GameViewport/GhostViewportContainer/GhostViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 cull_mask = 1047554
+current = true
 
 [node name="SpotLight3D" type="SpotLight3D" parent="GameContainer/GameViewport/GhostViewportContainer/GhostViewport/GhostCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.42629)

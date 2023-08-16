@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://ceee0d0d5ff0c"]
+[gd_scene load_steps=4 format=3 uid="uid://ceee0d0d5ff0c"]
 
 [ext_resource type="Script" path="res://scripts/items/item_spawn_point.gd" id="1_y6kd0"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pj17t"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_mp6qg"]
+material = SubResource("StandardMaterial3D_pj17t")
+radius = 0.1
+height = 0.2
+
 [node name="item_spawner" type="Node3D"]
 script = ExtResource("1_y6kd0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_mp6qg")

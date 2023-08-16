@@ -20,6 +20,7 @@ const JUMP_VELOCITY = 4.5
 @onready var radarSelected = $GameContainer/GameViewport/UIViewport/VBoxContainer/Mainhand/RadarBox/SelectedSlot
 @onready var UI = $UIRect
 @onready var batteryBar = $"GameContainer/GameViewport/UIViewport/VBoxContainer/Power Bar/ProgressBar"
+@onready var raycast3d = $cameraLoc/RayCast3D
 
 # Sound
 @onready var sound_flashlight = $GameContainer/GameViewport/sound_flashlight
@@ -40,6 +41,8 @@ var available_interactions = []
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+# THe previous node that the player looked at.
+var last_looked_at = null
 
 func _ready():
 	"""Setup for game"""
@@ -119,6 +122,19 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+
+	# Ray casting to see what the player is looking at
+	var looking_at = raycast3d.get_collider()
+
+	if last_looked_at != null and looking_at != last_looked_at:
+		if last_looked_at.is_in_group("ITEM_3D"):
+			last_looked_at.unfocus()
+
+	if looking_at != last_looked_at:
+		if looking_at != null and looking_at.is_in_group("ITEM_3D"):
+			looking_at.focus()
+
+		last_looked_at = looking_at
 
 	move_and_slide()
 
