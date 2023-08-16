@@ -335,6 +335,7 @@ cull_mask = 1047554
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.42629)
 layers = 2
 light_energy = 3.0
+light_cull_mask = 4294967294
 spot_range = 50.0
 
 [node name="SpectralFilter" type="CanvasLayer" parent="GameContainer/GameViewport/GhostViewportContainer"]

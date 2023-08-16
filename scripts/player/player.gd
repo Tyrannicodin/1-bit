@@ -130,6 +130,14 @@ func cycle_views():
 	else:
 		sound_radar_off.play()
 		
+	for element in flashlight_view_visible:
+		if element == flashlightView:
+			element.show()
+		else:
+			element.hide()
+	for element in spectral_view_visible:
+		element.hide()
+		
 	await get_tree().create_timer(0.4).timeout 
 	
 	if VIEW_MODE == "flashlight":
