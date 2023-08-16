@@ -155,13 +155,14 @@ func generate_branches(new_nodes: Array[Node], depth: int):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	return
 	generator.seed = 0
 	
 	load_rooms()
 	
 	# First create a base child
 	var base_room = random_choice(entrance).instantiate()
-	$rooms.add_child(base_room)
+	add_child(base_room)
 	var base_area:CollisionShape3D = base_room.get_node("area").get_child(0)
 	var base_aabb = AABB(base_room.global_position, base_area.shape.size)
 	room_boundings.append(base_aabb)
@@ -171,5 +172,3 @@ func _ready():
 	for i in recursion_depth:
 		var new_nodes = generate_new_branch(base_room)
 		generate_branches(new_nodes, recursion_depth-1)
-	
-	$rooms.bake_navigation_mesh()

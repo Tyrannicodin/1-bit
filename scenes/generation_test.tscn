@@ -3,29 +3,33 @@
 [ext_resource type="Script" path="res://scripts/generation/generation.gd" id="1_1ueqk"]
 [ext_resource type="PackedScene" uid="uid://com6fd5ykhrct" path="res://scenes/player.tscn" id="2_0pbwx"]
 [ext_resource type="PackedScene" uid="uid://boi48hqv3bpxj" path="res://scenes/ghost.tscn" id="3_dg6pv"]
+[ext_resource type="PackedScene" uid="uid://dys6vmx11g5mm" path="res://scenes/rooms/entrance/basic_1.tscn" id="3_fqsn5"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_ql04u"]
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_2or2g"]
-cell_size = 0.5
+[sub_resource type="BoxMesh" id="BoxMesh_lqrrt"]
 
 [node name="Generator" type="Node3D"]
 script = ExtResource("1_1ueqk")
 recursion_depth = 4
 
-[node name="player" parent="." instance=ExtResource("2_0pbwx")]
+[node name="player" parent="." groups=["player"] instance=ExtResource("2_0pbwx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6.78434, 0)
 visible = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40181, 0.762759, 0)
-mesh = SubResource("BoxMesh_ql04u")
-
-[node name="rooms" type="NavigationRegion3D" parent="."]
-navigation_mesh = SubResource("NavigationMesh_2or2g")
-
 [node name="ghost" parent="." instance=ExtResource("3_dg6pv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.157146, -9.53674e-07, 5.59662)
+transform = Transform3D(0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.95, -0.28828, 1, 4.53138)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_lqrrt")
+
+[node name="basic_2" parent="." instance=ExtResource("3_fqsn5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="basic_3" parent="." instance=ExtResource("3_fqsn5")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.25, 0, 6.1)
+
+[node name="basic_4" parent="." instance=ExtResource("3_fqsn5")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8, 0, 4)
