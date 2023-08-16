@@ -126,6 +126,9 @@ func _physics_process(delta):
 	# Ray casting to see what the player is looking at
 	var looking_at = raycast3d.get_collider()
 
+	if Input.is_action_just_pressed("open_backpack"):
+		pass
+
 	if last_looked_at != null and looking_at != last_looked_at:
 		if last_looked_at.is_in_group("ITEM_3D"):
 			last_looked_at.unfocus()

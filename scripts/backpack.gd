@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 # The backpack is the player's inventory.
 # The inventory is a set of cells that the player can store items in.
@@ -11,6 +11,8 @@ const BackpackItemScene = preload("res://scenes/backpack/backpack_item.tscn")
 const BackpackItem = preload("res://scenes/backpack/backpack_item.gd")
 
 
+@onready var center = $VBoxContainer/HBoxContainer/Center
+
 # Items is the items the user currently has in thier inventory.
 var items = Set.new()
 
@@ -20,12 +22,8 @@ var backpack_squares = {}
 var holding_item: BackpackItem = null
 
 # The amount of cells the backpack has.
-@export var BACKPACK_LENGTH: int
-@export var BACKPACK_WIDTH: int
+@export var BACKPACK_SIZE: Vector2i
 
-# These can safely be changed at runtime.
-# backpack_squares will need to reflect the changes though.
-const ORIGIN = Vector2i(100, 100)
 const CELL_SIZE = Vector2i(64, 64)
 
 enum {NORTH, SOUTH, EAST, WEST}
@@ -50,32 +48,13 @@ func _init():
 	pass
 
 func _ready():
-	for i in range(BACKPACK_LENGTH):
-		for j in range(BACKPACK_WIDTH):
+	for i in range(BACKPACK_SIZE.x):
+		for j in range(BACKPACK_SIZE.y):
 			var backpack_square = BackpackSquareScene.instantiate()
-			self.add_child(backpack_square)
+			center.add_child(backpack_square)
 			backpack_squares[Vector2i(i, j)] = backpack_square
-			backpack_square.set_location(i, j, ORIGIN, CELL_SIZE)
+			backpack_square.set_location(i, j, CELL_SIZE, BACKPACK_SIZE)
 			backpack_square.hovered = false
-
-func _unhandled_input(event):
-	if not event is InputEventMouseMotion:
-		return
-
-	var mouse_pos = event.position
-
-	# The x and y of the item cell the player is hovered over
-	var x_hovered = float(mouse_pos.x - ORIGIN.x) / float(CELL_SIZE.x)
-	var y_hovered = float(mouse_pos.y - ORIGIN.y) / float(CELL_SIZE.y)
-
-	for v in backpack_squares.values():
-		v.hovered = false
-	
-	@warning_ignore("narrowing_conversion")
-	var v = backpack_squares.get(Vector2i(x_hovered, y_hovered))
-	if v:
-		v.hovered = true
-
 
 # Open the menu. Pass in all the items the user picked up as an array
 # if they have picked any up.
