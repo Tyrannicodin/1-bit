@@ -17,7 +17,7 @@ func _ready():
 func _process(delta):
 	var change = 1 / (timeToEmpty * 1 / delta) * 100
 
-	if player.VIEW_MODE == "spectral":
+	if player.VIEW_MODE == player.SPECTRAL:
 		change *= 3
 	
 	valueFloat -= change

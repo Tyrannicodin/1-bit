@@ -10,6 +10,7 @@ const BackpackSquareScene = preload("res://scenes/backpack/backpack_square.tscn"
 const BackpackItemScene = preload("res://scenes/backpack/backpack_item.tscn")
 const BackpackItem = preload("res://scenes/backpack/backpack_item.gd")
 
+var opened = false 
 
 @onready var center = $VBoxContainer/HBoxContainer/Center
 
@@ -24,7 +25,7 @@ var holding_item: BackpackItem = null
 # The amount of cells the backpack has.
 @export var BACKPACK_SIZE: Vector2i
 
-const CELL_SIZE = Vector2i(64, 64)
+const CELL_SIZE = Vector2i(32, 32)
 
 enum {NORTH, SOUTH, EAST, WEST}
 
@@ -47,6 +48,9 @@ func item_rotate():
 func _init():
 	pass
 
+func _input(event):
+	print("event")
+
 func _ready():
 	for i in range(BACKPACK_SIZE.x):
 		for j in range(BACKPACK_SIZE.y):
@@ -59,15 +63,13 @@ func _ready():
 # Open the menu. Pass in all the items the user picked up as an array
 # if they have picked any up.
 # The menu is shown or hidden by hiding the root node.
-func open(add_items: Array[Item]):
+func open(add_item: Item = null):
+	opened = true
 	show()
 
-	for item in add_items:
-		# TODO: Create backpack item objects of the right size
-		# TODO: Not sure where to spawn them in. Probably center right above the backpack.
-		pass
 
 # Close the menu. Return the items that the user trashed.
 func close() -> Array[Item]:
+	opened = false
 	hide()
 	return []

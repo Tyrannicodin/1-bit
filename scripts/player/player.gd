@@ -3,7 +3,9 @@ extends CharacterBody3D
 const SPEED = 3
 const JUMP_VELOCITY = 4.5
 
-@export var VIEW_MODE = "flashlight"
+enum {FLASHLIGHT, SPECTRAL}
+
+@export var VIEW_MODE = FLASHLIGHT
 
 @onready var torch_power = $GameContainer/GameViewport/MainViewportContainer/MainViewport/Camera/Torch.light_energy
 @onready var camera = $"cameraLoc"
@@ -21,6 +23,7 @@ const JUMP_VELOCITY = 4.5
 @onready var UI = $UIRect
 @onready var batteryBar = $"GameContainer/GameViewport/UIViewport/VBoxContainer/Power Bar/ProgressBar"
 @onready var raycast3d = $cameraLoc/RayCast3D
+@onready var backpack = $GameContainer/GameViewport/UIViewport/backpack
 
 # Sound
 @onready var sound_flashlight = $GameContainer/GameViewport/sound_flashlight
@@ -43,6 +46,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 # THe previous node that the player looked at.
 var last_looked_at = null
+
 
 func _ready():
 	"""Setup for game"""
@@ -87,7 +91,7 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 	
 	if Input.is_action_just_pressed("torch"):
-		VIEW_MODE = "spectral" if VIEW_MODE == "flashlight" else "flashlight"
+		VIEW_MODE = SPECTRAL if VIEW_MODE == FLASHLIGHT else FLASHLIGHT
 		cycle_views()
 	
 	if Input.is_action_just_pressed("interact"):
@@ -127,7 +131,14 @@ func _physics_process(delta):
 	var looking_at = raycast3d.get_collider()
 
 	if Input.is_action_just_pressed("open_backpack"):
-		pass
+		if backpack.opened:
+			backpack.close()
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			mouse_captured = true
+		else:
+			backpack.open()
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			mouse_captured = false
 
 	if last_looked_at != null and looking_at != last_looked_at:
 		if last_looked_at.is_in_group("ITEM_3D"):
@@ -144,7 +155,7 @@ func _physics_process(delta):
 func cycle_views():
 	sound_radar.stop()
 	sound_radar_loop.stop()
-	if VIEW_MODE == "spectral":
+	if VIEW_MODE == SPECTRAL:
 		sound_flashlight.play()
 	else:
 		sound_radar_off.play()
@@ -159,7 +170,7 @@ func cycle_views():
 		
 	await get_tree().create_timer(0.4).timeout 
 	
-	if VIEW_MODE == "flashlight":
+	if VIEW_MODE == FLASHLIGHT:
 		sound_flashlight.play()
 		
 		for element in flashlight_view_visible:
@@ -167,7 +178,7 @@ func cycle_views():
 		for element in spectral_view_visible:
 			element.hide()
 		UI.get_material().set_shader_parameter("ui_color",Color(1,0.7450980392156863,0.4980392156862745,1))
-	elif VIEW_MODE == "spectral":
+	elif VIEW_MODE == SPECTRAL:
 		sound_radar.play()
 		
 		for element in flashlight_view_visible:
@@ -179,7 +190,7 @@ func cycle_views():
 		
 		await get_tree().create_timer(2.43).timeout 
 		
-		if VIEW_MODE == "spectral":
+		if VIEW_MODE == SPECTRAL:
 			sound_radar_loop.play()
 
 func in_range(node:Node3D):
