@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://com6fd5ykhrct"]
+[gd_scene load_steps=50 format=3 uid="uid://com6fd5ykhrct"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_o7pwf"]
 [ext_resource type="Shader" path="res://assets/shaders/edge_detection/shader.gdshader" id="2_7eeor"]
@@ -27,6 +27,7 @@
 [ext_resource type="Script" path="res://scripts/player/TextureRect.gd" id="21_3fx5b"]
 [ext_resource type="AudioStream" uid="uid://dgqwxoidtfwh1" path="res://assets/audio/ghost_radar_off.mp3" id="21_cy445"]
 [ext_resource type="AudioStream" uid="uid://di40twlbtb0c8" path="res://assets/audio/flashlight.mp3" id="22_b41qx"]
+[ext_resource type="Script" path="res://scripts/on_screen_timer.gd" id="22_fwvhy"]
 [ext_resource type="AudioStream" uid="uid://cxoxwctprao4s" path="res://assets/audio/footsteps/footsteps-1.mp3" id="24_63utq"]
 [ext_resource type="Script" path="res://scripts/sound_queue.gd" id="24_vdkos"]
 [ext_resource type="AudioStream" uid="uid://co4bk42ssmffe" path="res://assets/audio/footsteps/footsteps-3.mp3" id="26_hvwhh"]
@@ -571,6 +572,24 @@ grow_vertical = 2
 [node name="Crosshair" type="TextureRect" parent="GameContainer/GameViewport/UIViewport/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("12_ihcyb")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GameContainer/GameViewport/UIViewport"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -20.0
+offset_right = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GameContainer/GameViewport/UIViewport/VBoxContainer2"]
+layout_mode = 2
+text = "0:00.00"
+script = ExtResource("22_fwvhy")
 
 [node name="sound_radar_off" type="AudioStreamPlayer" parent="GameContainer/GameViewport"]
 stream = ExtResource("21_cy445")
