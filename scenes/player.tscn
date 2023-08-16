@@ -247,8 +247,6 @@ viewport_path = NodePath("GameContainer/GameViewport/UIViewport")
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_o7pwf")
 
-[node name="backpack" parent="." instance=ExtResource("2_ftu1l")]
-
 [node name="Collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_soasp")
 
@@ -366,9 +364,14 @@ grow_vertical = 2
 
 [node name="UIViewport" type="SubViewport" parent="GameContainer/GameViewport"]
 transparent_bg = true
-handle_input_locally = false
 render_target_update_mode = 4
 script = ExtResource("6_c2vw8")
+
+[node name="backpack" parent="GameContainer/GameViewport/UIViewport" instance=ExtResource("2_ftu1l")]
+visible = false
+top_level = true
+z_index = 100
+mouse_force_pass_scroll_events = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameContainer/GameViewport/UIViewport"]
 anchors_preset = 4
@@ -543,6 +546,7 @@ grow_vertical = 0
 [node name="Button" type="Label" parent="GameContainer/GameViewport/UIViewport/Tooltip"]
 material = SubResource("ShaderMaterial_nry6i")
 layout_mode = 2
+mouse_filter = 1
 theme = ExtResource("7_8s8sj")
 text = "Q"
 horizontal_alignment = 1
@@ -551,6 +555,7 @@ uppercase = true
 
 [node name="Label" type="Label" parent="GameContainer/GameViewport/UIViewport/Tooltip"]
 layout_mode = 2
+mouse_filter = 1
 theme = ExtResource("7_8s8sj")
 text = "Q"
 horizontal_alignment = 1

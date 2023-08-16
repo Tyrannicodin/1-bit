@@ -1,15 +1,20 @@
 extends Node2D
 
+class_name BackpackSquare
+
+var BackpackItem = preload("res://scenes/backpack/backpack_item.gd")
+
+var current_item: BackpackItem = null
+
 var hovered: bool = false :
 	set(value):
+		hovered = value
 		if value:
 			$normal.hide()
 			$hovered.show()
 		else:
 			$normal.show()
 			$hovered.hide()
-			
-
 
 # Location that this cell is in the backpack
 var x: int
@@ -18,9 +23,36 @@ var y: int
 func set_location(
 	new_x: int,
 	new_y: int,
-	origin: Vector2i,
 	cell_size: Vector2i,
+	grid_size: Vector2i,
 ):
 	self.x = new_x
 	self.y = new_y
-	self.position = Vector2i(origin.x + 32 + cell_size.x * x, origin.y + 32 + cell_size.y * y)
+
+	var x_pos = float(new_x) - float(grid_size.x) / 2.
+	var y_pos = float(new_y) - float(grid_size.y) / 2.
+
+	self.transform.origin = Vector2(
+		x_pos + cell_size.x * (self.x - 1), 
+		y_pos + cell_size.y * (self.y - 1), 
+	)
+
+func _process(_delta):
+	# Divide by two because viewport is half the size as the real world.
+	var mouse_pos = get_tree().root.get_mouse_position() / 2
+	hovered = $Rect.get_rect().has_point(mouse_pos - get_global_transform().origin)
+
+	if not (Input.is_action_just_released("mouse_left_click") and hovered):
+		return
+
+	# var bodies = $Area2D.get_overlapping_areas()
+	# if len(bodies) < 1:
+	# 	return
+
+	# var body: BackpackItem = bodies[0]
+
+	# body.set_square(self)
+
+func _on_area_2d_area_exited(area):
+	if area == current_item:
+		current_item = null
