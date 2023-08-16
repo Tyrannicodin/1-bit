@@ -5,7 +5,7 @@ extends TextureProgressBar
 @onready var player = $"../../../../../.."
 @onready var timer = $"../powerbar_sound_timer"
 @onready var tick = $"../powerbar_sound"
-@onready var ghost = get_tree().get_nodes_in_group("ghost")[0]
+@onready var ghost = get_tree().get_first_node_in_group("ghost")
 
 signal power_is_zero
 
@@ -19,6 +19,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if not ghost:
+		ghost = get_tree().get_first_node_in_group("ghost")
+		if not ghost:
+			return
+	
 	var change = 1 / (timeToEmpty * 1 / delta) * 100
 
 	if player.VIEW_MODE == "spectral":

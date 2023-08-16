@@ -1,23 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://cf0efe0jx1bm4"]
+[gd_scene load_steps=8 format=3 uid="uid://cf0efe0jx1bm4"]
 
 [ext_resource type="PackedScene" uid="uid://cdo1rc43j024g" path="res://scenes/furniture/door.tscn" id="1_dklas"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_1dakv"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_npgne"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cao74"]
 size = Vector3(2, 2, 2)
 
-[sub_resource type="BoxMesh" id="BoxMesh_thfgx"]
+[sub_resource type="BoxMesh" id="BoxMesh_eosm1"]
+size = Vector3(0.1, 4, 2)
 
-[sub_resource type="BoxMesh" id="BoxMesh_i7ty6"]
+[sub_resource type="BoxMesh" id="BoxMesh_fngak"]
+size = Vector3(1.8, 4, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4s406"]
+size = Vector3(0.9, 4, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_aix2p"]
+size = Vector3(0.9, 2, 0.1)
 
 [node name="1" type="Node3D"]
 
 [node name="floor" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_1dakv")
-
-[node name="door" parent="." instance=ExtResource("1_dklas")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 1)
+mesh = SubResource("PlaneMesh_npgne")
 
 [node name="area" type="Area3D" parent="."]
 
@@ -25,22 +30,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_cao74")
 
+[node name="walls" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, 0.95)
+mesh = SubResource("BoxMesh_eosm1")
+
+[node name="walls2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, -0.95)
+mesh = SubResource("BoxMesh_eosm1")
+
 [node name="walls3" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 3.785, 0, 0, 0, 0.118, 0, 1.8, -1)
-mesh = SubResource("BoxMesh_thfgx")
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.95, 2, 0)
+mesh = SubResource("BoxMesh_fngak")
 
 [node name="walls4" type="MeshInstance3D" parent="."]
-transform = Transform3D(-8.74228e-08, 0, 0.118, 0, 3.785, 0, -2, 0, -5.15794e-09, 1, 1.8, 0)
-mesh = SubResource("BoxMesh_thfgx")
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.95, 2, 0.45)
+mesh = SubResource("BoxMesh_4s406")
 
 [node name="walls5" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 3.785, 0, 0, 0, 0.118, 0.509834, 1.8, 1)
-mesh = SubResource("BoxMesh_thfgx")
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.95, 3, -0.45)
+mesh = SubResource("BoxMesh_aix2p")
 
-[node name="walls6" type="MeshInstance3D" parent="."]
-transform = Transform3D(-8.74228e-08, 0, 0.118, 0, 3.785, 0, -2, 0, -5.15794e-09, -1, 1.8, 0)
-mesh = SubResource("BoxMesh_thfgx")
-
-[node name="walls7" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.97675, 0, 0, 0, 1.9325, 0, 0, 0, 0.116722, 0, 3, 1)
-mesh = SubResource("BoxMesh_i7ty6")
+[node name="door" parent="." instance=ExtResource("1_dklas")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 1, -0.5)
