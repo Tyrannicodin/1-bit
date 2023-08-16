@@ -6,7 +6,6 @@ const JUMP_VELOCITY = 4.5
 @export var VIEW_MODE = "flashlight"
 @export var END_GAME_WHEN_OUT_OF_POWER = false
 
-@onready var torch_power = $GameContainer/GameViewport/MainViewportContainer/MainViewport/Camera/Torch.light_energy
 @onready var camera = $"cameraLoc"
 @onready var ghostCamera = $"ghostCameraLoc"
 @onready var ghostViewport = $GameContainer/GameViewport/GhostViewportContainer
@@ -20,7 +19,6 @@ const JUMP_VELOCITY = 4.5
 @onready var flashlightSelected = $GameContainer/GameViewport/UIViewport/VBoxContainer/Mainhand/FlashlightBox/SelectedSlot
 @onready var radarSelected = $GameContainer/GameViewport/UIViewport/VBoxContainer/Mainhand/RadarBox/SelectedSlot
 @onready var UI = $UIRect
-@onready var batteryBar = $"GameContainer/GameViewport/UIViewport/VBoxContainer/Power Bar/ProgressBar"
 @onready var raycast3d = $cameraLoc/RayCast3D
 
 # Sound

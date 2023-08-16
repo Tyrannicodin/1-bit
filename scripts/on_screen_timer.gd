@@ -1,6 +1,6 @@
 extends Label
 
-var min = 0
+var minute = 0
 var sec = 0
 var mil = 0
 
@@ -16,21 +16,21 @@ func _process(delta):
 	if count_time != true:
 		return
 	
-	mil += floor(delta * 100) as int
+	mil += floori(delta * 100)
 
-	sec += floor(mil / 100)
+	sec += floori(mil / 100.0)
 	mil %= 100
 	
-	min += floor(sec / 60)
+	minute += floori(sec / 60.0)
 	sec %= 60
 	var format_string = "%s:%0*d.%0*d"
-	text = format_string % [min, 2, sec, 2, mil]
+	text = format_string % [minute, 2, sec, 2, mil]
 	
 func time_in_ms(time: Array[int]) -> int:
 	return (time[0] * 6000 + time[1] * 100 + time[2]) as int
 	
 func get_time() -> Array[int]:
-	var time = [min as int, sec as int, mil as int] as Array[int]
+	var time = [minute as int, sec as int, mil as int] as Array[int]
 	if time_in_ms(time) > time_in_ms(get_best_time()):
 		print("sussy")
 		save_time(time_in_ms(time))
@@ -48,8 +48,8 @@ func get_best_time() -> Array[int]:
 		
 	var best_time = save_file.get_32()
 
-	var best_time_min = floor(best_time / 6000) as int
-	var best_time_sec = floor(best_time / 100) as int % 60
+	var best_time_min = floori(best_time / 6000.0)
+	var best_time_sec = floori(best_time / 100.0) % 60
 	var best_time_mil = best_time % 100
 		
 	return [best_time_min, best_time_sec, best_time_mil]
