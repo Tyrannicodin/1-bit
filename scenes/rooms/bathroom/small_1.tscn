@@ -1,12 +1,18 @@
-[gd_scene load_steps=19 format=3 uid="uid://c45jf4tdnjtgg"]
+[gd_scene load_steps=20 format=3 uid="uid://c45jf4tdnjtgg"]
 
 [ext_resource type="PackedScene" uid="uid://cdo1rc43j024g" path="res://scenes/furniture/door.tscn" id="1_sdctx"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_0bwv8"]
-size = Vector2(10, 8)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_ybe46"]
 size = Vector3(10, 2, 8)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_qdfib"]
+vertices = PackedVector3Array(-4.5, 0.5, -3.5, -4.5, 0.5, 3.5, 4.5, 0.5, 3.5, 4.5, 0.5, -3.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+agent_height = 1.25
+agent_radius = 0.35
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0bwv8"]
+size = Vector2(10, 8)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1xanl"]
 size = Vector3(4.5, 4, 0.1)
@@ -55,14 +61,28 @@ points = PackedVector3Array(0.531746, 1.01587, 0.0610863, -0.515873, -1.01587, -
 
 [node name="bathroom_1" type="Node3D"]
 
-[node name="floor" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_0bwv8")
-
 [node name="area" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_ybe46")
+
+[node name="region" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_qdfib")
+
+[node name="floor" type="MeshInstance3D" parent="region"]
+mesh = SubResource("PlaneMesh_0bwv8")
+skeleton = NodePath("../..")
+
+[node name="door_link" type="NavigationLink3D" parent="region"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+start_position = Vector3(0, 0, -1)
+end_position = Vector3(0, 0, 1)
+
+[node name="door2_link" type="NavigationLink3D" parent="region"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
+start_position = Vector3(1, 0, 0)
+end_position = Vector3(-1, 0, 0)
 
 [node name="door" parent="." instance=ExtResource("1_sdctx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)

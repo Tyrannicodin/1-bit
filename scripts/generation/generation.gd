@@ -155,7 +155,6 @@ func generate_branches(new_nodes: Array[Node], depth: int):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	return
 	generator.seed = 0
 	
 	load_rooms()

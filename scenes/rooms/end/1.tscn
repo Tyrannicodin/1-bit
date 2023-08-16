@@ -1,11 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://cf0efe0jx1bm4"]
+[gd_scene load_steps=9 format=3 uid="uid://cf0efe0jx1bm4"]
 
 [ext_resource type="PackedScene" uid="uid://cdo1rc43j024g" path="res://scenes/furniture/door.tscn" id="1_dklas"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_npgne"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_cao74"]
 size = Vector3(2, 2, 2)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_sacr5"]
+vertices = PackedVector3Array(-0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+agent_height = 1.25
+agent_radius = 0.35
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_npgne"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_eosm1"]
 size = Vector3(0.1, 4, 2)
@@ -21,14 +27,26 @@ size = Vector3(0.9, 2, 0.1)
 
 [node name="1" type="Node3D"]
 
-[node name="floor" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_npgne")
-
 [node name="area" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_cao74")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_sacr5")
+
+[node name="floor" type="MeshInstance3D" parent="NavigationRegion3D"]
+mesh = SubResource("PlaneMesh_npgne")
+skeleton = NodePath("../..")
+
+[node name="NavigationLink3D" type="NavigationLink3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -0.5)
+start_position = Vector3(1, 0, 0)
+end_position = Vector3(-1, 0, 0)
+
+[node name="door" parent="." instance=ExtResource("1_dklas")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 1, -0.5)
 
 [node name="walls" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, 0.95)
@@ -49,6 +67,3 @@ mesh = SubResource("BoxMesh_4s406")
 [node name="walls5" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.95, 3, -0.45)
 mesh = SubResource("BoxMesh_aix2p")
-
-[node name="door" parent="." instance=ExtResource("1_dklas")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 1, -0.5)
