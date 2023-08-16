@@ -19,6 +19,7 @@ visible = false
 
 [node name="ghost" parent="." instance=ExtResource("3_dg6pv")]
 transform = Transform3D(0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.95, -0.28828, 1, 4.53138)
+speed = 0.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false

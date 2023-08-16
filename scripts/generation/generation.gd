@@ -73,17 +73,19 @@ func try_place_room(door:Node3D, new_door:Node3D, new_room:Node3D):
 	new_room.global_position.z = door.global_position.z - new_door.global_position.z
 	
 	# Create room bounding
-	var new_area:CollisionShape3D = new_room.get_node("area").get_child(0)
-	var new_bounding = AABB(new_room.global_position, new_area.shape.size)
-	
-	# Create ceiling
-	create_ceiling_and_walls(new_room, new_area)
+	var new_boundings = []
+	for new_area in new_room.get_node("area").get_children():
+		new_boundings.append(AABB(new_room.global_position, new_area.shape.size))
+		# Create ceiling
+		create_ceiling_and_walls(new_room, new_area)
 	
 	for room in room_boundings:
-		if room.intersects(new_bounding):
-			new_room.queue_free()
-			return false
-	room_boundings.append(new_bounding)
+		for bounding in new_boundings:
+			if room.intersects(bounding):
+				new_room.queue_free()
+				return false
+	for bounding in new_boundings:
+		room_boundings.append(bounding)
 	door.queue_free()
 	return true
 
