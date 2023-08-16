@@ -7,7 +7,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_rkwbi"]
 size = Vector3(1.00381, 1.6959, 1)
 
-[node name="ghost" type="CharacterBody3D"]
+[node name="ghost" type="CharacterBody3D" groups=["ghost"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 motion_mode = 1
 script = ExtResource("1_7f2kv")
