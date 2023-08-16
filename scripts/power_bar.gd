@@ -26,8 +26,8 @@ func _process(delta):
 		var distanceFromGhost = sqrt(pow(player.global_position.x - ghost.global_position.x, 2) + pow(player.global_position.z - ghost.global_position.z, 2))
 		if (distanceFromGhost < 4):
 			# get variable into range we want
-			distanceFromGhost -= 1
-			distanceFromGhost = 1 - (distanceFromGhost / 3)
+			distanceFromGhost -= 0.7
+			distanceFromGhost = 1 - (distanceFromGhost / 3.3)
 			
 			#apply easing function
 			var easeValue = pow(distanceFromGhost, 3)

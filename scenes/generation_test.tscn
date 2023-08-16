@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcnvo43desk27"]
+[gd_scene load_steps=5 format=3 uid="uid://dcnvo43desk27"]
 
 [ext_resource type="Script" path="res://scripts/generation/generation.gd" id="1_1ueqk"]
 [ext_resource type="PackedScene" uid="uid://com6fd5ykhrct" path="res://scenes/player.tscn" id="2_0pbwx"]
+[ext_resource type="PackedScene" uid="uid://boi48hqv3bpxj" path="res://scenes/ghost.tscn" id="3_dg6pv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ql04u"]
 
@@ -18,3 +19,6 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6.7
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40181, 0.762759, 0)
 mesh = SubResource("BoxMesh_ql04u")
+
+[node name="ghost" parent="." instance=ExtResource("3_dg6pv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -10.6635)

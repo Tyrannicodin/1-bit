@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/ghost/mesh_setter.gd" id="3_cm2o2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rkwbi"]
-size = Vector3(1.00381, 1.6959, 1)
+size = Vector3(0.7, 1.696, 0.7)
 
 [node name="ghost" type="CharacterBody3D" groups=["ghost"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -21,4 +21,5 @@ avoidance_enabled = true
 radius = 1.0
 
 [node name="ghost" parent="." instance=ExtResource("2_cynw8")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 script = ExtResource("3_cm2o2")
