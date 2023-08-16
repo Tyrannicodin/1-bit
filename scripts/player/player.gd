@@ -209,7 +209,8 @@ func draw_item():
 
 func death():
 	if is_game_over == true or END_GAME_WHEN_OUT_OF_POWER != true:
-		power.power_is_zero.disconnect(death)
+		if power.power_is_zero.is_connected(death):
+			power.power_is_zero.disconnect(death)
 		return
 	power.power_is_zero.disconnect(death)
 	

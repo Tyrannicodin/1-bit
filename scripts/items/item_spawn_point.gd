@@ -16,7 +16,7 @@ var rng = RandomNumberGenerator.new()
 
 func _ready():
 	add_to_group("ITEM_SPAWN_POINT")
-	if $MeshInstance3D != null:
+	if has_node("MeshInstance3D"):
 		$MeshInstance3D.hide()
 
 	if rng.randf() < SPAWN_CHANCE:
