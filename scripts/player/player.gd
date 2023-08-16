@@ -3,14 +3,16 @@ extends CharacterBody3D
 const SPEED = 3
 
 @export var VIEW_MODE = "flashlight"
-@export var END_GAME_WHEN_OUT_OF_POWER = false
+@export var END_GAME_WHEN_OUT_OF_POWER = true
 
 @onready var camera = $"cameraLoc"
 @onready var ghostCamera = $"ghostCameraLoc"
 @onready var ghostViewport = $GameContainer/GameViewport/GhostViewportContainer
 @onready var spectralView = $GameContainer/GameViewport/MainViewportContainer/MainViewport/SpectralView
 @onready var flashlightView = $GameContainer/GameViewport/MainViewportContainer/MainViewport/FlashlightView
+@onready var flashlight_shader = flashlightView.get_node("ColorRect")
 @onready var spectralViewDither = $GameContainer/GameViewport/GhostViewportContainer/SpectralFilter
+@onready var spectral_dither_shader = spectralViewDither.get_node("ColorRect")
 @onready var flashlight = $GameContainer/GameViewport/MainViewportContainer/MainViewport/Camera/Torch
 @onready var radar = $GameContainer/GameViewport/MainViewportContainer/MainViewport/Camera/RadarLight
 @onready var tooltipButton = $GameContainer/GameViewport/UIViewport/Tooltip/Button
@@ -42,6 +44,10 @@ var is_game_over = false
 
 var mouse_captured = false
 var available_interactions = []
+var death_palette:float = 0
+
+var flashlight_palette = preload("res://assets/shaders/dithering/palette_1.png")
+var spectral_dither_palette = preload("res://assets/shaders/dithering/palette_2.png")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -86,6 +92,20 @@ func _process(_d):
 	# death
 	if power.value == 0:
 		death()
+	
+	if power.value <= 10:
+		if int(death_palette) == death_palette:
+			var palette_path = "res://assets/shaders/dithering/death/palette_"+str(death_palette)+".png"
+			if not FileAccess.file_exists(palette_path):
+				death_palette = 0
+				palette_path = "res://assets/shaders/dithering/death/palette_"+str(death_palette)+".png"
+			var palette = load(palette_path)
+			flashlight_shader.material.set_shader_parameter("u_color_tex", palette)
+			spectral_dither_shader.material.set_shader_parameter("u_color_tex", palette)
+		death_palette += 0.5
+	else:
+		flashlight_shader.material.set_shader_parameter("u_color_tex", flashlight_palette)
+		spectral_dither_shader.material.set_shader_parameter("u_color_tex", spectral_dither_palette)
 
 func _physics_process(delta):
 	"""Make sure that we don't run when the player lost"""
@@ -203,7 +223,7 @@ func draw_item():
 	pass
 
 func death():
-	if is_game_over == true or END_GAME_WHEN_OUT_OF_POWER != true:
+	if is_game_over == true or not END_GAME_WHEN_OUT_OF_POWER:
 		if power.power_is_zero.is_connected(death):
 			power.power_is_zero.disconnect(death)
 		return

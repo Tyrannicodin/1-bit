@@ -11,5 +11,5 @@ export_presets.cfg
 .mono/
 data_*/
 
-/*.png
-/*.png.import
+assets/shaders/dithering/death/*.png
+assets/shaders/dithering/death/*.png.import
