@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var recursion_depth := 3
+@export var recursion_depth := 5
 
 @onready var mesh_template = $MeshInstance3D
 
@@ -31,7 +31,6 @@ func pick_room():
 		# Find the first category that is less than the chosen probability and select it
 		if chance[1] < selected_idx:
 			selected_cat = chance[0]
-			break
 	if selected_cat:
 		return random_choice(rooms[selected_cat])
 	return random_choice(end) # If no valid room from category, end this path
@@ -64,21 +63,14 @@ func create_ceiling_and_walls(new_room, new_area):
 
 func try_place_room(door:Node3D, new_door:Node3D, new_room:Node3D):	
 	# find the required rotation of the room
-	var original_rot = new_door.global_rotation_degrees
 	var door_rotation = door.global_rotation.y - new_door.global_rotation.y - PI
-		
-	new_room.global_rotation.y += door_rotation
-	if new_room.name == "1":
-		print(door_rotation)
-		print(new_door.global_rotation)
-		print(door.global_rotation)
 	
-	# rotate the door's position to find the proper offset
-	var new_door_position = new_door.position.rotated(Vector3.UP, door_rotation)
+	new_room.global_position = Vector3(0, 0, 0)
+	new_room.global_rotate(Vector3.UP, door_rotation)
 	
 	# set position so it the two door touches
-	new_room.global_position.x = door.global_position.x - new_door_position.x
-	new_room.global_position.z = door.global_position.z - new_door_position.z
+	new_room.global_position.x = door.global_position.x - new_door.global_position.x
+	new_room.global_position.z = door.global_position.z - new_door.global_position.z
 	
 	# Create room bounding
 	var new_area:CollisionShape3D = new_room.get_node("area").get_child(0)
@@ -91,8 +83,8 @@ func try_place_room(door:Node3D, new_door:Node3D, new_room:Node3D):
 		if room.intersects(new_bounding):
 			new_room.queue_free()
 			return false
-	print(door.global_rotation_degrees, original_rot)
 	room_boundings.append(new_bounding)
+	door.queue_free()
 	return true
 
 func place_end(door):
@@ -152,7 +144,6 @@ func generate_new_branch(base_room: Node3D):
 			if not new_room.is_queued_for_deletion():
 				next_recursion.append(new_room)
 			door.set_meta("connected", true)
-			door.queue_free()
 	# output for next level of recursion
 	return next_recursion
 	
@@ -170,7 +161,7 @@ func _ready():
 	
 	# First create a base child
 	var base_room = random_choice(entrance).instantiate()
-	add_child(base_room)
+	$rooms.add_child(base_room)
 	var base_area:CollisionShape3D = base_room.get_node("area").get_child(0)
 	var base_aabb = AABB(base_room.global_position, base_area.shape.size)
 	room_boundings.append(base_aabb)
@@ -180,3 +171,5 @@ func _ready():
 	for i in recursion_depth:
 		var new_nodes = generate_new_branch(base_room)
 		generate_branches(new_nodes, recursion_depth-1)
+	
+	$rooms.bake_navigation_mesh()
