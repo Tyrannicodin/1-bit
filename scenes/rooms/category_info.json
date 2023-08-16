@@ -1,7 +1,6 @@
 {
-	"bathroom": 0.5,
+	"recreation": 1,
 	"bedroom": 1,
 	"food": 1,
 	"hallway": 0.1,
-	"recreation": 1
 }
