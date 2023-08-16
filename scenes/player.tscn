@@ -242,8 +242,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 remote_path = NodePath("../GameContainer/GameViewport/MainViewportContainer/MainViewport/Camera")
 
 [node name="RayCast3D" type="RayCast3D" parent="cameraLoc"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-target_position = Vector3(0, -5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.015721, 0)
+target_position = Vector3(0, 0, -3)
+collide_with_areas = true
+debug_shape_custom_color = Color(1, 0, 0, 1)
+debug_shape_thickness = 5
 
 [node name="GameContainer" type="SubViewportContainer" parent="."]
 offset_right = 40.0

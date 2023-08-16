@@ -28,6 +28,8 @@ var available_interactions = []
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+# THe previous node that the player looked at.
+var last_looked_at = null
 
 func _ready():
 	"""Setup for game"""
@@ -106,7 +108,16 @@ func _physics_process(delta):
 
 	# Ray casting to see what the player is looking at
 	var looking_at = raycast3d.get_collider()
-	print(looking_at)
+
+	if last_looked_at != null and looking_at != last_looked_at:
+		if last_looked_at.is_in_group("ITEM_3D"):
+			last_looked_at.unfocus()
+
+	if looking_at != last_looked_at:
+		if looking_at != null and looking_at.is_in_group("ITEM_3D"):
+			looking_at.focus()
+
+		last_looked_at = looking_at
 
 	move_and_slide()
 

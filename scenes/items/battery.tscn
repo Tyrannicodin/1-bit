@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://78ud10khh2yw"]
+[gd_scene load_steps=4 format=3 uid="uid://78ud10khh2yw"]
+
+[ext_resource type="Script" path="res://scripts/items/item_3D.gd" id="1_ws3ue"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v18mc"]
 size = Vector3(0.1, 0.1, 0.2)
@@ -7,6 +9,7 @@ size = Vector3(0.1, 0.1, 0.2)
 size = Vector3(0.1, 0.1, 0.2)
 
 [node name="StaticBody3D" type="StaticBody3D"]
+script = ExtResource("1_ws3ue")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_v18mc")
