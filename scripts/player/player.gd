@@ -3,7 +3,7 @@ extends CharacterBody3D
 const SPEED = 3
 const JUMP_VELOCITY = 4.5
 
-var VIEW_MODE = "flashlight"
+@export var VIEW_MODE = "flashlight"
 
 @onready var torch_power = $GameContainer/GameViewport/MainViewportContainer/MainViewport/Camera/Torch.light_energy
 @onready var camera = $"cameraLoc"

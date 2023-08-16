@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://com6fd5ykhrct"]
+[gd_scene load_steps=48 format=3 uid="uid://com6fd5ykhrct"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_o7pwf"]
 [ext_resource type="Shader" path="res://assets/shaders/edge_detection/shader.gdshader" id="2_7eeor"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b1msi2g1wbpsx" path="res://assets/ui/power_bar.png" id="7_mvmnc"]
 [ext_resource type="Texture2D" uid="uid://dnaidbtpymjor" path="res://assets/ui/hotbar_slot.png" id="8_1ktqa"]
 [ext_resource type="Texture2D" uid="uid://bq3q0m8w8q6d6" path="res://assets/ui/flashlight.png" id="8_y0o0g"]
+[ext_resource type="Script" path="res://scripts/power_bar.gd" id="9_txuw2"]
 [ext_resource type="Texture2D" uid="uid://n62cunvv8u14" path="res://assets/ui/e_icon.png" id="11_511jd"]
 [ext_resource type="Texture2D" uid="uid://ckiqh638hwrh5" path="res://assets/ui/selected_slot.png" id="11_i1i0r"]
 [ext_resource type="Texture2D" uid="uid://dphibpmijdrsi" path="res://assets/ui/radar.png" id="11_jjlj8"]
@@ -378,6 +379,7 @@ value = 50.0
 fill_mode = 3
 texture_under = ExtResource("7_mvmnc")
 texture_progress = ExtResource("7_hnq16")
+script = ExtResource("9_txuw2")
 
 [node name="Mainhand" type="HBoxContainer" parent="GameContainer/GameViewport/UIViewport/VBoxContainer"]
 layout_mode = 2
