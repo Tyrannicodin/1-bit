@@ -37,7 +37,7 @@
 [ext_resource type="AudioStream" uid="uid://chiavgqgg0p5g" path="res://assets/audio/footsteps/footsteps-6.mp3" id="30_xr3gv"]
 [ext_resource type="AudioStream" uid="uid://ul836mjv8u3" path="res://assets/audio/footsteps/footsteps-7.mp3" id="31_0ny0r"]
 [ext_resource type="AudioStream" uid="uid://b2kwtyprk6o5h" path="res://assets/audio/footsteps/footsteps-8.mp3" id="32_dwlp3"]
-[ext_resource type="PackedScene" uid="uid://dkp0ee0b5vhfl" path="res://scenes/game_over.tscn" id="38_xge84"]
+[ext_resource type="PackedScene" path="res://scenes/game_over.tscn" id="38_xge84"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_soasp"]
 radius = 0.25
