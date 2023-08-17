@@ -52,9 +52,9 @@ func load_rooms():
 func create_ceiling_and_walls(new_room, new_area):
 	var ceiling_mesh:MeshInstance3D = mesh_template.duplicate()
 	new_room.add_child(ceiling_mesh)
-	ceiling_mesh.global_position.x = new_room.global_position.x
+	ceiling_mesh.global_position.x = new_area.global_position.x
 	ceiling_mesh.global_position.y = 3
-	ceiling_mesh.global_position.z = new_room.global_position.z
+	ceiling_mesh.global_position.z = new_area.global_position.z
 	ceiling_mesh.scale.x = new_area.shape.size.x
 	ceiling_mesh.scale.z = new_area.shape.size.z
 	ceiling_mesh.scale.y = 0.1
@@ -156,6 +156,10 @@ func generate_new_branch(base_room: Node3D):
 	
 func generate_branches(new_nodes: Array[Node], depth: int):
 	if depth == 0:
+		for node in new_nodes:
+			for door in node.get_children():
+				if "door" in door.name:
+					place_end(door)
 		return
 	for node in new_nodes:
 		generate_branches(generate_new_branch(node), depth-1)

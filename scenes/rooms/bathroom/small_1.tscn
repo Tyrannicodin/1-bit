@@ -13,8 +13,8 @@
 size = Vector3(10, 2, 8)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_qdfib"]
-vertices = PackedVector3Array(-4.5, 0.5, -3.5, -4.5, 0.5, 3.5, 4.5, 0.5, 3.5, 4.5, 0.5, -3.5)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+vertices = PackedVector3Array(-4.5, 0.5, 3.5, -3.25, 0.5, 3.5, -3, 0.5, 3, -3.25, 0.5, 2, -4.5, 0.5, 2, -3, 0.5, 1, -3.25, 0.5, 2, -3, 0.5, 3, -1, 0.5, 0.75, -0.5, 0.5, -3.5, -0.75, 0.5, -1.5, 1, 0.5, 0, 4.5, 0.5, -1, 4.5, 0.5, -3.5, -4.5, 0.5, -3.5, -4.5, 0.5, -2, -3.25, 0.5, -2, -2.75, 0.5, -3.5, -1, 0.5, 0.75, -3, 0.5, 3, 1.5, 0.5, 3.5, 1, 0.5, 0, -2.5, 0.5, -1.5, -2.75, 0.5, -3.5, -3.25, 0.5, -2, -3, 0.5, -1, -0.75, 0.5, -1.5, -1, 0.5, -0.75, -1, 0.5, 0.75, 1, 0.5, 0, -2.5, 0.5, -1.5, -3, 0.5, -1, -1, 0.5, -0.75, -0.75, 0.5, -1.5, -4, 0.75, -0.75, -4, 0.75, -0.25, -3.25, 0.5, -0.25, -3.25, 0.5, -0.75, 4.5, 0.5, 1.25, 3.25, 0.5, 1.5, 3.75, 0.5, 2.25, 3.75, 0.5, 2.25, 3.5, 0.5, 3.5, 4.5, 0.5, 3.5, 4.5, 0.5, 1.25)
+polygons = [PackedInt32Array(2, 1, 3), PackedInt32Array(3, 1, 0), PackedInt32Array(3, 0, 4), PackedInt32Array(6, 5, 7), PackedInt32Array(7, 5, 8), PackedInt32Array(10, 9, 11), PackedInt32Array(11, 9, 12), PackedInt32Array(12, 9, 13), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 17), PackedInt32Array(21, 20, 18), PackedInt32Array(18, 20, 19), PackedInt32Array(25, 24, 22), PackedInt32Array(22, 24, 23), PackedInt32Array(27, 26, 28), PackedInt32Array(28, 26, 29), PackedInt32Array(33, 32, 30), PackedInt32Array(30, 32, 31), PackedInt32Array(37, 36, 34), PackedInt32Array(34, 36, 35), PackedInt32Array(40, 39, 38), PackedInt32Array(42, 41, 43), PackedInt32Array(43, 41, 44)]
 agent_height = 1.25
 agent_radius = 0.35
 
@@ -121,6 +121,33 @@ navigation_mesh = SubResource("NavigationMesh_qdfib")
 mesh = SubResource("PlaneMesh_0bwv8")
 skeleton = NodePath("../..")
 
+[node name="armchair" parent="region" instance=ExtResource("4_u670b")]
+transform = Transform3D(0.899703, 0, 0.436503, 0, 1, 0, -0.436503, 0, 0.899703, 2.42094, 0, 2.56863)
+
+[node name="armchair2" parent="region" instance=ExtResource("4_u670b")]
+transform = Transform3D(-0.0764579, 0, 0.997073, 0, 1, 0, -0.997073, 0, -0.0764579, 3.93552, 0, 0.245698)
+
+[node name="coffee_table" parent="region" instance=ExtResource("5_h1dqc")]
+transform = Transform3D(0.996711, 0, 0.081034, 0, 1, 0, -0.081034, 0, 0.996711, 2.17956, 0, 0.768791)
+
+[node name="shelf" parent="region" instance=ExtResource("6_dixs7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.22792, 1.26205, 3.39614)
+
+[node name="shelf2" parent="region" instance=ExtResource("6_dixs7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.70657, 2.18825, 3.39614)
+
+[node name="sofa" parent="region" instance=ExtResource("7_4aadu")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.18916, 0, 0)
+
+[node name="nightstand" parent="region" instance=ExtResource("8_mjxlk")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.11252, 0, 0.931713)
+
+[node name="coffee_table2" parent="region" instance=ExtResource("5_h1dqc")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.2229, 0, 0)
+
+[node name="armchair3" parent="region" instance=ExtResource("4_u670b")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -1.54882, 0, -2.56684)
+
 [node name="door_link" type="NavigationLink3D" parent="region"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 start_position = Vector3(0, 0, -1)
@@ -208,30 +235,3 @@ mesh = SubResource("BoxMesh_wtaft")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls3/walls3_col"]
 shape = SubResource("ConvexPolygonShape3D_1vbem")
-
-[node name="armchair" parent="." instance=ExtResource("4_u670b")]
-transform = Transform3D(0.899703, 0, 0.436503, 0, 1, 0, -0.436503, 0, 0.899703, 2.42094, 0, 2.56863)
-
-[node name="armchair2" parent="." instance=ExtResource("4_u670b")]
-transform = Transform3D(-0.0764579, 0, 0.997073, 0, 1, 0, -0.997073, 0, -0.0764579, 3.93552, 0, 0.245698)
-
-[node name="coffee_table" parent="." instance=ExtResource("5_h1dqc")]
-transform = Transform3D(0.996711, 0, 0.081034, 0, 1, 0, -0.081034, 0, 0.996711, 2.17956, 0, 0.768791)
-
-[node name="shelf" parent="." instance=ExtResource("6_dixs7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.22792, 1.26205, 3.39614)
-
-[node name="shelf2" parent="." instance=ExtResource("6_dixs7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.70657, 2.18825, 3.39614)
-
-[node name="sofa" parent="." instance=ExtResource("7_4aadu")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.18916, 0, 0)
-
-[node name="nightstand" parent="." instance=ExtResource("8_mjxlk")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.11252, 0, 0.931713)
-
-[node name="coffee_table2" parent="." instance=ExtResource("5_h1dqc")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.2229, 0, 0)
-
-[node name="armchair3" parent="." instance=ExtResource("4_u670b")]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -1.54882, 0, -2.56684)
