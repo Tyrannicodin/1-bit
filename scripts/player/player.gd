@@ -109,24 +109,6 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("torch"):
 		VIEW_MODE = SPECTRAL if VIEW_MODE == FLASHLIGHT else FLASHLIGHT
 		cycle_views()
-	
-	if Input.is_action_just_pressed("interact"):
-		var minimum_distance = INF
-		var minimum_node = null
-		for node in get_tree().get_nodes_in_group("interactable"):
-			if minimum_distance > global_position.distance_squared_to(node.global_position):
-				minimum_distance = global_position.distance_squared_to(node.global_position)
-				minimum_node = node
-		if minimum_node:
-			minimum_node.call("interact", self)
-	
-	if Input.is_action_just_pressed("ui_cancel"):
-		if mouse_captured:
-			mouse_captured = false
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		else:
-			mouse_captured = true
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -151,6 +133,10 @@ func _physics_process(delta):
 			close_backpack()
 		else:
 			open_backpack()
+	
+	if Input.is_action_just_pressed("ui_cancel"):
+		if backpack.opened:
+			close_backpack()
 
 	if focusing_node != null and looking_at != focusing_node:
 		tooltipButton.hide()

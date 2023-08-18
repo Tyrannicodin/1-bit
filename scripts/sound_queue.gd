@@ -8,7 +8,7 @@ func _ready():
 	count = get_child_count()
 
 func play():
-	get_child(rng.randf_range(0, count)).play()
+	get_child(rng.randi_range(0, count-1)).play()
 	#if not audioStreamPlayers[next].playing:
 	#	audioStreamPlayers[next].play_sound()
 	#	next += 1
