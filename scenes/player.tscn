@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://com6fd5ykhrct"]
+[gd_scene load_steps=50 format=3 uid="uid://com6fd5ykhrct"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_o7pwf"]
 [ext_resource type="Shader" path="res://assets/shaders/edge_detection/shader.gdshader" id="2_7eeor"]
@@ -19,7 +19,6 @@
 [ext_resource type="Shader" path="res://assets/shaders/colors/ui.gdshader" id="12_cu0yb"]
 [ext_resource type="Texture2D" uid="uid://bcfmteswy1p7s" path="res://assets/ui/crosshair.png" id="12_ihcyb"]
 [ext_resource type="Texture2D" uid="uid://i2r71xeqxy57" path="res://assets/ui/m_icon.png" id="12_o2enx"]
-[ext_resource type="Texture2D" uid="uid://mnh2jp2uw5ix" path="res://assets/ui/map.png" id="12_pfnom"]
 [ext_resource type="Texture2D" uid="uid://ctse4m8h6g3v4" path="res://assets/ui/b_icon.png" id="13_fcld1"]
 [ext_resource type="Texture2D" uid="uid://pl6f8yqq0opm" path="res://assets/ui/backpack.png" id="14_55kkp"]
 [ext_resource type="AudioStream" uid="uid://b6b0qabshagq2" path="res://assets/audio/ghost_radar_loop.mp3" id="20_v6nb1"]
@@ -37,7 +36,7 @@
 [ext_resource type="AudioStream" uid="uid://chiavgqgg0p5g" path="res://assets/audio/footsteps/footsteps-6.mp3" id="30_xr3gv"]
 [ext_resource type="AudioStream" uid="uid://ul836mjv8u3" path="res://assets/audio/footsteps/footsteps-7.mp3" id="31_0ny0r"]
 [ext_resource type="AudioStream" uid="uid://b2kwtyprk6o5h" path="res://assets/audio/footsteps/footsteps-8.mp3" id="32_dwlp3"]
-[ext_resource type="PackedScene" path="res://scenes/game_over.tscn" id="38_xge84"]
+[ext_resource type="PackedScene" uid="uid://dkp0ee0b5vhfl" path="res://scenes/game_over.tscn" id="38_xge84"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_soasp"]
 radius = 0.25
@@ -466,38 +465,6 @@ offset_top = 10.0
 offset_right = -31.0
 offset_bottom = 42.0
 texture = ExtResource("11_511jd")
-stretch_mode = 2
-
-[node name="Map" type="HBoxContainer" parent="GameContainer/GameViewport/UIViewport/VBoxContainer"]
-layout_mode = 2
-
-[node name="MapBox" type="NinePatchRect" parent="GameContainer/GameViewport/UIViewport/VBoxContainer/Map"]
-layout_mode = 2
-texture = ExtResource("8_1ktqa")
-region_rect = Rect2(0.367874, 0.000366211, 31.1156, 31.6551)
-patch_margin_left = 1
-patch_margin_top = 4
-patch_margin_right = 30
-patch_margin_bottom = 28
-
-[node name="Map" type="TextureRect" parent="GameContainer/GameViewport/UIViewport/VBoxContainer/Map/MapBox"]
-layout_mode = 2
-offset_left = -1.0
-offset_top = -1.0
-offset_right = 31.0
-offset_bottom = 31.0
-texture = ExtResource("12_pfnom")
-
-[node name="NinePatchRect" type="NinePatchRect" parent="GameContainer/GameViewport/UIViewport/VBoxContainer/Map"]
-layout_mode = 2
-texture = ExtResource("12_o2enx")
-
-[node name="TextureRect" type="TextureRect" parent="GameContainer/GameViewport/UIViewport/VBoxContainer/Map/NinePatchRect"]
-layout_mode = 0
-offset_left = -9.0
-offset_top = 26.0
-offset_bottom = 66.0
-texture = ExtResource("12_o2enx")
 stretch_mode = 2
 
 [node name="Backpack" type="HBoxContainer" parent="GameContainer/GameViewport/UIViewport/VBoxContainer"]

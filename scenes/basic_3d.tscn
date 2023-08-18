@@ -26,7 +26,7 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Arr
 [sub_resource type="PlaneMesh" id="PlaneMesh_7jl0e"]
 size = Vector2(25, 25)
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D2" type="Node3D"]
 
 [node name="player" parent="." groups=["player"] instance=ExtResource("1_ukcs2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.21497)

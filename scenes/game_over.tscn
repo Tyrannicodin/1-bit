@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkp0ee0b5vhfl"]
+[gd_scene load_steps=12 format=3 uid="uid://dkp0ee0b5vhfl"]
 
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_0u6po"]
 [ext_resource type="Script" path="res://scripts/player/UIViewport.gd" id="3_q08ve"]
 [ext_resource type="Theme" uid="uid://b6x5a56bs6oov" path="res://assets/themes/ui.tres" id="4_hem1d"]
 [ext_resource type="Shader" path="res://assets/shaders/colors/ui.gdshader" id="5_n01m1"]
 [ext_resource type="Script" path="res://scripts/player/TextureRect.gd" id="6_o73t2"]
+[ext_resource type="Script" path="res://scripts/return_to_title.gd" id="6_xt4vk"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3hy6l"]
 
@@ -16,6 +17,9 @@ shader_parameter/ui_color = Color(1, 0.745098, 0.498039, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_qgcju"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Theme" id="Theme_2vm2k"]
+default_font_size = 40
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_0u6po")
@@ -68,3 +72,16 @@ offset_right = 512.0
 offset_bottom = 512.0
 texture = SubResource("ViewportTexture_qgcju")
 script = ExtResource("6_o73t2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 370.0
+offset_top = 380.0
+offset_right = 781.0
+offset_bottom = 471.0
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme = SubResource("Theme_2vm2k")
+text = "Title"
+script = ExtResource("6_xt4vk")
