@@ -1,9 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://mu58rlf25lpe"]
+[gd_scene load_steps=25 format=3 uid="uid://sw87bsvmx6wh"]
 
 [ext_resource type="PackedScene" uid="uid://dli8k0xs6b25l" path="res://scenes/furniture/table.tscn" id="1_8ii53"]
-[ext_resource type="PackedScene" uid="uid://c71xbsjo7r00h" path="res://scenes/furniture/table_chair.tscn" id="2_uuymu"]
+[ext_resource type="Texture2D" uid="uid://cl1ufweknmoa3" path="res://assets/textures/floor.png" id="1_aoip3"]
+[ext_resource type="PackedScene" path="res://scenes/furniture/table_chair.tscn" id="2_uuymu"]
 [ext_resource type="PackedScene" uid="uid://cdo1rc43j024g" path="res://scenes/furniture/door.tscn" id="3_4pj3k"]
 [ext_resource type="Texture2D" uid="uid://dpjkpy23du8g5" path="res://assets/textures/wall.png" id="4_7lbys"]
+[ext_resource type="PackedScene" uid="uid://dn4cix2xb3ln4" path="res://scenes/furniture/pictures/picture_1.tscn" id="6_cys0d"]
+[ext_resource type="PackedScene" uid="uid://cnqwq3g2p3fg0" path="res://scenes/furniture/pictures/picture_2.tscn" id="7_ebkc1"]
+[ext_resource type="PackedScene" uid="uid://c3lt7cc3yattd" path="res://scenes/furniture/pictures/picture_3.tscn" id="8_bmasf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xf57h"]
 size = Vector3(14, 2, 10)
@@ -12,7 +16,12 @@ size = Vector3(14, 2, 10)
 vertices = PackedVector3Array(0.75, 0.5, 3, -0.25, 0.5, 2.5, -0.5, 0.5, 3, 0.75, 0.5, 4.5, -2, 0.5, 2.5, -2, 0.5, -2.5, -6.5, 0.5, -4.5, -6.5, 0.5, 4.5, -2, 0.5, -2.5, -0.75, 0.5, -3, -0.75, 0.5, -4.5, -6.5, 0.5, -4.5, 0.75, 0.5, 4.5, -0.5, 0.5, 3, -1.25, 0.5, 3, 0.75, 0.5, 4.5, -1.25, 0.5, 3, -2, 0.5, 2.5, -6.5, 0.5, 4.5, 2.5, 0.5, 1.25, 1.75, 0.5, 1.5, 2, 0.5, 2.5, 6.5, 0.5, 4.5, 1.5, 0.5, -2.5, 1.75, 0.5, -1.25, 2.5, 0.5, -1, 6.5, 0.5, -4.5, -0.75, 0.5, -4.5, -0.75, 0.5, -3, 0, 0.5, -2.5, 1.5, 0.5, -2.5, 6.5, 0.5, -4.5, 2, 0.5, 2.5, 0.75, 0.5, 3, 0.75, 0.5, 4.5, 6.5, 0.5, 4.5, 2.5, 0.5, -1, 2.5, 0.5, 1.25, 6.5, 0.5, 4.5, 6.5, 0.5, -4.5, -0.75, 1.5, -0.25, -0.75, 1.5, 0.5, 1.5, 1.5, 0.5, 1.5, 1.5, -0.25)
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(4, 7, 5), PackedInt32Array(5, 7, 6), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(14, 13, 12), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(20, 19, 21), PackedInt32Array(21, 19, 22), PackedInt32Array(24, 23, 25), PackedInt32Array(25, 23, 26), PackedInt32Array(28, 27, 29), PackedInt32Array(29, 27, 30), PackedInt32Array(30, 27, 31), PackedInt32Array(33, 32, 34), PackedInt32Array(34, 32, 35), PackedInt32Array(37, 36, 38), PackedInt32Array(38, 36, 39), PackedInt32Array(43, 42, 40), PackedInt32Array(40, 42, 41)]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v8q1e"]
+albedo_texture = ExtResource("1_aoip3")
+uv1_scale = Vector3(7, 10, 1)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_userp"]
+material = SubResource("StandardMaterial3D_v8q1e")
 size = Vector2(14, 10)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqyk6"]
@@ -157,3 +166,12 @@ mesh = SubResource("BoxMesh_hedrq")
 [node name="walls4" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.25, 2, -4.95)
 mesh = SubResource("BoxMesh_j7g56")
+
+[node name="picture" parent="." instance=ExtResource("6_cys0d")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 1.38883, 4.84026)
+
+[node name="picture2" parent="." instance=ExtResource("7_ebkc1")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 1.43211, 1.38371, 4.89414)
+
+[node name="picture3" parent="." instance=ExtResource("8_bmasf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.4433, 1.3508, 4.85986)
