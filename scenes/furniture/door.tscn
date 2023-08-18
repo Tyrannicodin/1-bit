@@ -1,9 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdo1rc43j024g"]
+[gd_scene load_steps=5 format=3 uid="uid://cdo1rc43j024g"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_pk6ij"]
-size = Vector3(1, 2, 0)
+[ext_resource type="Script" path="res://scripts/models/door.gd" id="1_otxr2"]
+[ext_resource type="PackedScene" uid="uid://btrrtod6227s" path="res://assets/models/door/door.tscn" id="2_i16el"]
+[ext_resource type="PackedScene" uid="uid://c4sp2e8i1d6x5" path="res://assets/models/door_boarded/door_boarded.tscn" id="3_syvjx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0imsv"]
 
 [node name="door" type="Node3D"]
+script = ExtResource("1_otxr2")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_pk6ij")
+[node name="entrance" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_0imsv")
+
+[node name="default" parent="." instance=ExtResource("2_i16el")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="boarded" parent="." instance=ExtResource("3_syvjx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

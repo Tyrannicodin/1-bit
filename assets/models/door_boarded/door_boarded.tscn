@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4sp2e8i1d6x5"]
+
+[ext_resource type="PackedScene" uid="uid://ejn5v2l6ha00" path="res://assets/models/door_boarded/door_boarded.gltf" id="1_i7251"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_1cbce"]
+data = PackedVector3Array(0.5, 2, 0.0001, 0.5, 2, 0, 0.5, 0, 0.0001, 0.5, 0, 0.0001, 0.5, 2, 0, 0.5, 0, 0, -0.5, 2, 0, -0.5, 2, 0.0001, -0.5, 0, 0, -0.5, 0, 0, -0.5, 2, 0.0001, -0.5, 0, 0.0001, -0.5, 2, 0, 0.5, 2, 0, -0.5, 2, 0.0001, -0.5, 2, 0.0001, 0.5, 2, 0, 0.5, 2, 0.0001, -0.5, 0, 0.0001, 0.5, 0, 0.0001, -0.5, 0, 0, -0.5, 0, 0, 0.5, 0, 0.0001, 0.5, 0, 0, -0.5, 2, 0.0001, 0.5, 2, 0.0001, -0.5, 0, 0.0001, -0.5, 0, 0.0001, 0.5, 2, 0.0001, 0.5, 0, 0.0001, 0.5, 2, 0, -0.5, 2, 0, 0.5, 0, 0, 0.5, 0, 0, -0.5, 2, 0, -0.5, 0, 0)
+
+[node name="door_boarded" instance=ExtResource("1_i7251")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node2/door/main" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node2/door/main/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_1cbce")
