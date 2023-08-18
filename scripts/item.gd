@@ -1,6 +1,6 @@
-extends Object
+extends Sprite2D
 
 var grid_size: Vector2i
 
-func _init(size: Vector2i):
-	grid_size = size
+func _init(texture_: Texture2D):
+	texture = texture_

@@ -6,15 +6,7 @@ var BackpackItem = preload("res://scenes/backpack/backpack_item.gd")
 
 var current_item: BackpackItem = null
 
-var hovered: bool = false :
-	set(value):
-		hovered = value
-		if value:
-			$normal.hide()
-			$hovered.show()
-		else:
-			$normal.show()
-			$hovered.hide()
+var hovered: bool = false
 
 # Location that this cell is in the backpack
 var x: int
@@ -45,13 +37,11 @@ func _process(_delta):
 	if not (Input.is_action_just_released("mouse_left_click") and hovered):
 		return
 
-	# var bodies = $Area2D.get_overlapping_areas()
-	# if len(bodies) < 1:
-	# 	return
-
-	# var body: BackpackItem = bodies[0]
-
-	# body.set_square(self)
+	var bodies = $Area2D.get_overlapping_areas()
+	if len(bodies) < 1:
+		return
+	var body = bodies[0].get_node("..")
+	body.enter_backpack(self)
 
 func _on_area_2d_area_exited(area):
 	if area == current_item:

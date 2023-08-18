@@ -48,9 +48,6 @@ func item_rotate():
 func _init():
 	pass
 
-func _input(event):
-	print("event")
-
 func _ready():
 	for i in range(BACKPACK_SIZE.x):
 		for j in range(BACKPACK_SIZE.y):
@@ -63,8 +60,15 @@ func _ready():
 # Open the menu. Pass in all the items the user picked up as an array
 # if they have picked any up.
 # The menu is shown or hidden by hiding the root node.
-func open(add_item: Item = null):
+func open(item_texture: Texture2D = null):
 	opened = true
+
+	if item_texture != null:
+		var item = BackpackItemScene.instantiate()
+		item.set_texture(item_texture) 
+		item.position = Vector2(50, 50)
+		add_child(item)
+	
 	show()
 
 

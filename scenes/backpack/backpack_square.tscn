@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" path="res://scenes/backpack/backpack_square.gd" id="1_mj7jh"]
 [ext_resource type="Texture2D" uid="uid://dm4qkcije0d5v" path="res://assets/backpack/cell.png" id="2_c4jrv"]
-[ext_resource type="Texture2D" uid="uid://lfidrmobdkns" path="res://assets/backpack/cell_hovered.png" id="3_wfpd5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ytpx"]
+size = Vector2(32, 32)
 
 [node name="backpack_square" type="Node2D"]
 script = ExtResource("1_mj7jh")
@@ -14,14 +16,13 @@ offset_top = -16.0
 offset_right = 16.0
 offset_bottom = 16.0
 
-[node name="normal" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(0.5, 0.5)
+[node name="cell" type="Sprite2D" parent="."]
 texture = ExtResource("2_c4jrv")
 
-[node name="hovered" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_wfpd5")
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_1ytpx")
 
 [connection signal="mouse_entered" from="Rect" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Rect" to="." method="_on_area_2d_mouse_exited"]

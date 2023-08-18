@@ -24,6 +24,7 @@ enum {FLASHLIGHT, SPECTRAL}
 @onready var UI = $UIRect
 @onready var raycast3d = $cameraLoc/RayCast3D
 @onready var backpack = $GameContainer/GameViewport/UIViewport/backpack
+@onready var interaction_text = $GameContainer/GameViewport/UIViewport/VBoxContainer3/RichTextLabel
 
 # Sound
 @onready var sound_flashlight = $GameContainer/GameViewport/sound_flashlight
@@ -163,28 +164,26 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("open_backpack"):
 		if backpack.opened:
-			backpack.close()
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			mouse_captured = true
+			close_backpack()
 		else:
-			backpack.open()
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-			mouse_captured = false
+			open_backpack()
 
 	if focusing_node != null and looking_at != focusing_node:
 		if focusing_node.is_in_group("ITEM_3D"):
 			focusing_node.unfocus()
+			interaction_text.hide()
 
 	if looking_at != focusing_node:
 		if looking_at != null and looking_at.is_in_group("ITEM_3D"):
 			looking_at.focus()
+			interaction_text.show()
 
 		focusing_node = looking_at
 
-
 	if Input.is_action_just_pressed("interact") and focusing_node != null:
 		if focusing_node.is_in_group("ITEM_3D"):
-			pass
+			focusing_node.queue_free()
+			open_backpack(focusing_node.get_texture())
 
 	move_and_slide()
 
@@ -241,6 +240,17 @@ func draw_item():
 	"""Called when an interactable item is searched, adds an item to the player's inventory"""
 	pass
 
+
+func open_backpack(tex: Texture2D = null):
+	backpack.open(tex)
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	mouse_captured = false
+
+func close_backpack():
+	backpack.close()
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	mouse_captured = true
+
 func death():
 	if is_game_over == true or not END_GAME_WHEN_OUT_OF_POWER:
 		if power.power_is_zero.is_connected(death):
@@ -261,5 +271,5 @@ func death():
 	sound_radar.stop()
 	sound_radar_loop.stop()
 	
-	if VIEW_MODE == "spectral":
+	if VIEW_MODE == SPECTRAL:
 		gos.get_child(1).get_material().set_shader_parameter("ui_color",Color(0.3333333333333333,1,1,1))

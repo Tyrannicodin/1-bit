@@ -12,3 +12,7 @@ func focus():
 
 func unfocus():
 	$battery.set_surface_override_material(0, item_material)
+
+
+func get_texture() -> Texture2D:
+	return load("res://assets/items/battery.png")
