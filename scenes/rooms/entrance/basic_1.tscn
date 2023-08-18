@@ -1,17 +1,19 @@
-[gd_scene load_steps=31 format=3 uid="uid://dys6vmx11g5mm"]
+[gd_scene load_steps=33 format=3 uid="uid://dys6vmx11g5mm"]
 
 [ext_resource type="PackedScene" uid="uid://cdo1rc43j024g" path="res://scenes/furniture/door.tscn" id="1_c81gd"]
 [ext_resource type="Texture2D" uid="uid://cl1ufweknmoa3" path="res://assets/textures/floor.png" id="1_dsfs5"]
 [ext_resource type="Texture2D" uid="uid://dpjkpy23du8g5" path="res://assets/textures/wall.png" id="3_qld68"]
+[ext_resource type="PackedScene" uid="uid://b2fq25mh73sqk" path="res://scenes/furniture/pictures/picture_0.tscn" id="4_j7s7n"]
+[ext_resource type="PackedScene" uid="uid://c3lt7cc3yattd" path="res://scenes/furniture/pictures/picture_3.tscn" id="5_j7l1f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r3mip"]
 size = Vector3(8, 2, 2)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_phuv8"]
-vertices = PackedVector3Array(-3.5, 0.5, -0.5, -3.5, 0.5, 0.5, 3.5, 0.5, 0.5, 3.5, 0.5, -0.5)
+vertices = PackedVector3Array(-3.75, 0.5, 0.5, 3.75, 0.5, 0.5, 3.5, 0.5, -0.5, -3.75, 0.5, -0.25)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 agent_height = 1.25
-agent_radius = 0.35
+agent_radius = 0.25
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8t2l"]
 albedo_texture = ExtResource("1_dsfs5")
@@ -134,6 +136,7 @@ end_position = Vector3(0, 0, 1)
 [node name="entrance_door" parent="." instance=ExtResource("1_c81gd")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 1, 0)
 metadata/connected = true
+metadata/entrance = true
 
 [node name="door" parent="." instance=ExtResource("1_c81gd")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 1, 0)
@@ -230,3 +233,9 @@ mesh = SubResource("BoxMesh_gvodd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls2/walls2_col"]
 shape = SubResource("ConvexPolygonShape3D_njicb")
+
+[node name="picture" parent="." instance=ExtResource("4_j7s7n")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.286646, 1.37945, 0.900201)
+
+[node name="picture2" parent="." instance=ExtResource("5_j7l1f")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.8767, 1.47132, -0.902326)

@@ -1,11 +1,10 @@
 extends CharacterBody3D
 
-const SPEED = 3
-
 enum {FLASHLIGHT, SPECTRAL}
 
-@export var VIEW_MODE = FLASHLIGHT
-@export var END_GAME_WHEN_OUT_OF_POWER = true
+@export var VIEW_MODE := FLASHLIGHT
+@export var END_GAME_WHEN_OUT_OF_POWER := true
+@export var SPEED := 150.0
 
 @onready var camera = $"cameraLoc"
 @onready var ghostCamera = $"ghostCameraLoc"
@@ -24,7 +23,6 @@ enum {FLASHLIGHT, SPECTRAL}
 @onready var UI = $UIRect
 @onready var raycast3d = $cameraLoc/RayCast3D
 @onready var backpack = $GameContainer/GameViewport/UIViewport/backpack
-@onready var interaction_text = $GameContainer/GameViewport/UIViewport/VBoxContainer3/RichTextLabel
 
 # Sound
 @onready var sound_flashlight = $GameContainer/GameViewport/sound_flashlight
@@ -47,6 +45,7 @@ enum {FLASHLIGHT, SPECTRAL}
 var is_game_over = false
 
 var mouse_captured = false
+var flashes = true
 var available_interactions = []
 var death_palette:float = 0
 
@@ -78,27 +77,11 @@ func _input(event):
 			ghostCamera.rotation_degrees.x = clamp(ghostCamera.rotation_degrees.x, -80, 60)
 
 func _process(_d):
-	get_tree().call_group("interactable", "get_available", self)
-	var minimum_distance = INF
-	var minimum_node = null
-	for node in available_interactions:
-		if minimum_distance > global_position.distance_squared_to(node.global_position):
-			minimum_distance = global_position.distance_squared_to(node.global_position)
-			minimum_node = node
-	if minimum_node:
-		tooltipButton.show()
-		tooltipLabel.show()
-		tooltipButton.text = minimum_node.tooltip_button
-		tooltipLabel.text = minimum_node.tooltip_text
-	else:
-		tooltipButton.hide()
-		tooltipLabel.hide()
-		
 	# death
 	if power.value == 0:
 		death()
 	
-	if power.value <= 10 and power.value > 0:
+	if power.value <= 10 and power.value > 0 and flashes:
 		if int(death_palette) == death_palette:
 			var palette_path = "res://assets/shaders/dithering/death/palette_"+str(death_palette)+".png"
 			if not FileAccess.file_exists(palette_path):
@@ -144,8 +127,6 @@ func _physics_process(delta):
 			mouse_captured = true
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
@@ -158,6 +139,8 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+	velocity.x = velocity.x * delta
+	velocity.z = velocity.z * delta
 
 	# Ray casting to see what the player is looking at
 	var looking_at = raycast3d.get_collider()
@@ -169,21 +152,29 @@ func _physics_process(delta):
 			open_backpack()
 
 	if focusing_node != null and looking_at != focusing_node:
+		tooltipButton.hide()
+		tooltipLabel.hide()
 		if focusing_node.is_in_group("ITEM_3D"):
 			focusing_node.unfocus()
-			interaction_text.hide()
 
 	if looking_at != focusing_node:
 		if looking_at != null and looking_at.is_in_group("ITEM_3D"):
 			looking_at.focus()
-			interaction_text.show()
-
+			tooltipButton.show()
+			tooltipLabel.show()
+			tooltipLabel.text = "pickup"
+		elif looking_at != null and looking_at.name == "door_collider":
+			tooltipButton.show()
+			tooltipLabel.show()
+			tooltipLabel.text = "close" if looking_at.parent_door.open else "open"
 		focusing_node = looking_at
 
 	if Input.is_action_just_pressed("interact") and focusing_node != null:
 		if focusing_node.is_in_group("ITEM_3D"):
-			focusing_node.queue_free()
 			open_backpack(focusing_node.get_texture())
+			focusing_node.queue_free()
+		elif focusing_node.name == "door_collider":
+			focusing_node.parent_door.toggle_open()
 
 	move_and_slide()
 
@@ -227,19 +218,6 @@ func cycle_views():
 		
 		if VIEW_MODE == SPECTRAL:
 			sound_radar_loop.play()
-
-func in_range(node:Node3D):
-	if not node in available_interactions:
-		available_interactions.append(node)
-
-func out_range(node:Node3D):
-	if node in available_interactions:
-		available_interactions.erase(node)
-
-func draw_item():
-	"""Called when an interactable item is searched, adds an item to the player's inventory"""
-	pass
-
 
 func open_backpack(tex: Texture2D = null):
 	backpack.open(tex)

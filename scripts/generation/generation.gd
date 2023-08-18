@@ -48,7 +48,7 @@ func load_rooms():
 	rooms.erase("entrance")
 	end = rooms["end"]
 	rooms.erase("end")
-	
+
 func create_ceiling_and_walls(new_room, new_area):
 	var ceiling_mesh:MeshInstance3D = mesh_template.duplicate()
 	new_room.add_child(ceiling_mesh)
@@ -64,14 +64,14 @@ func create_ceiling_and_walls(new_room, new_area):
 func try_place_room(door:Node3D, new_door:Node3D, new_room:Node3D):	
 	# find the required rotation of the room
 	var door_rotation = door.global_rotation.y - new_door.global_rotation.y - PI
-	
+
 	new_room.global_position = Vector3(0, 0, 0)
 	new_room.global_rotate(Vector3.UP, door_rotation)
 	new_room.global_rotation_degrees.y = snapped(new_room.global_rotation_degrees.y, 1)
 	# set position so it the two door touches
 	new_room.global_position.x = snapped(door.global_position.x - new_door.global_position.x, 0.001)
 	new_room.global_position.z = snapped(door.global_position.z - new_door.global_position.z, 0.001)
-	
+
 	# Create room bounding
 	var new_boundings = []
 	var area_shape
@@ -89,6 +89,7 @@ func try_place_room(door:Node3D, new_door:Node3D, new_room:Node3D):
 			if bounding.intersects(room):
 				new_room.queue_free()
 				return false
+	new_room.add_to_group("room")
 	room_boundings.append_array(new_boundings)
 	door.queue_free()
 	return true
@@ -121,7 +122,7 @@ func generate_new_branch(base_room: Node3D):
 	var next_recursion:Array[Node] = []
 	for node in base_room.get_children():
 		if node.name.contains("door"):
-			if node.get_meta("connected", false): # Ignore door if it has connection
+			if node.get_meta("connected", false) or node.is_queued_for_deletion(): # Ignore door if it has connection
 				continue
 			
 			var door = node
@@ -150,7 +151,7 @@ func generate_new_branch(base_room: Node3D):
 			new_chosen_door.set_meta("connected", true)
 			if not new_room.is_queued_for_deletion():
 				next_recursion.append(new_room)
-			door.set_meta("connected", true)
+			door.queue_free()
 	# output for next level of recursion
 	return next_recursion
 	
@@ -166,19 +167,19 @@ func generate_branches(new_nodes: Array[Node], depth: int):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	generator.seed = 0
-	
+	print(generator.seed)
+
 	load_rooms()
-	
+
 	# First create a base child
 	var base_room = random_choice(entrance).instantiate()
 	add_child(base_room)
 	var base_area:CollisionShape3D = base_room.get_node("area").get_child(0)
 	var base_aabb = AABB(base_room.global_position, base_area.shape.size)
 	room_boundings.append(base_aabb)
-	
+
 	create_ceiling_and_walls(base_room, base_area)
-	
+
 	for i in recursion_depth:
 		var new_nodes = generate_new_branch(base_room)
 		generate_branches(new_nodes, recursion_depth-1)

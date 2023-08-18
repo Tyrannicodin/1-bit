@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://btrrtod6227s"]
+
+[ext_resource type="PackedScene" uid="uid://58bh06568bon" path="res://assets/models/door/door.gltf" id="1_s1mql"]
+[ext_resource type="Script" path="res://scripts/models/door_collider.gd" id="2_2pfi2"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_g7sf8"]
+data = PackedVector3Array(0.5, 2, 0.0001, 0.5, 2, 0, 0.5, 0, 0.0001, 0.5, 0, 0.0001, 0.5, 2, 0, 0.5, 0, 0, -0.5, 2, 0, -0.5, 2, 0.0001, -0.5, 0, 0, -0.5, 0, 0, -0.5, 2, 0.0001, -0.5, 0, 0.0001, -0.5, 2, 0, 0.5, 2, 0, -0.5, 2, 0.0001, -0.5, 2, 0.0001, 0.5, 2, 0, 0.5, 2, 0.0001, -0.5, 0, 0.0001, 0.5, 0, 0.0001, -0.5, 0, 0, -0.5, 0, 0, 0.5, 0, 0.0001, 0.5, 0, 0, -0.5, 2, 0.0001, 0.5, 2, 0.0001, -0.5, 0, 0.0001, -0.5, 0, 0.0001, 0.5, 2, 0.0001, 0.5, 0, 0.0001, 0.5, 2, 0, -0.5, 2, 0, 0.5, 0, 0, 0.5, 0, 0, -0.5, 2, 0, -0.5, 0, 0)
+
+[node name="door" instance=ExtResource("1_s1mql")]
+
+[node name="door" parent="Node2" index="0"]
+transform = Transform3D(0.21644, 0, -0.976296, 0, 1, 0, 0.976296, 0, 0.21644, 0.5, 0, 0)
+
+[node name="door_collider" type="StaticBody3D" parent="Node2/door/main" index="0"]
+script = ExtResource("2_2pfi2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node2/door/main/door_collider" index="0"]
+shape = SubResource("ConcavePolygonShape3D_g7sf8")
+
+[node name="handle" parent="Node2/door" index="1"]
+transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -0.84375, 0.90625, 0)

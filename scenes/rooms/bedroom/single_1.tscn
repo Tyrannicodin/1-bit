@@ -1,23 +1,37 @@
-[gd_scene load_steps=19 format=3 uid="uid://10chl1xiln0a"]
+[gd_scene load_steps=29 format=3 uid="uid://10chl1xiln0a"]
 
 [ext_resource type="PackedScene" uid="uid://bn68d0yyyvxu1" path="res://scenes/furniture/single_bed.tscn" id="1_40mih"]
+[ext_resource type="Texture2D" uid="uid://cl1ufweknmoa3" path="res://assets/textures/floor.png" id="1_hpw1h"]
 [ext_resource type="PackedScene" uid="uid://bce865o02npf3" path="res://scenes/furniture/nightstand.tscn" id="2_kbtpf"]
 [ext_resource type="PackedScene" uid="uid://cdo1rc43j024g" path="res://scenes/furniture/door.tscn" id="3_8b4iy"]
 [ext_resource type="PackedScene" uid="uid://c0vt2qo2x42i2" path="res://scenes/furniture/bookshelf.tscn" id="4_337i0"]
+[ext_resource type="Texture2D" uid="uid://b18hjb7wj3bkp" path="res://assets/textures/carnation_wallpaper.png" id="5_515kv"]
+[ext_resource type="PackedScene" uid="uid://c3lt7cc3yattd" path="res://scenes/furniture/pictures/picture_3.tscn" id="7_3ejqh"]
+[ext_resource type="PackedScene" uid="uid://cnqwq3g2p3fg0" path="res://scenes/furniture/pictures/picture_2.tscn" id="8_o2w5t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q707g"]
 size = Vector3(5, 2, 5)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_iw3vh"]
-vertices = PackedVector3Array(1, 0.5, -0.25, 2, 0.5, 2, 2, 0.5, -2, 0.25, 0.5, -2, -2, 0.5, -0.5, -2, 0.5, 2, -1, 0.5, 1.75, -0.75, 0.5, -0.25, 1, 0.5, -0.25, 0.25, 0.5, -2, -0.25, 0.5, -0.5, -0.75, 0.5, -0.25, 1, 0.5, -0.25, -0.25, 0.5, -0.5, -2, 0.5, -0.5)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(6, 5, 7), PackedInt32Array(7, 5, 4), PackedInt32Array(10, 9, 8), PackedInt32Array(14, 13, 11), PackedInt32Array(11, 13, 12)]
+vertices = PackedVector3Array(1, 0.75, 1.5, 1.5, 0.5, 2.25, 2.25, 0.5, 2.25, 2.25, 0.5, -2.25, 0.75, 0.5, 0, -0.5, 0.5, -0.75, -0.5, 0.5, 0, 0.75, 0.5, 0, 2.25, 0.5, -2.25, 0, 0.5, -2.25, -2.25, 0.5, -0.75, -2.25, 0.5, 2.25, -0.75, 0.5, 2, -0.5, 0.5, 0, -0.5, 0.5, -0.75, -2.25, 2.5, -2, -2.25, 2.5, -1.25, -0.5, 2.5, -1.25, -0.5, 2.5, -2, 0.75, 1, 1.75, 1, 1.25, 2.25, 0.5, 1, 0.5, 0.75, 0.5, 1.375, -0.25, 1, 1.75, 0.75, 1, 1.75, 0.5, 1, 0.5, -0.25, 1, 0.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(6, 5, 7), PackedInt32Array(7, 5, 9), PackedInt32Array(7, 9, 8), PackedInt32Array(14, 13, 10), PackedInt32Array(10, 13, 12), PackedInt32Array(10, 12, 11), PackedInt32Array(18, 17, 15), PackedInt32Array(15, 17, 16), PackedInt32Array(20, 19, 22), PackedInt32Array(22, 19, 21), PackedInt32Array(26, 25, 23), PackedInt32Array(23, 25, 24)]
 agent_height = 1.25
-agent_radius = 0.35
+agent_radius = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x8ot1"]
+albedo_texture = ExtResource("1_hpw1h")
+uv1_scale = Vector3(2.5, 2.5, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3b4ch"]
+material = SubResource("StandardMaterial3D_x8ot1")
 size = Vector2(5, 5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vmy1"]
+albedo_texture = ExtResource("5_515kv")
+uv1_scale = Vector3(5, 4, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_iqy2x"]
+material = SubResource("StandardMaterial3D_5vmy1")
 size = Vector3(5, 4, 0.1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_crum2"]
@@ -26,25 +40,45 @@ points = PackedVector3Array(-2.53869, -2.03968, -0.0896825, 2.53869, 2.00794, 0.
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_t6id1"]
 points = PackedVector3Array(-2.53869, -2.03968, -0.0896825, 2.53869, 2.00794, 0.0690476, 2.53869, 2.00794, -0.0896825, -2.53869, 2.00794, 0.0690476, 2.53869, -2.03968, 0.0690476, 2.53869, -2.03968, -0.0896825, -2.53869, 2.00794, -0.0896825, -2.53869, -2.03968, 0.0690476)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6n04e"]
+albedo_texture = ExtResource("5_515kv")
+uv1_scale = Vector3(4.8, 4, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_81dco"]
+material = SubResource("StandardMaterial3D_6n04e")
 size = Vector3(0.1, 4, 4.8)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rel3e"]
 points = PackedVector3Array(0.0642857, 2.07619, 2.4381, -0.0880952, -2.0381, -2.4381, 0.0642857, -2.0381, -2.4381, -0.0880952, -2.0381, 2.4381, -0.0880952, 2.07619, -2.4381, 0.0642857, 2.07619, -2.4381, 0.0642857, -2.0381, 2.4381, -0.0880952, 2.07619, 2.4381)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nxav1"]
+albedo_texture = ExtResource("5_515kv")
+uv1_scale = Vector3(2.9, 4, 0.1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_j3sk8"]
+material = SubResource("StandardMaterial3D_nxav1")
 size = Vector3(0.1, 4, 2.9)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_58ngl"]
 points = PackedVector3Array(-0.0817274, -2.03175, -1.48175, 0.108712, 2.03175, 1.50238, -0.0817274, 2.03175, 1.50238, 0.108712, -2.03175, 1.50238, 0.108712, 2.03175, -1.48175, -0.0817274, 2.03175, -1.48175, -0.0817274, -2.03175, 1.50238, 0.108712, -2.03175, -1.48175)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j8hj5"]
+albedo_texture = ExtResource("5_515kv")
+uv1_scale = Vector3(0.9, 4, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_xpb1c"]
+material = SubResource("StandardMaterial3D_j8hj5")
 size = Vector3(0.1, 4, 0.9)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_f2da4"]
 points = PackedVector3Array(-0.0817274, -2.03175, -0.481746, 0.108712, 2.03175, 0.470635, -0.0817274, 2.03175, 0.470635, 0.108712, -2.03175, 0.470635, 0.108712, 2.03175, -0.481746, -0.0817274, 2.03175, -0.481746, -0.0817274, -2.03175, 0.470635, 0.108712, -2.03175, -0.481746)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hde2l"]
+albedo_texture = ExtResource("5_515kv")
+uv1_scale = Vector3(1, 2, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_sp1ti"]
+material = SubResource("StandardMaterial3D_hde2l")
 size = Vector3(0.1, 2, 1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3sjg8"]
@@ -73,13 +107,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.76869)
 [node name="nightstand" parent="region" instance=ExtResource("2_kbtpf")]
 transform = Transform3D(0.57, 0, 0, 0, 0.57, 0, 0, 0, 0.57, 0.776667, 0, 2.02253)
 
+[node name="bookshelf" parent="region" instance=ExtResource("4_337i0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.87528, 0, -1.73208)
+
 [node name="door_link" type="NavigationLink3D" parent="region"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -1)
 start_position = Vector3(-1, 0, 0)
 end_position = Vector3(1, 0, 0)
 
-[node name="bookshelf" parent="region" instance=ExtResource("4_337i0")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.87528, 0, -1.73208)
+[node name="door" parent="." instance=ExtResource("3_8b4iy")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.5, 1, -1)
 
 [node name="walls" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2.45)
@@ -137,3 +174,9 @@ shape = SubResource("ConvexPolygonShape3D_3sjg8")
 
 [node name="door" parent="." instance=ExtResource("3_8b4iy")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.5, 1, -1)
+
+[node name="picture" parent="." instance=ExtResource("7_3ejqh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.40488, 1.48103, 0.710722)
+
+[node name="picture2" parent="." instance=ExtResource("8_o2w5t")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.000821948, 1.76277, 2.39756)
