@@ -1,11 +1,10 @@
 extends CharacterBody3D
 
-const SPEED = 3
-
 enum {FLASHLIGHT, SPECTRAL}
 
-@export var VIEW_MODE = FLASHLIGHT
-@export var END_GAME_WHEN_OUT_OF_POWER = true
+@export var VIEW_MODE := FLASHLIGHT
+@export var END_GAME_WHEN_OUT_OF_POWER := true
+@export var SPEED := 150.0
 
 @onready var camera = $"cameraLoc"
 @onready var ghostCamera = $"ghostCameraLoc"
@@ -144,8 +143,6 @@ func _physics_process(delta):
 			mouse_captured = true
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
@@ -158,6 +155,8 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+	velocity.x = velocity.x * delta
+	velocity.z = velocity.z * delta
 
 	# Ray casting to see what the player is looking at
 	var looking_at = raycast3d.get_collider()

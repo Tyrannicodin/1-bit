@@ -247,7 +247,7 @@ viewport_path = NodePath("GameContainer/GameViewport/UIViewport")
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_o7pwf")
 
-[node name="Collider" type="CollisionShape3D" parent="."]
+[node name="collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_soasp")
 
 [node name="ghostCameraLoc" type="RemoteTransform3D" parent="."]
@@ -260,6 +260,7 @@ remote_path = NodePath("../GameContainer/GameViewport/MainViewportContainer/Main
 
 [node name="RayCast3D" type="RayCast3D" parent="cameraLoc"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.015721, 0)
+visible = false
 target_position = Vector3(0, 0, -3)
 collide_with_areas = true
 debug_shape_custom_color = Color(1, 0, 0, 1)

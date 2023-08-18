@@ -8,17 +8,25 @@
 size = Vector3(1.00381, 1.6959, 1)
 
 [node name="ghost" type="CharacterBody3D" groups=["ghost"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 2
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_7f2kv")
 
-[node name="Collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0674825, 0)
+[node name="collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 shape = SubResource("BoxShape3D_rkwbi")
 
-[node name="Navigator" type="NavigationAgent3D" parent="."]
+[node name="navigator" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
 radius = 1.0
 
 [node name="ghost" parent="." instance=ExtResource("2_cynw8")]
 script = ExtResource("3_cm2o2")
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+
+[node name="ray" type="RayCast3D" parent="head"]
+target_position = Vector3(0, 0, -500)
+debug_shape_custom_color = Color(1, 0, 0, 1)

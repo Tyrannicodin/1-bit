@@ -89,6 +89,7 @@ func try_place_room(door:Node3D, new_door:Node3D, new_room:Node3D):
 			if bounding.intersects(room):
 				new_room.queue_free()
 				return false
+	new_room.add_to_group("room")
 	room_boundings.append_array(new_boundings)
 	door.queue_free()
 	return true
@@ -166,7 +167,7 @@ func generate_branches(new_nodes: Array[Node], depth: int):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	generator.seed = 0
+	#generator.seed = 0
 	
 	load_rooms()
 	
