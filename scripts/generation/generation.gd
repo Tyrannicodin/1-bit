@@ -161,6 +161,9 @@ func generate_branches(new_nodes: Array[Node], depth: int):
 				if "door" in door.name:
 					place_end(door)
 		return
+	if len(new_nodes) == 0:
+		print(depth)
+		return
 	for node in new_nodes:
 		generate_branches(generate_new_branch(node), depth-1)
 
