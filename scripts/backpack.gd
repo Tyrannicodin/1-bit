@@ -10,6 +10,8 @@ const BackpackSquareScene = preload("res://scenes/backpack/backpack_square.tscn"
 const BackpackItemScene = preload("res://scenes/backpack/backpack_item.tscn")
 const BackpackItem = preload("res://scenes/backpack/backpack_item.gd")
 
+signal use_item
+
 var opened = false 
 
 @onready var center = $VBoxContainer/HBoxContainer/Center
@@ -57,18 +59,22 @@ func _ready():
 			backpack_square.set_location(i, j, CELL_SIZE, BACKPACK_SIZE)
 			backpack_square.hovered = false
 
+func _on_use_item(item_name: String):
+	use_item.emit(item_name)
+
 # Open the menu. Pass in all the items the user picked up as an array
 # if they have picked any up.
 # The menu is shown or hidden by hiding the root node.
-func open(item_texture: Texture2D = null):
+func open(item):
 	opened = true
 
-	if item_texture != null:
-		var item = BackpackItemScene.instantiate()
-		item.set_texture(item_texture) 
-		item.position = Vector2(50, 50)
-		add_child(item)
-	
+	if item != null:
+		var backpack_item = BackpackItemScene.instantiate()
+		backpack_item.init(item.get_texture(), item.get_item_name()) 
+		backpack_item.position = Vector2(50, 50)
+		add_child(backpack_item)
+		backpack_item.use_item.connect(_on_use_item)
+
 	show()
 
 

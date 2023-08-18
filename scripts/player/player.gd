@@ -64,6 +64,7 @@ func _ready():
 	mouse_captured = true # Capture the mouse and remember it for later
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	power.power_is_zero.connect(death)
+	backpack.use_item.connect(_on_use_item)
 	gos_viewport.visible = false
 
 func _input(event):
@@ -171,8 +172,8 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("interact") and focusing_node != null:
 		if focusing_node.is_in_group("ITEM_3D"):
-			open_backpack(focusing_node.get_texture())
 			focusing_node.queue_free()
+			open_backpack(focusing_node)
 		elif focusing_node.name == "door_collider":
 			focusing_node.parent_door.toggle_open()
 
@@ -219,8 +220,29 @@ func cycle_views():
 		if VIEW_MODE == SPECTRAL:
 			sound_radar_loop.play()
 
+<<<<<<< HEAD
 func open_backpack(tex: Texture2D = null):
 	backpack.open(tex)
+=======
+func _on_use_item(item_name: String):
+	print(item_name)
+
+func in_range(node:Node3D):
+	if not node in available_interactions:
+		available_interactions.append(node)
+
+func out_range(node:Node3D):
+	if node in available_interactions:
+		available_interactions.erase(node)
+
+func draw_item():
+	"""Called when an interactable item is searched, adds an item to the player's inventory"""
+	pass
+
+
+func open_backpack(item = null):
+	backpack.open(item)
+>>>>>>> lunar/items
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	mouse_captured = false
 

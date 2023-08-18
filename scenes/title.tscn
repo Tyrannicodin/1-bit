@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c3fgfft6ddxug"]
+[gd_scene load_steps=21 format=3 uid="uid://ccoo8l5m1ajac"]
 
 [ext_resource type="Texture2D" uid="uid://n85ohutwfk0a" path="res://assets/shaders/dithering/palette_1.png" id="1_6w3li"]
 [ext_resource type="Script" path="res://scripts/player/sub_viewports.gd" id="1_251q8"]

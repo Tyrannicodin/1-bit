@@ -16,3 +16,6 @@ func unfocus():
 
 func get_texture() -> Texture2D:
 	return load("res://assets/items/battery.png")
+
+func get_item_name() -> String:
+	return "BATTERY"

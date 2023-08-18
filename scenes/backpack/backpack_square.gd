@@ -34,6 +34,9 @@ func _process(_delta):
 	var mouse_pos = get_tree().root.get_mouse_position() / 2
 	hovered = $Rect.get_rect().has_point(mouse_pos - get_global_transform().origin)
 
+	check_pickup_item()
+
+func check_pickup_item():
 	if not (Input.is_action_just_released("mouse_left_click") and hovered):
 		return
 
@@ -46,6 +49,7 @@ func _process(_delta):
 	var body = bodies[0].get_node("..")
 	body.enter_backpack(self)
 	current_item = body
+
 
 func _on_area_2d_area_exited(area):
 	if area.get_node("..") == current_item:
