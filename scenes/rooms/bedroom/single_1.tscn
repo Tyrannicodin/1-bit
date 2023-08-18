@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://10chl1xiln0a"]
+[gd_scene load_steps=29 format=3 uid="uid://10chl1xiln0a"]
 
 [ext_resource type="PackedScene" uid="uid://bn68d0yyyvxu1" path="res://scenes/furniture/single_bed.tscn" id="1_40mih"]
 [ext_resource type="Texture2D" uid="uid://cl1ufweknmoa3" path="res://assets/textures/floor.png" id="1_hpw1h"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cdo1rc43j024g" path="res://scenes/furniture/door.tscn" id="3_8b4iy"]
 [ext_resource type="PackedScene" uid="uid://c0vt2qo2x42i2" path="res://scenes/furniture/bookshelf.tscn" id="4_337i0"]
 [ext_resource type="Texture2D" uid="uid://b18hjb7wj3bkp" path="res://assets/textures/carnation_wallpaper.png" id="5_515kv"]
+[ext_resource type="PackedScene" uid="uid://c3lt7cc3yattd" path="res://scenes/furniture/pictures/picture_3.tscn" id="7_3ejqh"]
+[ext_resource type="PackedScene" uid="uid://cnqwq3g2p3fg0" path="res://scenes/furniture/pictures/picture_2.tscn" id="8_o2w5t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q707g"]
 size = Vector3(5, 2, 5)
@@ -169,3 +171,12 @@ mesh = SubResource("BoxMesh_sp1ti")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls6/walls6_col"]
 shape = SubResource("ConvexPolygonShape3D_3sjg8")
+
+[node name="door" parent="." instance=ExtResource("3_8b4iy")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.5, 1, -1)
+
+[node name="picture" parent="." instance=ExtResource("7_3ejqh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.40488, 1.48103, 0.710722)
+
+[node name="picture2" parent="." instance=ExtResource("8_o2w5t")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.000821948, 1.76277, 2.39756)

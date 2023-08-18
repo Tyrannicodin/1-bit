@@ -1,8 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://dys6vmx11g5mm"]
+[gd_scene load_steps=33 format=3 uid="uid://dys6vmx11g5mm"]
 
 [ext_resource type="PackedScene" uid="uid://cdo1rc43j024g" path="res://scenes/furniture/door.tscn" id="1_c81gd"]
 [ext_resource type="Texture2D" uid="uid://cl1ufweknmoa3" path="res://assets/textures/floor.png" id="1_dsfs5"]
 [ext_resource type="Texture2D" uid="uid://dpjkpy23du8g5" path="res://assets/textures/wall.png" id="3_qld68"]
+[ext_resource type="PackedScene" uid="uid://b2fq25mh73sqk" path="res://scenes/furniture/pictures/picture_0.tscn" id="4_j7s7n"]
+[ext_resource type="PackedScene" uid="uid://c3lt7cc3yattd" path="res://scenes/furniture/pictures/picture_3.tscn" id="5_j7l1f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r3mip"]
 size = Vector3(8, 2, 2)
@@ -231,3 +233,9 @@ mesh = SubResource("BoxMesh_gvodd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls2/walls2_col"]
 shape = SubResource("ConvexPolygonShape3D_njicb")
+
+[node name="picture" parent="." instance=ExtResource("4_j7s7n")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.286646, 1.37945, 0.900201)
+
+[node name="picture2" parent="." instance=ExtResource("5_j7l1f")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.8767, 1.47132, -0.902326)
