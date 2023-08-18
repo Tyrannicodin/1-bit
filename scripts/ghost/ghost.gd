@@ -5,6 +5,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var player:CharacterBody3D = null
 var first_frame := true
 var last_sighting := 0.0
+var last_target_reached := 0.0
 var idle_target:Node3D = null
 
 ## How fast the ghost goes in m/s
@@ -28,11 +29,18 @@ func _physics_process(delta):
 		if not player:
 			return # No need to move if no player found
 	
-	
-	var player_position = player.global_position
-	player_position.y = global_position.y
+	if player.global_position.distance_to(global_position) < 2:
+		if $ghost/AnimationPlayer.current_animation != "animation_ghost_leech":
+			$ghost/AnimationPlayer.stop()
+			$ghost/AnimationPlayer.play("animation_ghost_leech")
+	else:
+		if $ghost/AnimationPlayer.current_animation != "animation_ghost_idle":
+			$ghost/AnimationPlayer.stop()
+			$ghost/AnimationPlayer.play("animation_ghost_idle")
 	
 	last_sighting += delta
+	last_target_reached += delta
+	los.look_at(player.global_position)
 	if (los.get_collider().name if los.get_collider() else "") == "player":
 		last_sighting = 0
 	
@@ -45,17 +53,26 @@ func _physics_process(delta):
 		if not idle_target:
 			idle_target = get_tree().get_nodes_in_group("room").pick_random()
 		while idle_target.global_position.distance_to(global_position) < 5:
+			last_target_reached = 0
 			idle_target = get_tree().get_nodes_in_group("room").pick_random()
-		target_position = idle_target.global_position
+		if idle_target:
+			target_position = idle_target.global_position
+		else:
+			target_position = player.global_position
 	target_position.y = global_position.y
 	look_at(target_position)
 	pathfinder.target_position = player.global_position
 	var next_position = pathfinder.get_next_path_position()
 	if pathfinder.is_navigation_finished():
+		last_target_reached = 0
 		return # Pretty much nothing should happen here:
 			# If we're at the player, goal achieved!
 			# If we're at a room, we'll be redirected next frame (hopefully)
 	# Take the direction the ghost wants to go then multiply by our set speed
-	velocity = position.direction_to(next_position).normalized() * speed * delta
+	if last_target_reached < 60:
+		velocity = position.direction_to(next_position).normalized() * speed * delta
+	else:
+		velocity = Vector3()
+		position = target_position
 
 	move_and_slide()
