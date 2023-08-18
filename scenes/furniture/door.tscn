@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdo1rc43j024g"]
+[gd_scene load_steps=8 format=3 uid="uid://cdo1rc43j024g"]
 
 [ext_resource type="Script" path="res://scripts/models/door.gd" id="1_otxr2"]
 [ext_resource type="PackedScene" uid="uid://btrrtod6227s" path="res://assets/models/door/door.tscn" id="2_i16el"]
 [ext_resource type="PackedScene" uid="uid://c4sp2e8i1d6x5" path="res://assets/models/door_boarded/door_boarded.tscn" id="3_syvjx"]
+[ext_resource type="AudioStream" uid="uid://ddxb1fogsdny" path="res://assets/audio/door_open.mp3" id="4_2k3em"]
+[ext_resource type="AudioStream" uid="uid://bayhp1rx6lmxn" path="res://assets/audio/door_close.mp3" id="5_27tlp"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0imsv"]
 size = Vector3(1, 2, 0)
@@ -26,3 +28,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="boarded" parent="." instance=ExtResource("3_syvjx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="door_opening_sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_2k3em")
+
+[node name="door_close_sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_27tlp")

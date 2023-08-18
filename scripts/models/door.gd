@@ -26,9 +26,11 @@ func toggle_open():
 		return
 	if open:
 		$default/AnimationPlayer.play("animation_door_close")
+		$door_close_sound.play()
 		await $default/AnimationPlayer.animation_finished
 		open = false
 	else:
 		$default/AnimationPlayer.play("animation_door_open")
+		$door_opening_sound.play()
 		await $default/AnimationPlayer.animation_finished
 		open = true
