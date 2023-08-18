@@ -49,5 +49,8 @@ func _process(_delta):
 
 func _on_area_2d_area_exited(area):
 	if area.get_node("..") == current_item:
-		current_item.leave_backpack_goodbye()
-		current_item = null
+		clear_item()
+
+func clear_item():
+	current_item.leave_backpack_goodbye()
+	current_item = null
