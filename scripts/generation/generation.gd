@@ -106,10 +106,7 @@ func place_end(door):
 	while not placed:
 		new_room.queue_free()
 		if len(available_rooms) == 0:
-			# TODO: make door get boarded up
-			door.set_meta("connected", true)
-			door.set_meta("boarded", true)
-			return
+			return false
 		new_packed_scene = random_choice(end)
 		available_rooms.erase(new_packed_scene)
 		new_room = new_packed_scene.instantiate()
@@ -117,6 +114,7 @@ func place_end(door):
 		placed = try_place_room(door, new_room.get_node("door"), new_room)
 	door.queue_free()
 	new_room.get_node("door").set_meta("connected", true)
+	return true
 
 func generate_new_branch(base_room: Node3D):
 	var next_recursion:Array[Node] = []
@@ -143,15 +141,16 @@ func generate_new_branch(base_room: Node3D):
 				new_room_doors.erase(new_chosen_door)
 				if len(new_room_doors) == 0:
 					new_room.queue_free()
-					place_end(door)
+					if not place_end(door):
+						door.set_meta("boarded", true)
 					break
 				new_chosen_door = random_choice(new_room_doors)
 				placed = try_place_room(door, new_chosen_door, new_room)
 			# delete door so only the new one remains
-			new_chosen_door.set_meta("connected", true)
 			if not new_room.is_queued_for_deletion():
+				new_chosen_door.set_meta("connected", true)
 				next_recursion.append(new_room)
-			door.queue_free()
+				door.queue_free()
 	# output for next level of recursion
 	return next_recursion
 	

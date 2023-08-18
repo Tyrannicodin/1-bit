@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cl1ufweknmoa3" path="res://assets/textures/floor.png" id="1_7y6c0"]
 [ext_resource type="PackedScene" uid="uid://cdo1rc43j024g" path="res://scenes/furniture/door.tscn" id="2_5pguq"]
-[ext_resource type="PackedScene" uid="uid://c0vt2qo2x42i2" path="res://scenes/furniture/bookshelf.tscn" id="2_btroy"]
+[ext_resource type="PackedScene" uid="uid://bs0418e6ycfs7" path="res://scenes/furniture/bookshelf.tscn" id="2_btroy"]
 [ext_resource type="PackedScene" uid="uid://dhxn5hmn2aoos" path="res://scenes/furniture/coffee_table.tscn" id="5_h1dqc"]
 [ext_resource type="Texture2D" uid="uid://b18hjb7wj3bkp" path="res://assets/textures/carnation_wallpaper.png" id="6_oq6ax"]
 [ext_resource type="PackedScene" uid="uid://dcia34dpeya58" path="res://scenes/furniture/sofa.tscn" id="7_4aadu"]
