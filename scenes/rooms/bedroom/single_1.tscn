@@ -1,9 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://10chl1xiln0a"]
+[gd_scene load_steps=27 format=3 uid="uid://10chl1xiln0a"]
 
 [ext_resource type="PackedScene" uid="uid://bn68d0yyyvxu1" path="res://scenes/furniture/single_bed.tscn" id="1_40mih"]
+[ext_resource type="Texture2D" uid="uid://cl1ufweknmoa3" path="res://assets/textures/floor.png" id="1_hpw1h"]
 [ext_resource type="PackedScene" uid="uid://bce865o02npf3" path="res://scenes/furniture/nightstand.tscn" id="2_kbtpf"]
 [ext_resource type="PackedScene" uid="uid://cdo1rc43j024g" path="res://scenes/furniture/door.tscn" id="3_8b4iy"]
 [ext_resource type="PackedScene" uid="uid://c0vt2qo2x42i2" path="res://scenes/furniture/bookshelf.tscn" id="4_337i0"]
+[ext_resource type="Texture2D" uid="uid://b18hjb7wj3bkp" path="res://assets/textures/carnation_wallpaper.png" id="5_515kv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q707g"]
 size = Vector3(5, 2, 5)
@@ -14,10 +16,20 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Arr
 agent_height = 1.25
 agent_radius = 0.35
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x8ot1"]
+albedo_texture = ExtResource("1_hpw1h")
+uv1_scale = Vector3(2.5, 2.5, 1)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_3b4ch"]
+material = SubResource("StandardMaterial3D_x8ot1")
 size = Vector2(5, 5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vmy1"]
+albedo_texture = ExtResource("5_515kv")
+uv1_scale = Vector3(5, 4, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_iqy2x"]
+material = SubResource("StandardMaterial3D_5vmy1")
 size = Vector3(5, 4, 0.1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_crum2"]
@@ -26,25 +38,45 @@ points = PackedVector3Array(-2.53869, -2.03968, -0.0896825, 2.53869, 2.00794, 0.
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_t6id1"]
 points = PackedVector3Array(-2.53869, -2.03968, -0.0896825, 2.53869, 2.00794, 0.0690476, 2.53869, 2.00794, -0.0896825, -2.53869, 2.00794, 0.0690476, 2.53869, -2.03968, 0.0690476, 2.53869, -2.03968, -0.0896825, -2.53869, 2.00794, -0.0896825, -2.53869, -2.03968, 0.0690476)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6n04e"]
+albedo_texture = ExtResource("5_515kv")
+uv1_scale = Vector3(4.8, 4, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_81dco"]
+material = SubResource("StandardMaterial3D_6n04e")
 size = Vector3(0.1, 4, 4.8)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rel3e"]
 points = PackedVector3Array(0.0642857, 2.07619, 2.4381, -0.0880952, -2.0381, -2.4381, 0.0642857, -2.0381, -2.4381, -0.0880952, -2.0381, 2.4381, -0.0880952, 2.07619, -2.4381, 0.0642857, 2.07619, -2.4381, 0.0642857, -2.0381, 2.4381, -0.0880952, 2.07619, 2.4381)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nxav1"]
+albedo_texture = ExtResource("5_515kv")
+uv1_scale = Vector3(2.9, 4, 0.1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_j3sk8"]
+material = SubResource("StandardMaterial3D_nxav1")
 size = Vector3(0.1, 4, 2.9)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_58ngl"]
 points = PackedVector3Array(-0.0817274, -2.03175, -1.48175, 0.108712, 2.03175, 1.50238, -0.0817274, 2.03175, 1.50238, 0.108712, -2.03175, 1.50238, 0.108712, 2.03175, -1.48175, -0.0817274, 2.03175, -1.48175, -0.0817274, -2.03175, 1.50238, 0.108712, -2.03175, -1.48175)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j8hj5"]
+albedo_texture = ExtResource("5_515kv")
+uv1_scale = Vector3(0.9, 4, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_xpb1c"]
+material = SubResource("StandardMaterial3D_j8hj5")
 size = Vector3(0.1, 4, 0.9)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_f2da4"]
 points = PackedVector3Array(-0.0817274, -2.03175, -0.481746, 0.108712, 2.03175, 0.470635, -0.0817274, 2.03175, 0.470635, 0.108712, -2.03175, 0.470635, 0.108712, 2.03175, -0.481746, -0.0817274, 2.03175, -0.481746, -0.0817274, -2.03175, 0.470635, 0.108712, -2.03175, -0.481746)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hde2l"]
+albedo_texture = ExtResource("5_515kv")
+uv1_scale = Vector3(1, 2, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_sp1ti"]
+material = SubResource("StandardMaterial3D_hde2l")
 size = Vector3(0.1, 2, 1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3sjg8"]
