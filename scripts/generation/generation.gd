@@ -151,7 +151,7 @@ func generate_new_branch(base_room: Node3D):
 			new_chosen_door.set_meta("connected", true)
 			if not new_room.is_queued_for_deletion():
 				next_recursion.append(new_room)
-			door.set_meta("connected", true)
+			door.queue_free()
 	# output for next level of recursion
 	return next_recursion
 	
@@ -167,7 +167,7 @@ func generate_branches(new_nodes: Array[Node], depth: int):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#generator.seed = 0
+	print(generator.seed)
 
 	load_rooms()
 
