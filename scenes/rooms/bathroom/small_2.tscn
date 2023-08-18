@@ -105,7 +105,7 @@ size = Vector3(1, 2, 0.1)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1vbem"]
 points = PackedVector3Array(0.531746, 1.01587, 0.0610863, -0.515873, -1.01587, -0.0658482, -0.515873, -1.01587, 0.0610863, -0.515873, 1.01587, -0.0658482, 0.531746, -1.01587, -0.0658482, 0.531746, -1.01587, 0.0610863, -0.515873, 1.01587, 0.0610863, 0.531746, 1.01587, -0.0658482)
 
-[node name="recreation_1" type="Node3D"]
+[node name="recreation_2" type="Node3D"]
 
 [node name="area" type="Area3D" parent="."]
 

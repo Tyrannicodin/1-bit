@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ccoo8l5m1ajac"]
+[gd_scene load_steps=23 format=3 uid="uid://c3fgfft6ddxug"]
 
 [ext_resource type="Texture2D" uid="uid://n85ohutwfk0a" path="res://assets/shaders/dithering/palette_1.png" id="1_6w3li"]
 [ext_resource type="Script" path="res://scripts/player/sub_viewports.gd" id="1_251q8"]
@@ -6,9 +6,7 @@
 [ext_resource type="Script" path="res://scripts/player/UIViewport.gd" id="3_dcwk6"]
 [ext_resource type="Script" path="res://scripts/player/TextureRect.gd" id="4_26ra8"]
 [ext_resource type="Theme" uid="uid://b6x5a56bs6oov" path="res://assets/themes/ui.tres" id="4_a4mhb"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_qkw5p"]
-size = Vector3(2, 1, 2)
+[ext_resource type="Script" path="res://scripts/start_game.gd" id="5_pblke"]
 
 [sub_resource type="Shader" id="Shader_3cqbs"]
 code = "/* 
@@ -101,6 +99,9 @@ shader_parameter/u_dither_size = 2
 shader_parameter/u_dither_tex = SubResource("CompressedTexture2D_jp58f")
 shader_parameter/u_color_tex = ExtResource("1_6w3li")
 
+[sub_resource type="BoxMesh" id="BoxMesh_qkw5p"]
+size = Vector3(2, 1, 2)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_assat"]
 albedo_color = Color(0.52549, 0.52549, 0.52549, 1)
 
@@ -135,6 +136,9 @@ shader_parameter/ui_color = Color(1, 0.745098, 0.498039, 1)
 [sub_resource type="ViewportTexture" id="ViewportTexture_qgcju"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="Theme" id="Theme_ple0e"]
+default_font_size = 60
+
 [node name="Node3D" type="Node3D"]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
@@ -148,11 +152,7 @@ script = ExtResource("1_251q8")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.00308, 1.24983)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.536784, 0, -0.843719, -0.192836, 0.973531, -0.122685, 0.821387, 0.228555, 0.522576, 6.58927, 0.415546, -8.36695)
-mesh = SubResource("BoxMesh_qkw5p")
-skeleton = NodePath("../../..")
+current = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.92615, 0)
@@ -167,6 +167,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.536784, 0, -0.843719, -0.192836, 0.973531, -0.122685, 0.821387, 0.228555, 0.522576, 6.58927, 0.415546, -8.36695)
+mesh = SubResource("BoxMesh_qkw5p")
+skeleton = NodePath("../../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(-0.823738, -0.156554, -0.544928, -0.246882, 0.964262, 0.0961716, 0.510397, 0.213753, -0.832949, 3.74298, 0.415546, -6.11678)
@@ -294,7 +299,7 @@ offset_bottom = 130.0
 
 [node name="Label" type="Label" parent="SubViewport/VBoxContainer"]
 layout_mode = 2
-text = "Name of Game goes here"
+text = "Sprawing Mansion"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="SubViewport/VBoxContainer"]
 layout_mode = 2
@@ -309,6 +314,7 @@ offset_bottom = 31.0
 layout_mode = 2
 theme = ExtResource("4_a4mhb")
 text = "Start"
+script = ExtResource("5_pblke")
 
 [node name="UIRect" type="TextureRect" parent="."]
 texture_filter = 3
@@ -317,3 +323,16 @@ offset_right = 512.0
 offset_bottom = 512.0
 texture = SubResource("ViewportTexture_qgcju")
 script = ExtResource("4_26ra8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 80.0
+offset_top = 250.0
+offset_right = 294.0
+offset_bottom = 341.0
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme = SubResource("Theme_ple0e")
+text = "Start   "
+script = ExtResource("5_pblke")
