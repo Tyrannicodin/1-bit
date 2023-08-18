@@ -72,8 +72,12 @@ func open(item_texture: Texture2D = null):
 	show()
 
 
-# Close the menu. Return the items that the user trashed.
-func close() -> Array[Item]:
+# Close the menu.
+func close():
 	opened = false
+
+	for node in get_tree().get_nodes_in_group("BACKPACK_ITEM"):
+		if !node.is_in_backpack:
+			node.queue_free()
+
 	hide()
-	return []

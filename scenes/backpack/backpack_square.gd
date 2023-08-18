@@ -37,12 +37,17 @@ func _process(_delta):
 	if not (Input.is_action_just_released("mouse_left_click") and hovered):
 		return
 
+	if current_item != null:
+		return
+
 	var bodies = $Area2D.get_overlapping_areas()
 	if len(bodies) < 1:
 		return
 	var body = bodies[0].get_node("..")
 	body.enter_backpack(self)
+	current_item = body
 
 func _on_area_2d_area_exited(area):
-	if area == current_item:
+	if area.get_node("..") == current_item:
+		current_item.leave_backpack_goodbye()
 		current_item = null

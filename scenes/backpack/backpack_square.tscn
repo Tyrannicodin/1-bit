@@ -26,3 +26,4 @@ shape = SubResource("RectangleShape2D_1ytpx")
 
 [connection signal="mouse_entered" from="Rect" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Rect" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
