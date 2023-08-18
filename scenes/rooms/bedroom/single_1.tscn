@@ -172,7 +172,7 @@ mesh = SubResource("BoxMesh_sp1ti")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls6/walls6_col"]
 shape = SubResource("ConvexPolygonShape3D_3sjg8")
 
-[node name="door" parent="." instance=ExtResource("3_8b4iy")]
+[node name="door2" parent="." instance=ExtResource("3_8b4iy")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.5, 1, -1)
 
 [node name="picture" parent="." instance=ExtResource("7_3ejqh")]
