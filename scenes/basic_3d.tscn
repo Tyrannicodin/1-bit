@@ -30,8 +30,6 @@ size = Vector2(25, 25)
 
 [node name="player" parent="." groups=["player"] instance=ExtResource("1_ukcs2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.21497)
-VIEW_MODE = null
-END_GAME_WHEN_OUT_OF_POWER = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_c75c4")

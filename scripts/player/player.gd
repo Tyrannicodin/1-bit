@@ -4,7 +4,7 @@ enum {FLASHLIGHT, SPECTRAL}
 
 @export var VIEW_MODE := FLASHLIGHT
 @export var END_GAME_WHEN_OUT_OF_POWER := true
-@export var SPEED := 150.0
+@export var SPEED := 150
 
 @onready var camera = $"cameraLoc"
 @onready var ghostCamera = $"ghostCameraLoc"
@@ -220,10 +220,6 @@ func cycle_views():
 		if VIEW_MODE == SPECTRAL:
 			sound_radar_loop.play()
 
-<<<<<<< HEAD
-func open_backpack(tex: Texture2D = null):
-	backpack.open(tex)
-=======
 func _on_use_item(item_name: String):
 	print(item_name)
 
@@ -242,7 +238,6 @@ func draw_item():
 
 func open_backpack(item = null):
 	backpack.open(item)
->>>>>>> lunar/items
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	mouse_captured = false
 
