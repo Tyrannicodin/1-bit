@@ -8,6 +8,8 @@ var current_item: BackpackItem = null
 
 var hovered: bool = false
 
+signal use_item
+
 # Location that this cell is in the backpack
 var x: int
 var y: int
@@ -34,6 +36,10 @@ func _process(_delta):
 	var mouse_pos = get_tree().root.get_mouse_position() / 2
 	hovered = $Rect.get_rect().has_point(mouse_pos - get_global_transform().origin)
 
+	check_pickup_item()
+	check_use_item()
+
+func check_pickup_item():
 	if not (Input.is_action_just_released("mouse_left_click") and hovered):
 		return
 
@@ -46,6 +52,18 @@ func _process(_delta):
 	var body = bodies[0].get_node("..")
 	body.enter_backpack(self)
 	current_item = body
+
+func check_use_item():
+	if not Input.is_action_just_released("mouse_right_click"):
+		return
+
+	if current_item == null:
+		return
+
+	use_item.emit(current_item.item_name)
+	current_item.queue_free()
+	clear_item()
+	
 
 func _on_area_2d_area_exited(area):
 	if area.get_node("..") == current_item:

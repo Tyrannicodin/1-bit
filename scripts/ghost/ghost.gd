@@ -7,7 +7,7 @@ var first_frame := true
 
 @export var speed = 1.5
 
-@onready var pathfinder = $Navigator
+@onready var pathfinder = $navigator
 
 func _ready():
 	player = get_tree().get_first_node_in_group("player") # Try to get the player

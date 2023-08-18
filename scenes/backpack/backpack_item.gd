@@ -13,6 +13,7 @@ var item_texture: Texture2D = null
 var should_drag = false
 var mouse_inside_me = false
 var is_in_backpack = false
+var item_name: String = ""
 
 func _ready():
 	process_priority = 1
@@ -20,8 +21,9 @@ func _ready():
 	texture.set_texture(item_texture)
 	add_to_group("BACKPACK_ITEM")
 
-func set_texture(item_texture_):
+func init(item_texture_, item_name_):
 	item_texture = item_texture_
+	item_name = item_name_
 
 func set_z_index_sub():
 	biggest_z_index += 1

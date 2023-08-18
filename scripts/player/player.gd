@@ -65,6 +65,7 @@ func _ready():
 	mouse_captured = true # Capture the mouse and remember it for later
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	power.power_is_zero.connect(death)
+	backpack.use_item.connect(_on_use_item)
 	gos_viewport.visible = false
 
 func _input(event):
@@ -183,7 +184,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("interact") and focusing_node != null:
 		if focusing_node.is_in_group("ITEM_3D"):
 			focusing_node.queue_free()
-			open_backpack(focusing_node.get_texture())
+			open_backpack(focusing_node)
 
 	move_and_slide()
 
@@ -228,6 +229,9 @@ func cycle_views():
 		if VIEW_MODE == SPECTRAL:
 			sound_radar_loop.play()
 
+func _on_use_item(item_name: String):
+	print(item_name)
+
 func in_range(node:Node3D):
 	if not node in available_interactions:
 		available_interactions.append(node)
@@ -241,8 +245,8 @@ func draw_item():
 	pass
 
 
-func open_backpack(tex: Texture2D = null):
-	backpack.open(tex)
+func open_backpack(item = null):
+	backpack.open(item)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	mouse_captured = false
 
