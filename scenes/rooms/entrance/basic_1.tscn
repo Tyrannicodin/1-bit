@@ -8,10 +8,10 @@
 size = Vector3(8, 2, 2)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_phuv8"]
-vertices = PackedVector3Array(-3.5, 0.5, -0.5, -3.5, 0.5, 0.5, 3.5, 0.5, 0.5, 3.5, 0.5, -0.5)
+vertices = PackedVector3Array(-3.75, 0.5, 0.5, 3.75, 0.5, 0.5, 3.5, 0.5, -0.5, -3.75, 0.5, -0.25)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 agent_height = 1.25
-agent_radius = 0.35
+agent_radius = 0.25
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8t2l"]
 albedo_texture = ExtResource("1_dsfs5")

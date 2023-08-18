@@ -1,16 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdo1rc43j024g"]
+[gd_scene load_steps=6 format=3 uid="uid://cdo1rc43j024g"]
 
 [ext_resource type="Script" path="res://scripts/models/door.gd" id="1_otxr2"]
 [ext_resource type="PackedScene" uid="uid://btrrtod6227s" path="res://assets/models/door/door.tscn" id="2_i16el"]
 [ext_resource type="PackedScene" uid="uid://c4sp2e8i1d6x5" path="res://assets/models/door_boarded/door_boarded.tscn" id="3_syvjx"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0imsv"]
+size = Vector3(1, 2, 0)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_p14jv"]
+data = PackedVector3Array(-0.5, 1, 0, 0.5, 1, 0, -0.5, -1, 0, 0.5, 1, 0, 0.5, -1, 0, -0.5, -1, 0, 0.5, 1, 0, -0.5, 1, 0, 0.5, -1, 0, -0.5, 1, 0, -0.5, -1, 0, 0.5, -1, 0, 0.5, 1, 0, 0.5, 1, 0, 0.5, -1, 0, 0.5, 1, 0, 0.5, -1, 0, 0.5, -1, 0, -0.5, 1, 0, -0.5, 1, 0, -0.5, -1, 0, -0.5, 1, 0, -0.5, -1, 0, -0.5, -1, 0, 0.5, 1, 0, -0.5, 1, 0, 0.5, 1, 0, -0.5, 1, 0, -0.5, 1, 0, 0.5, 1, 0, -0.5, -1, 0, 0.5, -1, 0, -0.5, -1, 0, 0.5, -1, 0, 0.5, -1, 0, -0.5, -1, 0)
 
 [node name="door" type="Node3D"]
 script = ExtResource("1_otxr2")
 
 [node name="entrance" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_0imsv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="entrance"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="entrance/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_p14jv")
 
 [node name="default" parent="." instance=ExtResource("2_i16el")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

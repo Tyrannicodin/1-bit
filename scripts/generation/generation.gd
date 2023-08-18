@@ -122,7 +122,7 @@ func generate_new_branch(base_room: Node3D):
 	var next_recursion:Array[Node] = []
 	for node in base_room.get_children():
 		if node.name.contains("door"):
-			if node.get_meta("connected", false): # Ignore door if it has connection
+			if node.get_meta("connected", false) or node.is_queued_for_deletion(): # Ignore door if it has connection
 				continue
 			
 			var door = node

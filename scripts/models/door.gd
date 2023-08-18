@@ -1,6 +1,6 @@
 extends Node3D
 
-var open = false
+var open = true
 
 @onready var meshes = [$default, $boarded, $entrance]
 
@@ -13,7 +13,7 @@ func _process(_d):
 	hide_meshes()
 	if get_meta("entrance", false):
 		$entrance.show()
-		$entrance.position.y = -1
+		$entrance.position.y = 0
 	elif get_meta("boarded", false):
 		$boarded.show()
 		$boarded.position.y = -1

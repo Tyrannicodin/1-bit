@@ -152,10 +152,10 @@ func _physics_process(delta):
 			open_backpack()
 
 	if focusing_node != null and looking_at != focusing_node:
+		tooltipButton.hide()
+		tooltipLabel.hide()
 		if focusing_node.is_in_group("ITEM_3D"):
 			focusing_node.unfocus()
-			tooltipButton.hide()
-			tooltipLabel.hide()
 
 	if looking_at != focusing_node:
 		if looking_at != null and looking_at.is_in_group("ITEM_3D"):
