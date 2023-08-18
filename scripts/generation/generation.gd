@@ -150,19 +150,21 @@ func generate_new_branch(base_room: Node3D):
 			if not new_room.is_queued_for_deletion():
 				new_chosen_door.set_meta("connected", true)
 				next_recursion.append(new_room)
+				if ghost_pos.distance_to(Vector3(0,0,0)) < new_room.global_position.distance_to(Vector3(0,0,0)):
+					ghost_pos = new_room.global_position
 				door.queue_free()
 	# output for next level of recursion
 	return next_recursion
 	
 func generate_branches(new_nodes: Array[Node], depth: int):
+	if len(new_nodes) == 0:
+		print(depth)
+		return
 	if depth == 0:
 		for node in new_nodes:
 			for door in node.get_children():
 				if "door" in door.name:
 					place_end(door)
-		return
-	if len(new_nodes) == 0:
-		print(depth)
 		return
 	for node in new_nodes:
 		generate_branches(generate_new_branch(node), depth-1)
@@ -182,6 +184,17 @@ func _ready():
 
 	create_ceiling_and_walls(base_room, base_area)
 
-	for i in recursion_depth:
-		var new_nodes = generate_new_branch(base_room)
-		generate_branches(new_nodes, recursion_depth-1)
+	var new_nodes = generate_new_branch(base_room)
+	generate_branches(new_nodes, recursion_depth-1)
+
+var frames := 0
+var ghost_pos:Vector3
+
+func _process(_d):
+	frames += 1
+	if frames == 10:
+		var ghost = get_tree().get_first_node_in_group("ghost")
+		if ghost:
+			ghost_pos.y = 1
+			ghost.position = ghost_pos
+		set_process(false)
