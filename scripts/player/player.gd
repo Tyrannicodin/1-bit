@@ -217,7 +217,7 @@ func cycle_views():
 
 func _on_use_item(item_name: String):
 	if item_name == "CHOCOLATE":
-		pass
+		power.freeze(5)
 
 func in_range(node:Node3D):
 	if not node in available_interactions:

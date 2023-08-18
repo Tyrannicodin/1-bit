@@ -10,6 +10,7 @@ extends TextureProgressBar
 signal power_is_zero
 
 var valueFloat = 100.0
+var frozen: bool = false
 const timeToEmpty = 120
 
 # Called when the node enters the scene tree for the first time.
@@ -29,12 +30,13 @@ func _process(delta):
 	if player.VIEW_MODE == player.SPECTRAL:
 		change *= 3
 	
-	valueFloat -= change
+	if !frozen:
+		valueFloat -= change
 	
 	if (ghost and ghost.global_position) != null:
 		var distanceFromGhost = sqrt(pow(player.global_position.x - ghost.global_position.x, 2) + pow(player.global_position.z - ghost.global_position.z, 2))
 		if (distanceFromGhost < 4):
-			# get variable into range we want
+			# get variable into range we want 
 			distanceFromGhost -= 0.7
 			distanceFromGhost = 1 - (distanceFromGhost / 3.3)
 			
@@ -46,3 +48,14 @@ func _process(delta):
 	
 	if this.value == 0:
 		power_is_zero.emit()
+
+## Freeze the power bar for a certain amount of time
+func freeze(time: float):
+	frozen = true
+	var timer = Timer.new()
+	timer.set_wait_time(time)
+	timer.set_one_shot(true)
+	self.add_child(timer)
+	timer.start()
+	await timer.timeout
+	frozen = false
