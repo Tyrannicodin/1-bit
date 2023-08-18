@@ -4,7 +4,10 @@ class_name BackpackItem
 
 var BackpackSquare = preload("res://scenes/backpack/backpack_square.gd")
 
+signal use_item
+
 static var holding_item = false
+static var freed_item = false
 static var biggest_z_index = 0
 
 @onready var texture = $ItemTexture
@@ -13,6 +16,7 @@ var item_texture: Texture2D = null
 var should_drag = false
 var mouse_inside_me = false
 var is_in_backpack = false
+var backpack_square = null
 var item_name: String = ""
 
 func _ready():
@@ -30,6 +34,14 @@ func set_z_index_sub():
 	z_index = biggest_z_index
 
 func _process(_delta):
+	check_hovered()
+	check_used()
+
+	await get_tree().process_frame
+	
+	freed_item = false
+
+func check_hovered():
 	# im sorry god
 	# please nobody touch this
 	
@@ -51,13 +63,34 @@ func _process(_delta):
 	if Input.is_action_just_released("mouse_left_click"):
 		holding_item = false
 
-func enter_backpack(backpack_square: BackpackSquare):
+func check_used():
+	if freed_item:
+		return
+
+	if not Input.is_action_just_pressed("mouse_right_click"):
+		return
+
+	if not mouse_inside_me:
+		return
+
+	freed_item = true
+
+	if backpack_square != null:
+		backpack_square.clear_item()
+
+	use_item.emit(item_name)
+
+	queue_free()
+
+func enter_backpack(backpack_square_: BackpackSquare):
 	is_in_backpack = true
+	backpack_square = backpack_square_
 	self.position = backpack_square.get_global_transform_with_canvas().origin - Vector2(16, 16)
 	process_priority = 5
 	z_index = 0
 
 func leave_backpack_goodbye():
+	backpack_square = null
 	is_in_backpack = false
 	process_priority = 1
 	set_z_index_sub()

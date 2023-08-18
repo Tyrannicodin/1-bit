@@ -58,7 +58,6 @@ func _ready():
 			backpack_squares[Vector2i(i, j)] = backpack_square
 			backpack_square.set_location(i, j, CELL_SIZE, BACKPACK_SIZE)
 			backpack_square.hovered = false
-			backpack_square.use_item.connect(_on_use_item)
 
 func _on_use_item(item_name: String):
 	use_item.emit(item_name)
@@ -74,7 +73,8 @@ func open(item):
 		backpack_item.init(item.get_texture(), item.get_item_name()) 
 		backpack_item.position = Vector2(50, 50)
 		add_child(backpack_item)
-	
+		backpack_item.use_item.connect(_on_use_item)
+
 	show()
 
 
