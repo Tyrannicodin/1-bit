@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8g038tinktrv"]
+[gd_scene load_steps=11 format=3 uid="uid://c8g038tinktrv"]
 
 [ext_resource type="PackedScene" uid="uid://b1jakk1v7lkj7" path="res://assets/models/armchair/armchair.gltf" id="1_7b3sa"]
+[ext_resource type="PackedScene" uid="uid://ceee0d0d5ff0c" path="res://scenes/items/item_spawn_point.tscn" id="2_0muoi"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_afnw6"]
 data = PackedVector3Array(0.5, 0.125, -0.375, 0.5, 0.125, -0.5, 0.5, 0, -0.375, 0.5, 0, -0.375, 0.5, 0.125, -0.5, 0.5, 0, -0.5, 0.375, 0.125, -0.5, 0.375, 0.125, -0.375, 0.375, 0, -0.5, 0.375, 0, -0.5, 0.375, 0.125, -0.375, 0.375, 0, -0.375, 0.375, 0.125, -0.5, 0.5, 0.125, -0.5, 0.375, 0.125, -0.375, 0.375, 0.125, -0.375, 0.5, 0.125, -0.5, 0.5, 0.125, -0.375, 0.375, 0, -0.375, 0.5, 0, -0.375, 0.375, 0, -0.5, 0.375, 0, -0.5, 0.5, 0, -0.375, 0.5, 0, -0.5, 0.375, 0.125, -0.375, 0.5, 0.125, -0.375, 0.375, 0, -0.375, 0.375, 0, -0.375, 0.5, 0.125, -0.375, 0.5, 0, -0.375, 0.5, 0.125, -0.5, 0.375, 0.125, -0.5, 0.5, 0, -0.5, 0.5, 0, -0.5, 0.375, 0.125, -0.5, 0.375, 0, -0.5)
@@ -67,3 +68,8 @@ shape = SubResource("ConcavePolygonShape3D_ruyd0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node2/sofa/seat/arms/right/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_j50mh")
+
+[node name="item_spawner" parent="." index="2" instance=ExtResource("2_0muoi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.421237, 0)
+SPAWN_CHANCE = 0.4
+RANDOM_Y_ROTATION = true

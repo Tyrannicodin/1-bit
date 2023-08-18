@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bce865o02npf3"]
+[gd_scene load_steps=4 format=3 uid="uid://bce865o02npf3"]
 
 [ext_resource type="PackedScene" uid="uid://k7nmaatqt5er" path="res://assets/models/nightstand/nightstand.gltf" id="1_kc0xk"]
+[ext_resource type="PackedScene" uid="uid://ceee0d0d5ff0c" path="res://scenes/items/item_spawn_point.tscn" id="2_8n1wb"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_tt3vc"]
 data = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5)
@@ -14,3 +15,17 @@ transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node2/desk/body3/main/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_tt3vc")
+
+[node name="item_spawner" parent="." index="2" instance=ExtResource("2_8n1wb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0632739, 0.967482, -0.210927)
+RANDOM_Y_ROTATION = true
+
+[node name="item_spawner2" parent="." index="3" instance=ExtResource("2_8n1wb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21826, 0.967482, -0.210927)
+SPAWN_CHANCE = 0.3
+RANDOM_Y_ROTATION = true
+
+[node name="item_spawner3" parent="." index="4" instance=ExtResource("2_8n1wb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21826, 0.967482, 0.154804)
+SPAWN_CHANCE = 0.1
+RANDOM_Y_ROTATION = true

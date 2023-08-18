@@ -1,5 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://dli8k0xs6b25l"]
+[gd_scene load_steps=3 format=3 uid="uid://dli8k0xs6b25l"]
 
 [ext_resource type="PackedScene" uid="uid://bt73m8tvoa2xd" path="res://assets/models/table/table.gltf" id="1_1x2om"]
+[ext_resource type="PackedScene" uid="uid://ceee0d0d5ff0c" path="res://scenes/items/item_spawn_point.tscn" id="2_mobk5"]
 
 [node name="table" instance=ExtResource("1_1x2om")]
+
+[node name="item_spawner" parent="." index="2" instance=ExtResource("2_mobk5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.692852, 1.47954, 0)
+SPAWN_CHANCE = 0.1
+RANDOM_Y_ROTATION = true
+
+[node name="item_spawner2" parent="." index="3" instance=ExtResource("2_mobk5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39514, 1.47954, 0)
+SPAWN_CHANCE = 0.1
+RANDOM_Y_ROTATION = true
+
+[node name="item_spawner3" parent="." index="4" instance=ExtResource("2_mobk5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39514, 1.47954, -1.10283)
+SPAWN_CHANCE = 0.1
+RANDOM_Y_ROTATION = true
+
+[node name="item_spawner4" parent="." index="5" instance=ExtResource("2_mobk5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70365, 1.47954, -1.10283)
+SPAWN_CHANCE = 0.1
+RANDOM_Y_ROTATION = true

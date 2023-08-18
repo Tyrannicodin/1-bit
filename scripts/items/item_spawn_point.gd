@@ -3,7 +3,7 @@ extends Node3D
 ## The size of item that can be spawned in this location
 @export var SIZE = 1
 ## The chance an item will spawn on this spawner. 
-@export var SPAWN_CHANCE = 1
+@export var SPAWN_CHANCE: float = .2
 
 ## Give the item a random rotation around the x axis when spawned.
 @export var RANDOM_X_ROTATION = false
@@ -23,7 +23,8 @@ func _ready():
 		spawn_item()
 
 var ITEMS = [
-	preload("res://scenes/items/battery.tscn")
+	preload("res://scenes/items/battery.tscn"),
+	preload("res://scenes/items/chocolate.tscn"),
 ]
 
 func spawn_item():
