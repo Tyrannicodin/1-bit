@@ -65,6 +65,7 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	power.power_is_zero.connect(death)
 	backpack.use_item.connect(_on_use_item)
+	backpack.backpack_close.connect(close_backpack)
 	gos_viewport.visible = false
 
 func _input(event):
@@ -95,6 +96,14 @@ func _process(_d):
 	else:
 		flashlight_shader.material.set_shader_parameter("u_color_tex", flashlight_palette)
 		spectral_dither_shader.material.set_shader_parameter("u_color_tex", spectral_dither_palette)
+
+	if power.value <= 30:
+		var batteries = backpack.get_tree().get_nodes_in_group("BATTERY")
+		if len(batteries) >= 1:
+			var first = batteries.pop_front()
+			first.delete()
+			power.valueFloat = 100
+		
 
 func _physics_process(delta):
 	"""Make sure that we don't run when the player lost"""
@@ -207,7 +216,8 @@ func cycle_views():
 			sound_radar_loop.play()
 
 func _on_use_item(item_name: String):
-	print(item_name)
+	if item_name == "CHOCOLATE":
+		pass
 
 func in_range(node:Node3D):
 	if not node in available_interactions:

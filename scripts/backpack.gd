@@ -11,6 +11,7 @@ const BackpackItemScene = preload("res://scenes/backpack/backpack_item.tscn")
 const BackpackItem = preload("res://scenes/backpack/backpack_item.gd")
 
 signal use_item
+signal backpack_close
 
 var opened = false 
 
@@ -61,6 +62,10 @@ func _ready():
 
 func _on_use_item(item_name: String):
 	use_item.emit(item_name)
+	self.backpack_close.emit()
+
+func _on_item_hovered(desc: String):
+	print(desc)
 
 # Open the menu. Pass in all the items the user picked up as an array
 # if they have picked any up.
@@ -70,10 +75,11 @@ func open(item):
 
 	if item != null:
 		var backpack_item = BackpackItemScene.instantiate()
-		backpack_item.init(item.get_texture(), item.get_item_name()) 
+		backpack_item.init(item.get_texture(), item.get_item_name(), item.can_use(), item.get_description()) 
 		backpack_item.position = Vector2(50, 50)
 		add_child(backpack_item)
 		backpack_item.use_item.connect(_on_use_item)
+		backpack_item.hovered.connect(_on_item_hovered)		
 
 	show()
 

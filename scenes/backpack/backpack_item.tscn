@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqadc1kj1puc0"]
+[gd_scene load_steps=5 format=3 uid="uid://dqadc1kj1puc0"]
 
 [ext_resource type="Script" path="res://scenes/backpack/backpack_item.gd" id="1_6hrrj"]
-[ext_resource type="Texture2D" uid="uid://cwkr8uifvkhwi" path="res://assets/items/battery.png" id="2_83tfg"]
+[ext_resource type="Texture2D" uid="uid://c3jjb0jhv1jvc" path="res://assets/items/chocolate.png" id="2_arbd1"]
+[ext_resource type="Texture2D" uid="uid://cq0j1sj4ekv6i" path="res://assets/items/background.png" id="3_xmocv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ldfth"]
 size = Vector2(32, 31)
@@ -12,10 +13,14 @@ offset_right = 32.0
 offset_bottom = 32.0
 script = ExtResource("1_6hrrj")
 
-[node name="ItemTexture" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
 position = Vector2(16, 15)
 scale = Vector2(1.033, 1)
-texture = ExtResource("2_83tfg")
+texture = ExtResource("3_xmocv")
+
+[node name="ItemTexture" type="Sprite2D" parent="."]
+position = Vector2(16, 16)
+texture = ExtResource("2_arbd1")
 
 [node name="Area2D" type="Area2D" parent="."]
 

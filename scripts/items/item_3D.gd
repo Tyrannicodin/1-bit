@@ -13,6 +13,8 @@ func focus():
 func unfocus():
 	pass
 
+func can_use() -> bool:
+	return true
 
 func get_texture() -> Texture2D:
 	return null
