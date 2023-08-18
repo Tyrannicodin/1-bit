@@ -1,5 +1,6 @@
 extends Node3D
 
+var can_interact = true
 var open = true
 
 @onready var meshes = [$default, $boarded, $entrance]
@@ -24,13 +25,19 @@ func _process(_d):
 func toggle_open():
 	if get_meta("entrance", false) or get_meta("boarded", false):
 		return
+	if not can_interact:
+		return
 	if open:
 		$default/AnimationPlayer.play("animation_door_close")
 		$door_close_sound.play()
-		await $default/AnimationPlayer.animation_finished
 		open = false
+		can_interact = false
+		await $default/AnimationPlayer.animation_finished
+		can_interact = true
 	else:
 		$default/AnimationPlayer.play("animation_door_open")
 		$door_opening_sound.play()
-		await $default/AnimationPlayer.animation_finished
 		open = true
+		can_interact = false
+		await $default/AnimationPlayer.animation_finished
+		can_interact = true
