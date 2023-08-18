@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var recursion_depth := 5
+@export var recursion_depth := 32
 
 @onready var mesh_template = $MeshInstance3D
 
@@ -52,9 +52,9 @@ func load_rooms():
 func create_ceiling_and_walls(new_room, new_area):
 	var ceiling_mesh:MeshInstance3D = mesh_template.duplicate()
 	new_room.add_child(ceiling_mesh)
-	ceiling_mesh.global_position.x = new_room.global_position.x
+	ceiling_mesh.global_position.x = new_area.global_position.x
 	ceiling_mesh.global_position.y = 3
-	ceiling_mesh.global_position.z = new_room.global_position.z
+	ceiling_mesh.global_position.z = new_area.global_position.z
 	ceiling_mesh.scale.x = new_area.shape.size.x
 	ceiling_mesh.scale.z = new_area.shape.size.z
 	ceiling_mesh.scale.y = 0.1
@@ -67,25 +67,29 @@ func try_place_room(door:Node3D, new_door:Node3D, new_room:Node3D):
 	
 	new_room.global_position = Vector3(0, 0, 0)
 	new_room.global_rotate(Vector3.UP, door_rotation)
-	
+	new_room.global_rotation_degrees.y = snapped(new_room.global_rotation_degrees.y, 1)
 	# set position so it the two door touches
-	new_room.global_position.x = door.global_position.x - new_door.global_position.x
-	new_room.global_position.z = door.global_position.z - new_door.global_position.z
+	new_room.global_position.x = snapped(door.global_position.x - new_door.global_position.x, 0.001)
+	new_room.global_position.z = snapped(door.global_position.z - new_door.global_position.z, 0.001)
 	
 	# Create room bounding
 	var new_boundings = []
+	var area_shape
 	for new_area in new_room.get_node("area").get_children():
-		new_boundings.append(AABB(new_room.global_position, new_area.shape.size))
+		area_shape = new_area.shape.size
+		if not (100 > abs(new_area.global_rotation_degrees.y) and abs(new_area.global_rotation_degrees.y) > 80):
+			var x_swapping = area_shape.x
+			area_shape.x = area_shape.z
+			area_shape.z = x_swapping
+		new_boundings.append(AABB(new_area.global_position, area_shape))
 		# Create ceiling
 		create_ceiling_and_walls(new_room, new_area)
-	
-	for room in room_boundings:
-		for bounding in new_boundings:
-			if room.intersects(bounding):
+	for bounding in new_boundings:
+		for room in room_boundings:
+			if bounding.intersects(room):
 				new_room.queue_free()
 				return false
-	for bounding in new_boundings:
-		room_boundings.append(bounding)
+	room_boundings.append_array(new_boundings)
 	door.queue_free()
 	return true
 
@@ -103,6 +107,7 @@ func place_end(door):
 		if len(available_rooms) == 0:
 			# TODO: make door get boarded up
 			door.set_meta("connected", true)
+			door.set_meta("boarded", true)
 			return
 		new_packed_scene = random_choice(end)
 		available_rooms.erase(new_packed_scene)
@@ -151,6 +156,10 @@ func generate_new_branch(base_room: Node3D):
 	
 func generate_branches(new_nodes: Array[Node], depth: int):
 	if depth == 0:
+		for node in new_nodes:
+			for door in node.get_children():
+				if "door" in door.name:
+					place_end(door)
 		return
 	for node in new_nodes:
 		generate_branches(generate_new_branch(node), depth-1)

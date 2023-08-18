@@ -3,6 +3,7 @@ extends CharacterBody3D
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var player:CharacterBody3D = null
+var first_frame := true
 
 @export var speed = 1.5
 
@@ -12,6 +13,9 @@ func _ready():
 	player = get_tree().get_first_node_in_group("player") # Try to get the player
 
 func _physics_process(_d):
+	if first_frame:
+		first_frame = false
+		return
 	if not player: # If we didnt't find a player onready, look for one
 		player = get_tree().get_first_node_in_group("player")
 		if not player:

@@ -98,7 +98,7 @@ func _process(_d):
 	if power.value == 0:
 		death()
 	
-	if power.value <= 10:
+	if power.value <= 10 and power.value > 0:
 		if int(death_palette) == death_palette:
 			var palette_path = "res://assets/shaders/dithering/death/palette_"+str(death_palette)+".png"
 			if not FileAccess.file_exists(palette_path):
