@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://com6fd5ykhrct"]
+[gd_scene load_steps=53 format=3 uid="uid://com6fd5ykhrct"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_o7pwf"]
 [ext_resource type="Shader" path="res://assets/shaders/edge_detection/shader.gdshader" id="2_7eeor"]
@@ -30,8 +30,11 @@
 [ext_resource type="AudioStream" uid="uid://cxoxwctprao4s" path="res://assets/audio/footsteps/footsteps-1.mp3" id="24_63utq"]
 [ext_resource type="Script" path="res://scripts/sound_queue.gd" id="24_vdkos"]
 [ext_resource type="AudioStream" uid="uid://co4bk42ssmffe" path="res://assets/audio/footsteps/footsteps-3.mp3" id="26_hvwhh"]
+[ext_resource type="AudioStream" uid="uid://dcqrd57a61ibk" path="res://assets/audio/backpack_open.mp3" id="26_n4sot"]
 [ext_resource type="AudioStream" uid="uid://c7tesquxt0t5u" path="res://assets/audio/footsteps/footsteps-2.mp3" id="26_vy5bg"]
+[ext_resource type="AudioStream" uid="uid://di3aa2g4nn44" path="res://assets/audio/backpack_close.mp3" id="27_4s2cc"]
 [ext_resource type="AudioStream" uid="uid://cogiacgbrgch2" path="res://assets/audio/footsteps/footsteps-4.mp3" id="28_1g3uk"]
+[ext_resource type="AudioStream" uid="uid://cvwafgixtmg08" path="res://assets/audio/item_use.mp3" id="28_xaqhh"]
 [ext_resource type="AudioStream" uid="uid://dkb0l25jlxdfe" path="res://assets/audio/footsteps/footsteps-5.mp3" id="29_071lx"]
 [ext_resource type="AudioStream" uid="uid://chiavgqgg0p5g" path="res://assets/audio/footsteps/footsteps-6.mp3" id="30_xr3gv"]
 [ext_resource type="AudioStream" uid="uid://ul836mjv8u3" path="res://assets/audio/footsteps/footsteps-7.mp3" id="31_0ny0r"]
@@ -596,6 +599,15 @@ volume_db = -10.0
 
 [node name="sound_flashlight" type="AudioStreamPlayer" parent="GameContainer/GameViewport"]
 stream = ExtResource("22_b41qx")
+
+[node name="sound_backpack_open" type="AudioStreamPlayer" parent="GameContainer/GameViewport"]
+stream = ExtResource("26_n4sot")
+
+[node name="sound_backpack_close" type="AudioStreamPlayer" parent="GameContainer/GameViewport"]
+stream = ExtResource("27_4s2cc")
+
+[node name="sound_item_use" type="AudioStreamPlayer" parent="GameContainer/GameViewport"]
+stream = ExtResource("28_xaqhh")
 
 [node name="footsteps_timer" type="Timer" parent="GameContainer/GameViewport"]
 wait_time = 0.2

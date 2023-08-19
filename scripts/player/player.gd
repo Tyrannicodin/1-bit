@@ -32,6 +32,10 @@ var current_speed = SPEED
 @onready var sound_radar = $GameContainer/GameViewport/sound_radar
 @onready var sound_radar_off = $GameContainer/GameViewport/sound_radar_off
 @onready var sound_radar_loop = $GameContainer/GameViewport/sound_radar_loop
+@onready var sound_backpack_open = $GameContainer/GameViewport/sound_backpack_open
+@onready var sound_backpack_close = $GameContainer/GameViewport/sound_backpack_close
+@onready var sound_item_use = $GameContainer/GameViewport/sound_item_use
+
 
 @onready var footsteps = $GameContainer/GameViewport/footsteps_master
 @onready var footsteps_timer = $GameContainer/GameViewport/footsteps_timer
@@ -234,6 +238,7 @@ func cycle_views():
 			sound_radar_loop.play()
 
 func _on_use_item(item_name: String):
+	sound_item_use.play()
 	if item_name == "BATTERY":
 		power.valueFloat = min(power.valueFloat + 50, 100)
 	if item_name == "CHOCOLATE":
@@ -266,11 +271,14 @@ func open_backpack(item = null):
 		VIEW_MODE = FLASHLIGHT
 		cycle_views()
 
+	sound_backpack_open.play()
+
 	backpack.open(item)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	mouse_captured = false
 
 func close_backpack():
+	sound_backpack_close.play()
 	backpack.close()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	mouse_captured = true
