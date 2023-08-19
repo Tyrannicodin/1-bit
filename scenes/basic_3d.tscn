@@ -53,3 +53,9 @@ mesh = SubResource("PlaneMesh_7jl0e")
 
 [node name="coffee_table" parent="NavigationRegion3D" instance=ExtResource("6_flpom")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33281, 0, 0)
+
+[node name="coffee_table2" parent="NavigationRegion3D" instance=ExtResource("6_flpom")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33281, 0, 1.28915)
+
+[node name="coffee_table3" parent="NavigationRegion3D" instance=ExtResource("6_flpom")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33281, 0, 2.44676)

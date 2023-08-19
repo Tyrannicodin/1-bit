@@ -19,52 +19,52 @@ data = PackedVector3Array(1.75, 0.0625, 0.4375, 1.75, 0.0625, -0.375, 1.75, 0, 0
 
 [node name="item_spawner4" parent="." index="0" instance=ExtResource("2_1so2c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.134481, 0.29923, 0)
-SPAWN_CHANCE = 0.3
+SPAWN_CHANCE = 0.1
 RANDOM_Y_ROTATION = true
 
 [node name="item_spawner3" parent="." index="1" instance=ExtResource("2_1so2c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0247017, 1.22276, 0)
-SPAWN_CHANCE = 0.3
+SPAWN_CHANCE = 0.1
 RANDOM_Y_ROTATION = true
 
 [node name="item_spawner5" parent="." index="2" instance=ExtResource("2_1so2c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65124, 1.22276, 0)
-SPAWN_CHANCE = 0.3
+SPAWN_CHANCE = 0.1
 RANDOM_Y_ROTATION = true
 
 [node name="item_spawner6" parent="." index="3" instance=ExtResource("2_1so2c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.346498, 1.22276, -0.135249)
-SPAWN_CHANCE = 0.3
+SPAWN_CHANCE = 0.1
 RANDOM_Y_ROTATION = true
 
 [node name="item_spawner8" parent="." index="4" instance=ExtResource("2_1so2c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.739263, 0.721447, 0.0460674)
-SPAWN_CHANCE = 0.3
+SPAWN_CHANCE = 0.1
 RANDOM_Y_ROTATION = true
 
 [node name="item_spawner9" parent="." index="5" instance=ExtResource("2_1so2c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.24046, 0.721447, 0.0460674)
-SPAWN_CHANCE = 0.3
+SPAWN_CHANCE = 0.05
 RANDOM_Y_ROTATION = true
 
 [node name="item_spawner10" parent="." index="6" instance=ExtResource("2_1so2c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.592258, 0.280532, 0.0460674)
-SPAWN_CHANCE = 0.3
+SPAWN_CHANCE = 0.05
 RANDOM_Y_ROTATION = true
 
 [node name="item_spawner11" parent="." index="7" instance=ExtResource("2_1so2c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.072, 0.280532, 0.0460674)
-SPAWN_CHANCE = 0.3
+SPAWN_CHANCE = 0.1
 RANDOM_Y_ROTATION = true
 
 [node name="item_spawner7" parent="." index="8" instance=ExtResource("2_1so2c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.985141, 1.22276, 0.183328)
-SPAWN_CHANCE = 0.3
+SPAWN_CHANCE = 0.1
 RANDOM_Y_ROTATION = true
 
 [node name="item_spawner2" parent="." index="9" instance=ExtResource("2_1so2c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24426, 0.724388, 0.0740746)
-SPAWN_CHANCE = 0.3
+SPAWN_CHANCE = 0.1
 RANDOM_Y_ROTATION = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Node2/base/bottom" index="0"]

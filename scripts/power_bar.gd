@@ -20,6 +20,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if frozen:
+		return
+
 	if not ghost:
 		ghost = get_tree().get_first_node_in_group("ghost")
 		if not ghost:
@@ -29,9 +32,8 @@ func _process(delta):
 
 	if player.VIEW_MODE == player.SPECTRAL:
 		change *= 3
-	
-	if !frozen:
-		valueFloat -= change
+
+	valueFloat -= change
 	
 	if (ghost and ghost.global_position) != null:
 		var distanceFromGhost = sqrt(pow(player.global_position.x - ghost.global_position.x, 2) + pow(player.global_position.z - ghost.global_position.z, 2))

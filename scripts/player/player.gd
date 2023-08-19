@@ -5,6 +5,9 @@ enum {FLASHLIGHT, SPECTRAL}
 @export var VIEW_MODE := FLASHLIGHT
 @export var END_GAME_WHEN_OUT_OF_POWER := true
 @export var SPEED := 150
+@export var FAST_SPEED := 225
+
+var current_speed = SPEED
 
 @onready var camera = $"cameraLoc"
 @onready var ghostCamera = $"ghostCameraLoc"
@@ -97,12 +100,12 @@ func _process(_d):
 		flashlight_shader.material.set_shader_parameter("u_color_tex", flashlight_palette)
 		spectral_dither_shader.material.set_shader_parameter("u_color_tex", spectral_dither_palette)
 
-	if power.value <= 30:
-		var batteries = backpack.get_tree().get_nodes_in_group("BATTERY")
-		if len(batteries) >= 1:
-			var first = batteries.pop_front()
-			first.delete()
-			power.valueFloat += 50
+#	if power.value <= 30:
+#		var batteries = backpack.get_tree().get_nodes_in_group("BATTERY")
+#		if len(batteries) >= 1:
+#			var first = batteries.pop_front()
+#			first.delete()
+#			power.valueFloat += 50
 		
 
 func _physics_process(delta):
@@ -122,15 +125,15 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * current_speed
+		velocity.z = direction.z * current_speed
 		
 		if footsteps_timer.time_left <= 0 and is_on_floor():
 			footsteps.play()
 			footsteps_timer.start(0.4)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, current_speed)
+		velocity.z = move_toward(velocity.z, 0, current_speed)
 	velocity.x = velocity.x * delta
 	velocity.z = velocity.z * delta
 
@@ -216,8 +219,19 @@ func cycle_views():
 			sound_radar_loop.play()
 
 func _on_use_item(item_name: String):
+	if item_name == "BATTERY":
+		power.valueFloat = min(power.valueFloat + 50, 100)
 	if item_name == "CHOCOLATE":
 		power.freeze(5)
+	if item_name == "COFFEE":
+		current_speed = FAST_SPEED
+		var timer = Timer.new()
+		timer.set_wait_time(15)
+		timer.set_one_shot(true)
+		self.add_child(timer)
+		timer.start()
+		await timer.timeout
+		current_speed = SPEED
 
 func in_range(node:Node3D):
 	if not node in available_interactions:

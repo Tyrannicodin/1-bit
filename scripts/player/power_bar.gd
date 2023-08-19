@@ -1,12 +1,16 @@
 extends TextureProgressBar
 
-
 @onready var player = $"../../../../../.."
 var valueFloat = 100.0
 const timeToEmpty = 90
 
+var frozen: bool = false
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if frozen:
+		return
+
 	var change = 1 / (timeToEmpty * 1 / delta) * 100
 	valueFloat = float(valueFloat) - change
 	
