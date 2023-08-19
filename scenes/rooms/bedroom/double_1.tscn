@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://e463veyk60hf"]
+[gd_scene load_steps=40 format=3 uid="uid://e463veyk60hf"]
 
 [ext_resource type="Texture2D" uid="uid://cl1ufweknmoa3" path="res://assets/textures/floor.png" id="1_c5uwt"]
 [ext_resource type="PackedScene" uid="uid://bs0418e6ycfs7" path="res://scenes/furniture/bookshelf.tscn" id="2_ew0xb"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bce865o02npf3" path="res://scenes/furniture/nightstand.tscn" id="6_dfirs"]
 [ext_resource type="Texture2D" uid="uid://b18hjb7wj3bkp" path="res://assets/textures/carnation_wallpaper.png" id="6_orc17"]
 [ext_resource type="PackedScene" uid="uid://cqjsy8bblk8d7" path="res://scenes/furniture/wall_shelf.tscn" id="8_3v2gp"]
+[ext_resource type="PackedScene" uid="uid://eybojjhd4x5f" path="res://scenes/furniture/lamp.tscn" id="9_3svkw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ybe46"]
 size = Vector3(7, 2, 8)
@@ -171,6 +172,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.91086, 1.15136, -3.94503)
 
 [node name="shelf2" parent="region" instance=ExtResource("8_3v2gp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.91086, 1.83222, -3.94503)
+
+[node name="lamp_tscn" parent="region" instance=ExtResource("9_3svkw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13159, 0.000141621, -3.12713)
 
 [node name="door" parent="." instance=ExtResource("5_w2ojh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
