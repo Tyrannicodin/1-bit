@@ -1,9 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://c40if8adbm86m"]
+[gd_scene load_steps=34 format=3 uid="uid://c40if8adbm86m"]
 
 [ext_resource type="Texture2D" uid="uid://cl1ufweknmoa3" path="res://assets/textures/floor.png" id="1_1xf73"]
 [ext_resource type="PackedScene" path="res://scenes/furniture/table_chair.tscn" id="2_fafsl"]
 [ext_resource type="PackedScene" uid="uid://dli8k0xs6b25l" path="res://scenes/furniture/table.tscn" id="3_6kooe"]
 [ext_resource type="PackedScene" uid="uid://dn4cix2xb3ln4" path="res://scenes/furniture/pictures/picture_1.tscn" id="4_rb7w5"]
+[ext_resource type="PackedScene" uid="uid://eybojjhd4x5f" path="res://scenes/furniture/lamp.tscn" id="5_wm2cm"]
 [ext_resource type="PackedScene" uid="uid://cdo1rc43j024g" path="res://scenes/furniture/door.tscn" id="7_besc4"]
 [ext_resource type="Texture2D" uid="uid://dpjkpy23du8g5" path="res://assets/textures/wall.png" id="8_cgwna"]
 
@@ -145,6 +146,9 @@ transform = Transform3D(2.98854e-08, -0.683698, 0.308314, -0.75, -3.27835e-08, 6
 
 [node name="picture" parent="region" instance=ExtResource("4_rb7w5")]
 transform = Transform3D(-3.78552e-08, 0.866025, 0.5, -1, -4.37114e-08, 0, 2.18557e-08, -0.5, 0.866025, -1.77166, 0, -2.65618)
+
+[node name="lamp_tscn" parent="region" instance=ExtResource("5_wm2cm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.08781, -0.00696295, 3.0136)
 
 [node name="door" parent="." instance=ExtResource("7_besc4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
