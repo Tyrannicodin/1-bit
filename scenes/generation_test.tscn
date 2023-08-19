@@ -11,7 +11,7 @@ script = ExtResource("1_1ueqk")
 recursion_depth = 4
 
 [node name="player" parent="." groups=["player"] instance=ExtResource("2_0pbwx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.275719, 0.884507, 0)
 END_GAME_WHEN_OUT_OF_POWER = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
