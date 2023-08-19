@@ -3,7 +3,6 @@ extends TextureProgressBar
 
 @onready var this = $"."
 @onready var player = $"../../../../../.."
-@onready var timer = $"../powerbar_sound_timer"
 @onready var tick = $"../powerbar_sound"
 @onready var ghost = get_tree().get_first_node_in_group("ghost")
 

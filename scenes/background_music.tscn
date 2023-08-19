@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cx1c78h0lrq64"]
+[gd_scene load_steps=3 format=3 uid="uid://cxbmgps07nos5"]
 
 [ext_resource type="AudioStream" uid="uid://cb3w3r5p6y7hd" path="res://assets/audio/background_music.mp3" id="1_edp8u"]
+[ext_resource type="Script" path="res://scenes/retry_play.gd" id="2_ay1ut"]
 
 [node name="audio" type="Node2D"]
 
@@ -8,3 +9,4 @@
 stream = ExtResource("1_edp8u")
 volume_db = -12.0
 autoplay = true
+script = ExtResource("2_ay1ut")

@@ -69,7 +69,6 @@ var focusing_node = null
 func _ready():
 	"""Setup for game"""
 	mouse_captured = true # Capture the mouse and remember it for later
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	power.power_is_zero.connect(death)
 	backpack.use_item.connect(_on_use_item)
 	backpack.backpack_close.connect(close_backpack)
@@ -79,6 +78,7 @@ func _input(event):
 	"""Handle mouse movement"""
 	if event is InputEventMouseMotion:
 		if mouse_captured: # If the mouse is captured and gets moved, rotate the camera
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			rotate(Vector3(0, 1, 0), -event.relative.x * 0.001)
 			camera.rotate(Vector3(1, 0, 0), -event.relative.y * 0.001)
 			camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -80, 60)
@@ -113,6 +113,7 @@ func _process(_d):
 		
 
 func _physics_process(delta):
+	print("Player physics")
 	"""Make sure that we don't run when the player lost"""
 	if is_game_over == true:
 		return

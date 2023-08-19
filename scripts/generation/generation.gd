@@ -42,8 +42,9 @@ func load_rooms():
 	for category in roomdir.get_directories(): # Iterate through folders, these will be our catgeories
 		rooms[category] = []
 		for file in DirAccess.get_files_at("res://scenes/rooms/" + category):
-			if file.ends_with(".tscn"): # Assume all scene files are rooms
-				rooms[category].append(load("res://scenes/rooms/" + category + "/" + file))
+			if file.contains(".tscn"): # Assume all scene files are rooms
+				file = file.trim_suffix(".remap")
+				rooms[category].append(ResourceLoader.load("res://scenes/rooms/" + category + "/" + file, "PackedScene"))
 	entrance = rooms["entrance"]
 	rooms.erase("entrance")
 	end = rooms["end"]
@@ -176,6 +177,7 @@ func _ready():
 	load_rooms()
 
 	# First create a base child
+	print(entrance)
 	var base_room = random_choice(entrance).instantiate()
 	add_child(base_room)
 	var base_area:CollisionShape3D = base_room.get_node("area").get_child(0)

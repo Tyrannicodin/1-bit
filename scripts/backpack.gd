@@ -58,7 +58,7 @@ func _ready():
 			backpack_square.set_location(i, j, CELL_SIZE, BACKPACK_SIZE)
 			backpack_square.hovered = false
 
-func _process(delta):
+func _process(_d):
 	await get_tree().process_frame
 	label.text = ""
 

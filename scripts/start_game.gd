@@ -1,5 +1,4 @@
 extends Button
-@onready var subviewport = $"../../../.."
 
 func _ready():
 	self.pressed.connect(self._button_pressed)

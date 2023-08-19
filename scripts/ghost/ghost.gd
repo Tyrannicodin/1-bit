@@ -50,11 +50,16 @@ func _physics_process(delta):
 		target_position = player.global_position
 	else:
 		current_speed = 0.5*speed
-		if not idle_target:
+			
+		if not idle_target and len(get_tree().get_nodes_in_group("room")) > 0:
 			idle_target = get_tree().get_nodes_in_group("room").pick_random()
-		while idle_target.global_position.distance_to(global_position) < 5:
+		var iterations = 0
+		while iterations <= 100 and idle_target and idle_target.global_position.distance_to(global_position) < 5:
+			iterations += 1
 			last_target_reached = 0
 			idle_target = get_tree().get_nodes_in_group("room").pick_random()
+			if iterations > 100:
+				idle_target = null
 		if idle_target:
 			target_position = idle_target.global_position
 		else:
