@@ -1,10 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bce865o02npf3"]
+[gd_scene load_steps=8 format=3 uid="uid://bce865o02npf3"]
 
 [ext_resource type="PackedScene" uid="uid://k7nmaatqt5er" path="res://assets/models/nightstand/nightstand.gltf" id="1_kc0xk"]
 [ext_resource type="PackedScene" uid="uid://ceee0d0d5ff0c" path="res://scenes/items/item_spawn_point.tscn" id="2_8n1wb"]
+[ext_resource type="Script" path="res://scenes/furniture/nightlamp_collider.gd" id="3_4pf84"]
+[ext_resource type="Script" path="res://scenes/furniture/drawer_collider.gd" id="4_3q7ql"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_tt3vc"]
 data = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i816s"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_clcnv"]
+size = Vector3(0.5, 0.5, 0.941876)
 
 [node name="nightstand" instance=ExtResource("1_kc0xk")]
 
@@ -15,6 +23,19 @@ transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node2/desk/body3/main/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_tt3vc")
+
+[node name="item_spawner" parent="Node2/desk/body3/drawers/drawer_1" index="5" instance=ExtResource("2_8n1wb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.102826, -0.0698407, 0.232193)
+SPAWN_CHANCE = 1.0
+RANDOM_Y_ROTATION = true
+
+[node name="item_spawner2" parent="Node2/desk/body3/drawers/drawer_1" index="6" instance=ExtResource("2_8n1wb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.128186, -0.0620839, 0.459097)
+SPAWN_CHANCE = 1.0
+RANDOM_Y_ROTATION = true
+
+[node name="lamp" parent="Node2" index="1"]
+transform = Transform3D(0.999971, 0.000162764, -0.00757443, 0.000162764, 0.999077, 0.0429567, 0.00757443, -0.0429567, 0.999048, -0.25, 1.25, 0.25)
 
 [node name="item_spawner" parent="." index="2" instance=ExtResource("2_8n1wb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0632739, 0.967482, -0.210927)
@@ -29,3 +50,22 @@ RANDOM_Y_ROTATION = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21826, 0.967482, 0.154804)
 SPAWN_CHANCE = 0.1
 RANDOM_Y_ROTATION = true
+
+[node name="nightlamp_collider" type="Area3D" parent="." index="5"]
+script = ExtResource("3_4pf84")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="nightlamp_collider" index="0"]
+transform = Transform3D(0.95, 0, 0, 0, 1.916, 0, 0, 0, 1, -0.180158, 1.37402, 0.187762)
+shape = SubResource("BoxShape3D_i816s")
+
+[node name="light" type="OmniLight3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.178993, 1.4442, 0.0247824)
+visible = false
+
+[node name="drawer_collider" type="Area3D" parent="." index="7"]
+script = ExtResource("4_3q7ql")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="drawer_collider" index="0"]
+unique_name_in_owner = true
+transform = Transform3D(0.95, 0, 0, 0, 1.916, 0, 0, 0, 1, -0.180158, 0.574787, -0.141618)
+shape = SubResource("BoxShape3D_clcnv")
