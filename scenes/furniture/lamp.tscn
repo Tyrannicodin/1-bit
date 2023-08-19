@@ -1,7 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://eybojjhd4x5f"]
+[gd_scene load_steps=4 format=3 uid="uid://bpgq8bkrfsghi"]
 
+[ext_resource type="Script" path="res://scenes/furniture/nightlamp_collider.gd" id="1_mk0hj"]
 [ext_resource type="PackedScene" uid="uid://b3sbooxmt71f0" path="res://assets/models/lamp/lamp.gltf" id="1_x2mr0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wea2f"]
+size = Vector3(1, 2.48879, 1)
 
 [node name="lamp_tscn" type="Node3D"]
 
+[node name="lamp_collider" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.102852, 2.43183, 0.000632226)
+script = ExtResource("1_mk0hj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lamp_collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.712918, 0)
+shape = SubResource("BoxShape3D_wea2f")
+
 [node name="lamp" parent="." instance=ExtResource("1_x2mr0")]
+
+[node name="light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.102852, 2.43183, 0.000632226)
+visible = false

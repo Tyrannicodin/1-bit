@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b2kx7baln36h3"]
+[gd_scene load_steps=14 format=3 uid="uid://b2kx7baln36h3"]
 
 [ext_resource type="PackedScene" uid="uid://com6fd5ykhrct" path="res://scenes/player.tscn" id="1_ukcs2"]
 [ext_resource type="Material" uid="uid://dyc4fe2tge02t" path="res://assets/shaders/dithering/material.tres" id="3_y73xg"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dhxn5hmn2aoos" path="res://scenes/furniture/coffee_table.tscn" id="6_flpom"]
 [ext_resource type="PackedScene" uid="uid://bce865o02npf3" path="res://scenes/furniture/nightstand.tscn" id="7_1ljwt"]
 [ext_resource type="PackedScene" uid="uid://boi48hqv3bpxj" path="res://scenes/ghost.tscn" id="8_eocet"]
+[ext_resource type="PackedScene" uid="uid://bpgq8bkrfsghi" path="res://scenes/furniture/lamp.tscn" id="8_y6mx1"]
 
 [sub_resource type="Sky" id="Sky_peljl"]
 sky_material = ExtResource("3_y73xg")
@@ -63,3 +64,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33281, 0, 2.44676)
 
 [node name="nightstand" parent="." instance=ExtResource("7_1ljwt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.65356)
+
+[node name="lamp_tscn" parent="." instance=ExtResource("8_y6mx1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.30823)

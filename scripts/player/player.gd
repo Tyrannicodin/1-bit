@@ -167,7 +167,7 @@ func _physics_process(delta):
 				tooltipButton.show()
 				tooltipLabel.show()
 				tooltipLabel.text = "close" if looking_at.parent_door.open else "open"
-			elif looking_at != null and looking_at.name == "nightlamp_collider":
+			elif looking_at != null and (looking_at.name == "nightlamp_collider" or looking_at.name == "lamp_collider"):
 				tooltipButton.show()
 				tooltipLabel.show()
 				tooltipLabel.text = "turn off" if looking_at.on else "turn on"
@@ -184,7 +184,7 @@ func _physics_process(delta):
 				open_backpack(focusing_node)
 			elif focusing_node.name == "door_collider":
 				focusing_node.parent_door.toggle_open()
-			elif focusing_node.name == "nightlamp_collider":
+			elif focusing_node.name == "nightlamp_collider" or focusing_node.name == "lamp_collider":
 				focusing_node.toggle()
 			elif focusing_node.name == "drawer_collider":
 				focusing_node.toggle()
