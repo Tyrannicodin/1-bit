@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bce865o02npf3" path="res://scenes/furniture/nightstand.tscn" id="6_dfirs"]
 [ext_resource type="Texture2D" uid="uid://b18hjb7wj3bkp" path="res://assets/textures/carnation_wallpaper.png" id="6_orc17"]
 [ext_resource type="PackedScene" uid="uid://cqjsy8bblk8d7" path="res://scenes/furniture/wall_shelf.tscn" id="8_3v2gp"]
-[ext_resource type="PackedScene" uid="uid://eybojjhd4x5f" path="res://scenes/furniture/lamp.tscn" id="9_3svkw"]
+[ext_resource type="PackedScene" uid="uid://bpgq8bkrfsghi" path="res://scenes/furniture/lamp.tscn" id="9_3svkw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ybe46"]
 size = Vector3(7, 2, 8)

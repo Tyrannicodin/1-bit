@@ -276,7 +276,7 @@ func close_backpack():
 	mouse_captured = true
 
 func death():
-	if is_game_over == true or not END_GAME_WHEN_OUT_OF_POWER:
+	if is_game_over == true or END_GAME_WHEN_OUT_OF_POWER:
 		if power.power_is_zero.is_connected(death):
 			power.power_is_zero.disconnect(death)
 		return
