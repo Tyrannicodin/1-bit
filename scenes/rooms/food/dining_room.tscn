@@ -1,9 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://mu58rlf25lpe"]
+[gd_scene load_steps=36 format=3 uid="uid://mu58rlf25lpe"]
 
 [ext_resource type="PackedScene" uid="uid://dli8k0xs6b25l" path="res://scenes/furniture/table.tscn" id="1_8ii53"]
 [ext_resource type="Texture2D" uid="uid://cl1ufweknmoa3" path="res://assets/textures/floor.png" id="1_aoip3"]
 [ext_resource type="PackedScene" path="res://scenes/furniture/table_chair.tscn" id="2_uuymu"]
 [ext_resource type="PackedScene" uid="uid://cdo1rc43j024g" path="res://scenes/furniture/door.tscn" id="3_4pj3k"]
+[ext_resource type="PackedScene" uid="uid://eybojjhd4x5f" path="res://scenes/furniture/lamp.tscn" id="4_1s6y2"]
 [ext_resource type="Texture2D" uid="uid://dpjkpy23du8g5" path="res://assets/textures/wall.png" id="4_7lbys"]
 [ext_resource type="PackedScene" uid="uid://dn4cix2xb3ln4" path="res://scenes/furniture/pictures/picture_1.tscn" id="6_cys0d"]
 [ext_resource type="PackedScene" uid="uid://cnqwq3g2p3fg0" path="res://scenes/furniture/pictures/picture_2.tscn" id="7_ebkc1"]
@@ -146,6 +147,9 @@ end_position = Vector3(0, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
 start_position = Vector3(1, 0, 0)
 end_position = Vector3(-1, 0, 0)
+
+[node name="lamp_tscn" parent="region" instance=ExtResource("4_1s6y2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.95593, 0, -3.86627)
 
 [node name="door" parent="." instance=ExtResource("3_4pj3k")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5, 1, -5)
