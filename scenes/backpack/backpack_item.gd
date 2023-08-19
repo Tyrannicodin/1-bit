@@ -82,7 +82,7 @@ func check_used():
 	if freed_item:
 		return
 
-	if not Input.is_action_just_pressed("mouse_right_click"):
+	if not Input.is_action_just_pressed("interact"):
 		return
 
 	if not mouse_inside_me:
