@@ -129,19 +129,19 @@ start_position = Vector3(1, 0, 0)
 end_position = Vector3(-1, 0, 0)
 
 [node name="table_chair" parent="region" instance=ExtResource("2_fafsl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.49981, 0, 0)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2.49981, 0, 0)
 
 [node name="table" parent="region" instance=ExtResource("3_6kooe")]
-transform = Transform3D(-0.136961, 0, 0.990577, 0, 1, 0, -0.990577, 0, -0.136961, 0.569943, 0, -1.92232)
+transform = Transform3D(-0.102721, 0, 0.742932, 0, 0.75, 0, -0.742932, 0, -0.102721, 0.569943, 0, -1.92232)
 
 [node name="table_chair2" parent="region" instance=ExtResource("2_fafsl")]
-transform = Transform3D(0.956136, 0, 0.292922, 0, 1, 0, -0.292922, 0, 0.956136, 2.00968, 0, -1.62631)
+transform = Transform3D(0.717102, 0, 0.219692, 0, 0.75, 0, -0.219692, 0, 0.717102, 2.00968, 0, -1.62631)
 
 [node name="table_chair3" parent="region" instance=ExtResource("2_fafsl")]
-transform = Transform3D(-0.368361, -0.338097, -0.866025, -0.676195, 0.736723, 0, 0.638021, 0.585602, -0.5, -3.81423, 0.319541, 2.37162)
+transform = Transform3D(-0.276271, -0.253573, -0.649519, -0.507146, 0.552542, -3.47514e-08, 0.478516, 0.439202, -0.375, -4.08987, 0.319541, 2.74385)
 
 [node name="table_chair4" parent="region" instance=ExtResource("2_fafsl")]
-transform = Transform3D(3.98472e-08, -0.911597, 0.411085, -1, -4.37114e-08, 0, 1.79691e-08, -0.411085, -0.911597, -2.42216, 0.581753, 0)
+transform = Transform3D(2.98854e-08, -0.683698, 0.308314, -0.75, -3.27835e-08, 6.66134e-15, 1.34768e-08, -0.308314, -0.683698, -2.42216, 0.581753, 0)
 
 [node name="picture" parent="region" instance=ExtResource("4_rb7w5")]
 transform = Transform3D(-3.78552e-08, 0.866025, 0.5, -1, -4.37114e-08, 0, 2.18557e-08, -0.5, 0.866025, -1.77166, 0, -2.65618)
