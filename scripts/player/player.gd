@@ -200,7 +200,8 @@ func cycle_views():
 	sound_radar_loop.stop()
 	if VIEW_MODE == SPECTRAL:
 		sound_flashlight.play()
-		close_backpack()
+		if backpack.opened:
+			close_backpack()
 	else:
 		sound_radar_off.play()
 		

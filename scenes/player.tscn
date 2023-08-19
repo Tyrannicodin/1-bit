@@ -602,12 +602,15 @@ stream = ExtResource("22_b41qx")
 
 [node name="sound_backpack_open" type="AudioStreamPlayer" parent="GameContainer/GameViewport"]
 stream = ExtResource("26_n4sot")
+volume_db = 6.0
 
 [node name="sound_backpack_close" type="AudioStreamPlayer" parent="GameContainer/GameViewport"]
 stream = ExtResource("27_4s2cc")
+volume_db = 6.0
 
 [node name="sound_item_use" type="AudioStreamPlayer" parent="GameContainer/GameViewport"]
 stream = ExtResource("28_xaqhh")
+volume_db = 6.0
 
 [node name="footsteps_timer" type="Timer" parent="GameContainer/GameViewport"]
 wait_time = 0.2
