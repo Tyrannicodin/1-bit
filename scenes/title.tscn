@@ -299,7 +299,7 @@ offset_bottom = 130.0
 
 [node name="Label" type="Label" parent="SubViewport/VBoxContainer"]
 layout_mode = 2
-text = "Sprawing Mansion"
+text = "Branching Mansion"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="SubViewport/VBoxContainer"]
 layout_mode = 2
