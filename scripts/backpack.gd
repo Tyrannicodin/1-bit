@@ -76,7 +76,7 @@ func open(item):
 	if item != null:
 		var backpack_item = BackpackItemScene.instantiate()
 		backpack_item.init(item.get_texture(), item.get_item_name(), item.can_use(), item.get_description()) 
-		backpack_item.position = Vector2(50, 50)
+		backpack_item.position = (DisplayServer.window_get_size() / 4) - Vector2i(0, 100)
 		add_child(backpack_item)
 		backpack_item.use_item.connect(_on_use_item)
 		backpack_item.hovered.connect(_on_item_hovered)		

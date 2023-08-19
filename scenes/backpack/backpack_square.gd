@@ -25,8 +25,8 @@ func set_location(
 	var y_pos = float(new_y) - float(grid_size.y) / 2.
 
 	self.transform.origin = Vector2(
-		x_pos + cell_size.x * (self.x - 1), 
-		y_pos + cell_size.y * (self.y - 1), 
+		x_pos + cell_size.x * (self.x - .5), 
+		y_pos + cell_size.y * (self.y - .5), 
 	)
 
 func _process(_delta):

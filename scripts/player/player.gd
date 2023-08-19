@@ -102,7 +102,7 @@ func _process(_d):
 		if len(batteries) >= 1:
 			var first = batteries.pop_front()
 			first.delete()
-			power.valueFloat = 100
+			power.valueFloat += 50
 		
 
 func _physics_process(delta):

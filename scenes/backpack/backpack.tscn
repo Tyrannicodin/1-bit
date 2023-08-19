@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2in2c")
-BACKPACK_SIZE = Vector2i(3, 3)
+BACKPACK_SIZE = Vector2i(2, 2)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

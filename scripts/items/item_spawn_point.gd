@@ -24,7 +24,9 @@ func _ready():
 
 var ITEMS = [
 	preload("res://scenes/items/battery.tscn"),
+	preload("res://scenes/items/battery.tscn"),	
 	preload("res://scenes/items/chocolate.tscn"),
+	preload("res://scenes/items/coffee.tscn"),	
 ]
 
 func spawn_item():

@@ -47,16 +47,23 @@ shape = SubResource("ConcavePolygonShape3D_y732w")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node2/table/body/base/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_sjhfs")
 
+[node name="mug" parent="Node2/table" index="2"]
+visible = false
+
 [node name="item_spawner" parent="." index="1" instance=ExtResource("3_vwop3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.264486, 0.503481, 0)
 SPAWN_CHANCE = 0.7
 RANDOM_Y_ROTATION = true
 
-[node name="item_spawner" parent="item_spawner" index="1" instance=ExtResource("3_vwop3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25588, -0.00489968, -0.394566)
-RANDOM_Y_ROTATION = true
-
 [node name="item_spawner2" parent="." index="2" instance=ExtResource("3_vwop3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102, 0.503799, 0.317)
 SPAWN_CHANCE = 0.5
+RANDOM_Y_ROTATION = true
+
+[node name="item_spawner4" parent="." index="3" instance=ExtResource("3_vwop3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30835, 0.503799, -0.112592)
+RANDOM_Y_ROTATION = true
+
+[node name="item_spawner3" parent="." index="4" instance=ExtResource("3_vwop3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00860602, 0.498581, -0.394566)
 RANDOM_Y_ROTATION = true
