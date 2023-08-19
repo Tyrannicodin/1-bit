@@ -48,9 +48,6 @@ func item_rotate():
 		item_rotation = WEST
 	elif item_rotation == WEST:
 		item_rotation = NORTH
-		
-func _init():
-	pass
 
 func _ready():
 	for i in range(BACKPACK_SIZE.x):
@@ -61,12 +58,15 @@ func _ready():
 			backpack_square.set_location(i, j, CELL_SIZE, BACKPACK_SIZE)
 			backpack_square.hovered = false
 
+func _process(delta):
+	await get_tree().process_frame
+	label.text = ""
+
 func _on_use_item(item_name: String):
 	use_item.emit(item_name)
-	self.backpack_close.emit()
 
 func _on_item_hovered(desc: String):
-	print(desc)
+	label.text = desc
 
 # Open the menu. Pass in all the items the user picked up as an array
 # if they have picked any up.
@@ -81,7 +81,6 @@ func open(item):
 		add_child(backpack_item)
 		backpack_item.use_item.connect(_on_use_item)
 		backpack_item.hovered.connect(_on_item_hovered)
-		label.text = backpack_item.description
 
 	show()
 
