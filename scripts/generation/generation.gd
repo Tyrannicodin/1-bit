@@ -177,7 +177,6 @@ func _ready():
 	load_rooms()
 
 	# First create a base child
-	print(entrance)
 	var base_room = random_choice(entrance).instantiate()
 	add_child(base_room)
 	var base_area:CollisionShape3D = base_room.get_node("area").get_child(0)

@@ -52,7 +52,7 @@ var current_speed = SPEED
 var is_game_over = false
 
 var mouse_captured = false
-var flashes = true
+var flashes = false
 var available_interactions = []
 var death_palette:float = 0
 
@@ -91,9 +91,9 @@ func _process(_d):
 		death()
 	
 	if power.value <= 10 and power.value > 0 and flashes:
-		if int(death_palette) == death_palette:
+		if round(death_palette) == death_palette:
 			var palette_path = "res://assets/shaders/dithering/death/palette_"+str(death_palette)+".png"
-			if not FileAccess.file_exists(palette_path):
+			if not FileAccess.file_exists(palette_path+".import"):
 				death_palette = 0
 				palette_path = "res://assets/shaders/dithering/death/palette_"+str(death_palette)+".png"
 			var palette = load(palette_path)
@@ -113,7 +113,6 @@ func _process(_d):
 		
 
 func _physics_process(delta):
-	print("Player physics")
 	"""Make sure that we don't run when the player lost"""
 	if is_game_over == true:
 		return
