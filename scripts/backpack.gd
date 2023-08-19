@@ -66,7 +66,7 @@ func _on_use_item(item_name: String):
 	use_item.emit(item_name)
 
 func _on_item_hovered(desc: String):
-	label.text = desc
+	label.text = "(E) " + desc
 
 # Open the menu. Pass in all the items the user picked up as an array
 # if they have picked any up.
