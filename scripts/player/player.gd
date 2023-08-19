@@ -150,30 +150,32 @@ func _physics_process(delta):
 		if backpack.opened:
 			close_backpack()
 
-	if focusing_node != null and looking_at != focusing_node:
-		tooltipButton.hide()
-		tooltipLabel.hide()
-		if focusing_node.is_in_group("ITEM_3D"):
-			focusing_node.unfocus()
+	if VIEW_MODE != SPECTRAL:
+		if focusing_node != null and looking_at != focusing_node:
+			tooltipButton.hide()
+			tooltipLabel.hide()
+			if focusing_node.is_in_group("ITEM_3D"):
+				focusing_node.unfocus()
 
-	if looking_at != focusing_node:
-		if looking_at != null and looking_at.is_in_group("ITEM_3D"):
-			looking_at.focus()
-			tooltipButton.show()
-			tooltipLabel.show()
-			tooltipLabel.text = "pickup"
-		elif looking_at != null and looking_at.name == "door_collider":
-			tooltipButton.show()
-			tooltipLabel.show()
-			tooltipLabel.text = "close" if looking_at.parent_door.open else "open"
-		focusing_node = looking_at
+		if looking_at != focusing_node:
+			if looking_at != null and looking_at.is_in_group("ITEM_3D"):
+				looking_at.focus()
+				tooltipButton.show()
+				tooltipLabel.show()
+				tooltipLabel.text = "pickup"
+			elif looking_at != null and looking_at.name == "door_collider":
+				tooltipButton.show()
+				tooltipLabel.show()
+				tooltipLabel.text = "close" if looking_at.parent_door.open else "open"
+			focusing_node = looking_at
 
-	if Input.is_action_just_pressed("interact") and focusing_node != null:
-		if focusing_node.is_in_group("ITEM_3D"):
-			focusing_node.queue_free()
-			open_backpack(focusing_node)
-		elif focusing_node.name == "door_collider":
-			focusing_node.parent_door.toggle_open()
+
+		if Input.is_action_just_pressed("interact") and focusing_node != null:
+			if focusing_node.is_in_group("ITEM_3D"):
+				focusing_node.queue_free()
+				open_backpack(focusing_node)
+			elif focusing_node.name == "door_collider":
+				focusing_node.parent_door.toggle_open()
 
 	move_and_slide()
 
@@ -182,6 +184,7 @@ func cycle_views():
 	sound_radar_loop.stop()
 	if VIEW_MODE == SPECTRAL:
 		sound_flashlight.play()
+		close_backpack()
 	else:
 		sound_radar_off.play()
 		
@@ -247,6 +250,10 @@ func draw_item():
 
 
 func open_backpack(item = null):
+	if VIEW_MODE == SPECTRAL:
+		VIEW_MODE = FLASHLIGHT
+		cycle_views()
+
 	backpack.open(item)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	mouse_captured = false
