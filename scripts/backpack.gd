@@ -9,6 +9,7 @@ const Item = preload("res://scripts/item.gd")
 const BackpackSquareScene = preload("res://scenes/backpack/backpack_square.tscn")
 const BackpackItemScene = preload("res://scenes/backpack/backpack_item.tscn")
 const BackpackItem = preload("res://scenes/backpack/backpack_item.gd")
+@onready var label = $VBoxContainer/NinePatchRect/VBoxContainer/Label
 
 signal use_item
 signal backpack_close
@@ -79,7 +80,8 @@ func open(item):
 		backpack_item.position = (DisplayServer.window_get_size() / 4) - Vector2i(0, 100)
 		add_child(backpack_item)
 		backpack_item.use_item.connect(_on_use_item)
-		backpack_item.hovered.connect(_on_item_hovered)		
+		backpack_item.hovered.connect(_on_item_hovered)
+		label.text = backpack_item.description
 
 	show()
 
